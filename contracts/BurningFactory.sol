@@ -3,7 +3,7 @@ pragma solidity ^0.5.8;
 import "./Burning.sol";
 
 contract BurningFactory {
-    address internal manager;
+    address public manager;
     address public burner;
 
     event BurnerChanged(address indexed oldBurner, address indexed newBurner, address indexed sender);

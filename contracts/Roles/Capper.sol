@@ -4,7 +4,7 @@ import "./Pauser.sol";
 
 contract Capper is Pauser {
     uint256 public capacity = 0;
-    address internal capper = address(0);
+    address public capper = address(0);
 
     event Cap(uint256 indexed newCapacity, address indexed sender);
 

@@ -5,7 +5,7 @@ import "./Pauser.sol";
 import "./Prohibiter.sol";
 
 contract Admin is Capper, Prohibiter {
-    address internal admin = address(0);
+    address public admin = address(0);
 
     event CapperChanged(address indexed oldCapper, address indexed newCapper, address indexed sender);
     event PauserChanged(address indexed oldPauser, address indexed newPauser, address indexed sender);

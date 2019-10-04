@@ -3,7 +3,7 @@ pragma solidity ^0.5.8;
 import "./Minter.sol";
 
 contract MinterAdmin is Minter {
-    address internal minterAdmin = address(0);
+    address public minterAdmin = address(0);
 
     event MinterChanged(address indexed oldMinter, address indexed newMinter, address indexed sender);
 

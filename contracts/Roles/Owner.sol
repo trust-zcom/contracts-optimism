@@ -4,7 +4,7 @@ import "./Admin.sol";
 import "./MinterAdmin.sol";
 
 contract Owner is Admin, MinterAdmin {
-    address internal owner = address(0);
+    address public owner = address(0);
 
     event OwnerChanged(address indexed oldOwner, address indexed newOwner, address indexed sender);
     event AdminChanged(address indexed oldAdmin, address indexed newAdmin, address indexed sender);

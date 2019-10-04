@@ -654,12 +654,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x966d3e76E7a890A2d7B9AE1E370dC219E920F9D4",
-      "transactionHash": "0x2e886df4d490a3a3a3c21b9c815b208d7b1aa51b0ba98b7a7b0c706c357faf03"
+      "address": "0x757dbc31BB286832d21C505F1D80FbcfF6756e49",
+      "transactionHash": "0xc64e3b713b723d4c129bd82f7fe749a41e28fb33d5b6a44efffe1e2328e3de40"
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-10-04T06:18:09.088Z",
+  "updatedAt": "2019-10-04T06:53:02.920Z",
   "devdoc": {
     "methods": {
       "admin()": {

@@ -18,5 +18,5 @@ const minter = '0x77dff69a1745064f5af19850233b6cb29ed807d5';
 module.exports = function(deployer) {
     deployer
         .then(() => Token.deployed())
-        .then(token => deployer.deploy(ZUSD, token.address, '0x5fdf46ac8f52b24c17edb918719715ea883e6604', Web3EthAbi.encodeFunctionCall(initializeAbi, [name, symbol, decimals, owner, admin, capper, prohibiter, pauser, minterAdmin, minter])));
+        .then(token => deployer.deploy(ZUSD, token.address, '0xe418ce09763d13692516fab7160324b01e04b223', Web3EthAbi.encodeFunctionCall(initializeAbi, [name, symbol, decimals, owner, admin, capper, prohibiter, pauser, minterAdmin, minter])));
 };
