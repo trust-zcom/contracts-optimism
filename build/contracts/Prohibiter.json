@@ -117,14 +117,14 @@
     "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Prohibiter.sol",
     "exportedSymbols": {
       "Prohibiter": [
-        885
+        905
       ]
     },
-    "id": 886,
+    "id": 906,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 763,
+        "id": 783,
         "literals": [
           "solidity",
           "^",
@@ -137,10 +137,10 @@
       {
         "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Pauser.sol",
         "file": "./Pauser.sol",
-        "id": 764,
+        "id": 784,
         "nodeType": "ImportDirective",
-        "scope": 886,
-        "sourceUnit": 762,
+        "scope": 906,
+        "sourceUnit": 782,
         "src": "25:22:11",
         "symbolAliases": [],
         "unitAlias": ""
@@ -151,43 +151,43 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 765,
+              "id": 785,
               "name": "Pauser",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 761,
+              "referencedDeclaration": 781,
               "src": "72:6:11",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Pauser_$761",
+                "typeIdentifier": "t_contract$_Pauser_$781",
                 "typeString": "contract Pauser"
               }
             },
-            "id": 766,
+            "id": 786,
             "nodeType": "InheritanceSpecifier",
             "src": "72:6:11"
           }
         ],
         "contractDependencies": [
-          460,
-          761
+          480,
+          781
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 885,
+        "id": 905,
         "linearizedBaseContracts": [
-          885,
-          761,
-          460
+          905,
+          781,
+          480
         ],
         "name": "Prohibiter",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 771,
+            "id": 791,
             "name": "prohibiter",
             "nodeType": "VariableDeclaration",
-            "scope": 885,
+            "scope": 905,
             "src": "85:40:11",
             "stateVariable": true,
             "storageLocation": "default",
@@ -196,7 +196,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 767,
+              "id": 787,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "85:7:11",
@@ -212,7 +212,7 @@
                 {
                   "argumentTypes": null,
                   "hexValue": "30",
-                  "id": 769,
+                  "id": 789,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -235,7 +235,7 @@
                     "typeString": "int_const 0"
                   }
                 ],
-                "id": 768,
+                "id": 788,
                 "isConstant": false,
                 "isLValue": false,
                 "isPure": true,
@@ -248,7 +248,7 @@
                 },
                 "typeName": "address"
               },
-              "id": 770,
+              "id": 790,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -266,10 +266,10 @@
           },
           {
             "constant": false,
-            "id": 775,
+            "id": 795,
             "name": "isProhibited",
             "nodeType": "VariableDeclaration",
-            "scope": 885,
+            "scope": 905,
             "src": "131:44:11",
             "stateVariable": true,
             "storageLocation": "default",
@@ -278,9 +278,9 @@
               "typeString": "mapping(address => bool)"
             },
             "typeName": {
-              "id": 774,
+              "id": 794,
               "keyType": {
-                "id": 772,
+                "id": 792,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "139:7:11",
@@ -296,7 +296,7 @@
                 "typeString": "mapping(address => bool)"
               },
               "valueType": {
-                "id": 773,
+                "id": 793,
                 "name": "bool",
                 "nodeType": "ElementaryTypeName",
                 "src": "150:4:11",
@@ -312,20 +312,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 783,
+            "id": 803,
             "name": "Prohibition",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 782,
+              "id": 802,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 777,
+                  "id": 797,
                   "indexed": false,
                   "name": "prohibited",
                   "nodeType": "VariableDeclaration",
-                  "scope": 783,
+                  "scope": 803,
                   "src": "200:18:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -334,7 +334,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 776,
+                    "id": 796,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "200:7:11",
@@ -349,11 +349,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 779,
+                  "id": 799,
                   "indexed": false,
                   "name": "status",
                   "nodeType": "VariableDeclaration",
-                  "scope": 783,
+                  "scope": 803,
                   "src": "220:11:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -362,7 +362,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 778,
+                    "id": 798,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "220:4:11",
@@ -376,11 +376,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 781,
+                  "id": 801,
                   "indexed": false,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 783,
+                  "scope": 803,
                   "src": "233:14:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -389,7 +389,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 780,
+                    "id": 800,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "233:7:11",
@@ -409,7 +409,7 @@
           },
           {
             "body": {
-              "id": 794,
+              "id": 814,
               "nodeType": "Block",
               "src": "281:97:11",
               "statements": [
@@ -423,7 +423,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 789,
+                        "id": 809,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -432,18 +432,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 786,
+                            "id": 806,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2195,
+                            "referencedDeclaration": 2215,
                             "src": "299:3:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 787,
+                          "id": 807,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -461,11 +461,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 788,
+                          "id": 808,
                           "name": "prohibiter",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 771,
+                          "referencedDeclaration": 791,
                           "src": "313:10:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -481,7 +481,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "7468652073656e646572206973206e6f74207468652070726f68696269746572",
-                        "id": 790,
+                        "id": 810,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -508,21 +508,21 @@
                           "typeString": "literal_string \"the sender is not the prohibiter\""
                         }
                       ],
-                      "id": 785,
+                      "id": 805,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2198,
-                        2199
+                        2218,
+                        2219
                       ],
-                      "referencedDeclaration": 2199,
+                      "referencedDeclaration": 2219,
                       "src": "291:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 791,
+                    "id": 811,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -536,23 +536,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 792,
+                  "id": 812,
                   "nodeType": "ExpressionStatement",
                   "src": "291:69:11"
                 },
                 {
-                  "id": 793,
+                  "id": 813,
                   "nodeType": "PlaceholderStatement",
                   "src": "370:1:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 795,
+            "id": 815,
             "name": "onlyProhibiter",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 784,
+              "id": 804,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "278:2:11"
@@ -562,7 +562,7 @@
           },
           {
             "body": {
-              "id": 808,
+              "id": 828,
               "nodeType": "Block",
               "src": "429:92:11",
               "statements": [
@@ -572,7 +572,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 803,
+                        "id": 823,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -585,25 +585,25 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
-                            "id": 800,
+                            "id": 820,
                             "name": "isProhibited",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 775,
+                            "referencedDeclaration": 795,
                             "src": "448:12:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                               "typeString": "mapping(address => bool)"
                             }
                           },
-                          "id": 802,
+                          "id": 822,
                           "indexExpression": {
                             "argumentTypes": null,
-                            "id": 801,
+                            "id": 821,
                             "name": "_account",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 797,
+                            "referencedDeclaration": 817,
                             "src": "461:8:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -629,7 +629,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "74686973206163636f756e7420697320612070726f68696269746564",
-                        "id": 804,
+                        "id": 824,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -656,21 +656,21 @@
                           "typeString": "literal_string \"this account is a prohibited\""
                         }
                       ],
-                      "id": 799,
+                      "id": 819,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2198,
-                        2199
+                        2218,
+                        2219
                       ],
-                      "referencedDeclaration": 2199,
+                      "referencedDeclaration": 2219,
                       "src": "439:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 805,
+                    "id": 825,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -684,31 +684,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 806,
+                  "id": 826,
                   "nodeType": "ExpressionStatement",
                   "src": "439:64:11"
                 },
                 {
-                  "id": 807,
+                  "id": 827,
                   "nodeType": "PlaceholderStatement",
                   "src": "513:1:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 809,
+            "id": 829,
             "name": "onlyNotProhibited",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 798,
+              "id": 818,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 797,
+                  "id": 817,
                   "name": "_account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 809,
+                  "scope": 829,
                   "src": "411:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -717,7 +717,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 796,
+                    "id": 816,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "411:7:11",
@@ -738,7 +738,7 @@
           },
           {
             "body": {
-              "id": 821,
+              "id": 841,
               "nodeType": "Block",
               "src": "569:95:11",
               "statements": [
@@ -750,25 +750,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 814,
+                          "id": 834,
                           "name": "isProhibited",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 775,
+                          "referencedDeclaration": 795,
                           "src": "587:12:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                             "typeString": "mapping(address => bool)"
                           }
                         },
-                        "id": 816,
+                        "id": 836,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 815,
+                          "id": 835,
                           "name": "_account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 811,
+                          "referencedDeclaration": 831,
                           "src": "600:8:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -789,7 +789,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "74686973206163636f756e74206973206e6f7420612070726f68696269746564",
-                        "id": 817,
+                        "id": 837,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -816,21 +816,21 @@
                           "typeString": "literal_string \"this account is not a prohibited\""
                         }
                       ],
-                      "id": 813,
+                      "id": 833,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2198,
-                        2199
+                        2218,
+                        2219
                       ],
-                      "referencedDeclaration": 2199,
+                      "referencedDeclaration": 2219,
                       "src": "579:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 818,
+                    "id": 838,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -844,31 +844,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 819,
+                  "id": 839,
                   "nodeType": "ExpressionStatement",
                   "src": "579:67:11"
                 },
                 {
-                  "id": 820,
+                  "id": 840,
                   "nodeType": "PlaceholderStatement",
                   "src": "656:1:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 822,
+            "id": 842,
             "name": "onlyProhibited",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 812,
+              "id": 832,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 811,
+                  "id": 831,
                   "name": "_account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 822,
+                  "scope": 842,
                   "src": "551:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -877,7 +877,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 810,
+                    "id": 830,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "551:7:11",
@@ -898,14 +898,14 @@
           },
           {
             "body": {
-              "id": 852,
+              "id": 872,
               "nodeType": "Block",
               "src": "797:118:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 841,
+                    "id": 861,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -914,25 +914,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 837,
+                        "id": 857,
                         "name": "isProhibited",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 775,
+                        "referencedDeclaration": 795,
                         "src": "807:12:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 839,
+                      "id": 859,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 838,
+                        "id": 858,
                         "name": "_account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 824,
+                        "referencedDeclaration": 844,
                         "src": "820:8:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -955,7 +955,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 840,
+                      "id": 860,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -976,7 +976,7 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 842,
+                  "id": 862,
                   "nodeType": "ExpressionStatement",
                   "src": "807:29:11"
                 },
@@ -986,11 +986,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 844,
+                        "id": 864,
                         "name": "_account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 824,
+                        "referencedDeclaration": 844,
                         "src": "863:8:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1001,25 +1001,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 845,
+                          "id": 865,
                           "name": "isProhibited",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 775,
+                          "referencedDeclaration": 795,
                           "src": "873:12:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                             "typeString": "mapping(address => bool)"
                           }
                         },
-                        "id": 847,
+                        "id": 867,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 846,
+                          "id": 866,
                           "name": "_account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 824,
+                          "referencedDeclaration": 844,
                           "src": "886:8:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1041,18 +1041,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 848,
+                          "id": 868,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2195,
+                          "referencedDeclaration": 2215,
                           "src": "897:3:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 849,
+                        "id": 869,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1082,18 +1082,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 843,
+                      "id": 863,
                       "name": "Prohibition",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 783,
+                      "referencedDeclaration": 803,
                       "src": "851:11:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bool_$_t_address_$returns$__$",
                         "typeString": "function (address,bool,address)"
                       }
                     },
-                    "id": 850,
+                    "id": 870,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1107,27 +1107,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 851,
+                  "id": 871,
                   "nodeType": "EmitStatement",
                   "src": "846:62:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 853,
+            "id": 873,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 827,
+                "id": 847,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 826,
+                  "id": 846,
                   "name": "onlyProhibiter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 795,
+                  "referencedDeclaration": 815,
                   "src": "713:14:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1139,14 +1139,14 @@
               },
               {
                 "arguments": null,
-                "id": 829,
+                "id": 849,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 828,
+                  "id": 848,
                   "name": "whenNotPaused",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 715,
+                  "referencedDeclaration": 735,
                   "src": "728:13:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1160,11 +1160,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 831,
+                    "id": 851,
                     "name": "_account",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 824,
+                    "referencedDeclaration": 844,
                     "src": "759:8:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1172,14 +1172,14 @@
                     }
                   }
                 ],
-                "id": 832,
+                "id": 852,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 830,
+                  "id": 850,
                   "name": "isNotZeroAddress",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 446,
+                  "referencedDeclaration": 466,
                   "src": "742:16:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
@@ -1193,11 +1193,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 834,
+                    "id": 854,
                     "name": "_account",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 824,
+                    "referencedDeclaration": 844,
                     "src": "787:8:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1205,14 +1205,14 @@
                     }
                   }
                 ],
-                "id": 835,
+                "id": 855,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 833,
+                  "id": 853,
                   "name": "onlyNotProhibited",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 809,
+                  "referencedDeclaration": 829,
                   "src": "769:17:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
@@ -1226,15 +1226,15 @@
             "name": "prohibit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 825,
+              "id": 845,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 824,
+                  "id": 844,
                   "name": "_account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 853,
+                  "scope": 873,
                   "src": "688:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1243,7 +1243,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 823,
+                    "id": 843,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "688:7:11",
@@ -1260,12 +1260,12 @@
               "src": "687:18:11"
             },
             "returnParameters": {
-              "id": 836,
+              "id": 856,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "797:0:11"
             },
-            "scope": 885,
+            "scope": 905,
             "src": "670:245:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1273,14 +1273,14 @@
           },
           {
             "body": {
-              "id": 883,
+              "id": 903,
               "nodeType": "Block",
               "src": "1047:119:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 872,
+                    "id": 892,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1289,25 +1289,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 868,
+                        "id": 888,
                         "name": "isProhibited",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 775,
+                        "referencedDeclaration": 795,
                         "src": "1057:12:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 870,
+                      "id": 890,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 869,
+                        "id": 889,
                         "name": "_account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 855,
+                        "referencedDeclaration": 875,
                         "src": "1070:8:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1330,7 +1330,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "66616c7365",
-                      "id": 871,
+                      "id": 891,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1351,7 +1351,7 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 873,
+                  "id": 893,
                   "nodeType": "ExpressionStatement",
                   "src": "1057:30:11"
                 },
@@ -1361,11 +1361,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 875,
+                        "id": 895,
                         "name": "_account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 855,
+                        "referencedDeclaration": 875,
                         "src": "1114:8:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1376,25 +1376,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 876,
+                          "id": 896,
                           "name": "isProhibited",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 775,
+                          "referencedDeclaration": 795,
                           "src": "1124:12:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                             "typeString": "mapping(address => bool)"
                           }
                         },
-                        "id": 878,
+                        "id": 898,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 877,
+                          "id": 897,
                           "name": "_account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 855,
+                          "referencedDeclaration": 875,
                           "src": "1137:8:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1416,18 +1416,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 879,
+                          "id": 899,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2195,
+                          "referencedDeclaration": 2215,
                           "src": "1148:3:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 880,
+                        "id": 900,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1457,18 +1457,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 874,
+                      "id": 894,
                       "name": "Prohibition",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 783,
+                      "referencedDeclaration": 803,
                       "src": "1102:11:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bool_$_t_address_$returns$__$",
                         "typeString": "function (address,bool,address)"
                       }
                     },
-                    "id": 881,
+                    "id": 901,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1482,27 +1482,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 882,
+                  "id": 902,
                   "nodeType": "EmitStatement",
                   "src": "1097:62:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 884,
+            "id": 904,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 858,
+                "id": 878,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 857,
+                  "id": 877,
                   "name": "onlyProhibiter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 795,
+                  "referencedDeclaration": 815,
                   "src": "966:14:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1514,14 +1514,14 @@
               },
               {
                 "arguments": null,
-                "id": 860,
+                "id": 880,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 859,
+                  "id": 879,
                   "name": "whenNotPaused",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 715,
+                  "referencedDeclaration": 735,
                   "src": "981:13:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1535,11 +1535,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 862,
+                    "id": 882,
                     "name": "_account",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 855,
+                    "referencedDeclaration": 875,
                     "src": "1012:8:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1547,14 +1547,14 @@
                     }
                   }
                 ],
-                "id": 863,
+                "id": 883,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 861,
+                  "id": 881,
                   "name": "isNotZeroAddress",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 446,
+                  "referencedDeclaration": 466,
                   "src": "995:16:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
@@ -1568,11 +1568,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 865,
+                    "id": 885,
                     "name": "_account",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 855,
+                    "referencedDeclaration": 875,
                     "src": "1037:8:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1580,14 +1580,14 @@
                     }
                   }
                 ],
-                "id": 866,
+                "id": 886,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 864,
+                  "id": 884,
                   "name": "onlyProhibited",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 822,
+                  "referencedDeclaration": 842,
                   "src": "1022:14:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
@@ -1601,15 +1601,15 @@
             "name": "unprohibit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 856,
+              "id": 876,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 855,
+                  "id": 875,
                   "name": "_account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 884,
+                  "scope": 904,
                   "src": "941:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1618,7 +1618,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 854,
+                    "id": 874,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "941:7:11",
@@ -1635,19 +1635,19 @@
               "src": "940:18:11"
             },
             "returnParameters": {
-              "id": 867,
+              "id": 887,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1047:0:11"
             },
-            "scope": 885,
+            "scope": 905,
             "src": "921:245:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 886,
+        "scope": 906,
         "src": "49:1119:11"
       }
     ],
@@ -1657,14 +1657,14 @@
     "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Prohibiter.sol",
     "exportedSymbols": {
       "Prohibiter": [
-        885
+        905
       ]
     },
-    "id": 886,
+    "id": 906,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 763,
+        "id": 783,
         "literals": [
           "solidity",
           "^",
@@ -1677,10 +1677,10 @@
       {
         "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Pauser.sol",
         "file": "./Pauser.sol",
-        "id": 764,
+        "id": 784,
         "nodeType": "ImportDirective",
-        "scope": 886,
-        "sourceUnit": 762,
+        "scope": 906,
+        "sourceUnit": 782,
         "src": "25:22:11",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1691,43 +1691,43 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 765,
+              "id": 785,
               "name": "Pauser",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 761,
+              "referencedDeclaration": 781,
               "src": "72:6:11",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Pauser_$761",
+                "typeIdentifier": "t_contract$_Pauser_$781",
                 "typeString": "contract Pauser"
               }
             },
-            "id": 766,
+            "id": 786,
             "nodeType": "InheritanceSpecifier",
             "src": "72:6:11"
           }
         ],
         "contractDependencies": [
-          460,
-          761
+          480,
+          781
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 885,
+        "id": 905,
         "linearizedBaseContracts": [
-          885,
-          761,
-          460
+          905,
+          781,
+          480
         ],
         "name": "Prohibiter",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 771,
+            "id": 791,
             "name": "prohibiter",
             "nodeType": "VariableDeclaration",
-            "scope": 885,
+            "scope": 905,
             "src": "85:40:11",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1736,7 +1736,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 767,
+              "id": 787,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "85:7:11",
@@ -1752,7 +1752,7 @@
                 {
                   "argumentTypes": null,
                   "hexValue": "30",
-                  "id": 769,
+                  "id": 789,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -1775,7 +1775,7 @@
                     "typeString": "int_const 0"
                   }
                 ],
-                "id": 768,
+                "id": 788,
                 "isConstant": false,
                 "isLValue": false,
                 "isPure": true,
@@ -1788,7 +1788,7 @@
                 },
                 "typeName": "address"
               },
-              "id": 770,
+              "id": 790,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -1806,10 +1806,10 @@
           },
           {
             "constant": false,
-            "id": 775,
+            "id": 795,
             "name": "isProhibited",
             "nodeType": "VariableDeclaration",
-            "scope": 885,
+            "scope": 905,
             "src": "131:44:11",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1818,9 +1818,9 @@
               "typeString": "mapping(address => bool)"
             },
             "typeName": {
-              "id": 774,
+              "id": 794,
               "keyType": {
-                "id": 772,
+                "id": 792,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "139:7:11",
@@ -1836,7 +1836,7 @@
                 "typeString": "mapping(address => bool)"
               },
               "valueType": {
-                "id": 773,
+                "id": 793,
                 "name": "bool",
                 "nodeType": "ElementaryTypeName",
                 "src": "150:4:11",
@@ -1852,20 +1852,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 783,
+            "id": 803,
             "name": "Prohibition",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 782,
+              "id": 802,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 777,
+                  "id": 797,
                   "indexed": false,
                   "name": "prohibited",
                   "nodeType": "VariableDeclaration",
-                  "scope": 783,
+                  "scope": 803,
                   "src": "200:18:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1874,7 +1874,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 776,
+                    "id": 796,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "200:7:11",
@@ -1889,11 +1889,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 779,
+                  "id": 799,
                   "indexed": false,
                   "name": "status",
                   "nodeType": "VariableDeclaration",
-                  "scope": 783,
+                  "scope": 803,
                   "src": "220:11:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1902,7 +1902,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 778,
+                    "id": 798,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "220:4:11",
@@ -1916,11 +1916,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 781,
+                  "id": 801,
                   "indexed": false,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 783,
+                  "scope": 803,
                   "src": "233:14:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1929,7 +1929,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 780,
+                    "id": 800,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "233:7:11",
@@ -1949,7 +1949,7 @@
           },
           {
             "body": {
-              "id": 794,
+              "id": 814,
               "nodeType": "Block",
               "src": "281:97:11",
               "statements": [
@@ -1963,7 +1963,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 789,
+                        "id": 809,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1972,18 +1972,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 786,
+                            "id": 806,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2195,
+                            "referencedDeclaration": 2215,
                             "src": "299:3:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 787,
+                          "id": 807,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2001,11 +2001,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 788,
+                          "id": 808,
                           "name": "prohibiter",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 771,
+                          "referencedDeclaration": 791,
                           "src": "313:10:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2021,7 +2021,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "7468652073656e646572206973206e6f74207468652070726f68696269746572",
-                        "id": 790,
+                        "id": 810,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2048,21 +2048,21 @@
                           "typeString": "literal_string \"the sender is not the prohibiter\""
                         }
                       ],
-                      "id": 785,
+                      "id": 805,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2198,
-                        2199
+                        2218,
+                        2219
                       ],
-                      "referencedDeclaration": 2199,
+                      "referencedDeclaration": 2219,
                       "src": "291:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 791,
+                    "id": 811,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2076,23 +2076,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 792,
+                  "id": 812,
                   "nodeType": "ExpressionStatement",
                   "src": "291:69:11"
                 },
                 {
-                  "id": 793,
+                  "id": 813,
                   "nodeType": "PlaceholderStatement",
                   "src": "370:1:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 795,
+            "id": 815,
             "name": "onlyProhibiter",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 784,
+              "id": 804,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "278:2:11"
@@ -2102,7 +2102,7 @@
           },
           {
             "body": {
-              "id": 808,
+              "id": 828,
               "nodeType": "Block",
               "src": "429:92:11",
               "statements": [
@@ -2112,7 +2112,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 803,
+                        "id": 823,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2125,25 +2125,25 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
-                            "id": 800,
+                            "id": 820,
                             "name": "isProhibited",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 775,
+                            "referencedDeclaration": 795,
                             "src": "448:12:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                               "typeString": "mapping(address => bool)"
                             }
                           },
-                          "id": 802,
+                          "id": 822,
                           "indexExpression": {
                             "argumentTypes": null,
-                            "id": 801,
+                            "id": 821,
                             "name": "_account",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 797,
+                            "referencedDeclaration": 817,
                             "src": "461:8:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -2169,7 +2169,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "74686973206163636f756e7420697320612070726f68696269746564",
-                        "id": 804,
+                        "id": 824,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2196,21 +2196,21 @@
                           "typeString": "literal_string \"this account is a prohibited\""
                         }
                       ],
-                      "id": 799,
+                      "id": 819,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2198,
-                        2199
+                        2218,
+                        2219
                       ],
-                      "referencedDeclaration": 2199,
+                      "referencedDeclaration": 2219,
                       "src": "439:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 805,
+                    "id": 825,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2224,31 +2224,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 806,
+                  "id": 826,
                   "nodeType": "ExpressionStatement",
                   "src": "439:64:11"
                 },
                 {
-                  "id": 807,
+                  "id": 827,
                   "nodeType": "PlaceholderStatement",
                   "src": "513:1:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 809,
+            "id": 829,
             "name": "onlyNotProhibited",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 798,
+              "id": 818,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 797,
+                  "id": 817,
                   "name": "_account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 809,
+                  "scope": 829,
                   "src": "411:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2257,7 +2257,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 796,
+                    "id": 816,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "411:7:11",
@@ -2278,7 +2278,7 @@
           },
           {
             "body": {
-              "id": 821,
+              "id": 841,
               "nodeType": "Block",
               "src": "569:95:11",
               "statements": [
@@ -2290,25 +2290,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 814,
+                          "id": 834,
                           "name": "isProhibited",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 775,
+                          "referencedDeclaration": 795,
                           "src": "587:12:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                             "typeString": "mapping(address => bool)"
                           }
                         },
-                        "id": 816,
+                        "id": 836,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 815,
+                          "id": 835,
                           "name": "_account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 811,
+                          "referencedDeclaration": 831,
                           "src": "600:8:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2329,7 +2329,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "74686973206163636f756e74206973206e6f7420612070726f68696269746564",
-                        "id": 817,
+                        "id": 837,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2356,21 +2356,21 @@
                           "typeString": "literal_string \"this account is not a prohibited\""
                         }
                       ],
-                      "id": 813,
+                      "id": 833,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2198,
-                        2199
+                        2218,
+                        2219
                       ],
-                      "referencedDeclaration": 2199,
+                      "referencedDeclaration": 2219,
                       "src": "579:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 818,
+                    "id": 838,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2384,31 +2384,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 819,
+                  "id": 839,
                   "nodeType": "ExpressionStatement",
                   "src": "579:67:11"
                 },
                 {
-                  "id": 820,
+                  "id": 840,
                   "nodeType": "PlaceholderStatement",
                   "src": "656:1:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 822,
+            "id": 842,
             "name": "onlyProhibited",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 812,
+              "id": 832,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 811,
+                  "id": 831,
                   "name": "_account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 822,
+                  "scope": 842,
                   "src": "551:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2417,7 +2417,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 810,
+                    "id": 830,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "551:7:11",
@@ -2438,14 +2438,14 @@
           },
           {
             "body": {
-              "id": 852,
+              "id": 872,
               "nodeType": "Block",
               "src": "797:118:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 841,
+                    "id": 861,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2454,25 +2454,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 837,
+                        "id": 857,
                         "name": "isProhibited",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 775,
+                        "referencedDeclaration": 795,
                         "src": "807:12:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 839,
+                      "id": 859,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 838,
+                        "id": 858,
                         "name": "_account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 824,
+                        "referencedDeclaration": 844,
                         "src": "820:8:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2495,7 +2495,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 840,
+                      "id": 860,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2516,7 +2516,7 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 842,
+                  "id": 862,
                   "nodeType": "ExpressionStatement",
                   "src": "807:29:11"
                 },
@@ -2526,11 +2526,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 844,
+                        "id": 864,
                         "name": "_account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 824,
+                        "referencedDeclaration": 844,
                         "src": "863:8:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2541,25 +2541,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 845,
+                          "id": 865,
                           "name": "isProhibited",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 775,
+                          "referencedDeclaration": 795,
                           "src": "873:12:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                             "typeString": "mapping(address => bool)"
                           }
                         },
-                        "id": 847,
+                        "id": 867,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 846,
+                          "id": 866,
                           "name": "_account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 824,
+                          "referencedDeclaration": 844,
                           "src": "886:8:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2581,18 +2581,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 848,
+                          "id": 868,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2195,
+                          "referencedDeclaration": 2215,
                           "src": "897:3:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 849,
+                        "id": 869,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2622,18 +2622,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 843,
+                      "id": 863,
                       "name": "Prohibition",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 783,
+                      "referencedDeclaration": 803,
                       "src": "851:11:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bool_$_t_address_$returns$__$",
                         "typeString": "function (address,bool,address)"
                       }
                     },
-                    "id": 850,
+                    "id": 870,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2647,27 +2647,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 851,
+                  "id": 871,
                   "nodeType": "EmitStatement",
                   "src": "846:62:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 853,
+            "id": 873,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 827,
+                "id": 847,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 826,
+                  "id": 846,
                   "name": "onlyProhibiter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 795,
+                  "referencedDeclaration": 815,
                   "src": "713:14:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2679,14 +2679,14 @@
               },
               {
                 "arguments": null,
-                "id": 829,
+                "id": 849,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 828,
+                  "id": 848,
                   "name": "whenNotPaused",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 715,
+                  "referencedDeclaration": 735,
                   "src": "728:13:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2700,11 +2700,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 831,
+                    "id": 851,
                     "name": "_account",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 824,
+                    "referencedDeclaration": 844,
                     "src": "759:8:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2712,14 +2712,14 @@
                     }
                   }
                 ],
-                "id": 832,
+                "id": 852,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 830,
+                  "id": 850,
                   "name": "isNotZeroAddress",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 446,
+                  "referencedDeclaration": 466,
                   "src": "742:16:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
@@ -2733,11 +2733,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 834,
+                    "id": 854,
                     "name": "_account",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 824,
+                    "referencedDeclaration": 844,
                     "src": "787:8:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2745,14 +2745,14 @@
                     }
                   }
                 ],
-                "id": 835,
+                "id": 855,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 833,
+                  "id": 853,
                   "name": "onlyNotProhibited",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 809,
+                  "referencedDeclaration": 829,
                   "src": "769:17:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
@@ -2766,15 +2766,15 @@
             "name": "prohibit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 825,
+              "id": 845,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 824,
+                  "id": 844,
                   "name": "_account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 853,
+                  "scope": 873,
                   "src": "688:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2783,7 +2783,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 823,
+                    "id": 843,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "688:7:11",
@@ -2800,12 +2800,12 @@
               "src": "687:18:11"
             },
             "returnParameters": {
-              "id": 836,
+              "id": 856,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "797:0:11"
             },
-            "scope": 885,
+            "scope": 905,
             "src": "670:245:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2813,14 +2813,14 @@
           },
           {
             "body": {
-              "id": 883,
+              "id": 903,
               "nodeType": "Block",
               "src": "1047:119:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 872,
+                    "id": 892,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2829,25 +2829,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 868,
+                        "id": 888,
                         "name": "isProhibited",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 775,
+                        "referencedDeclaration": 795,
                         "src": "1057:12:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 870,
+                      "id": 890,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 869,
+                        "id": 889,
                         "name": "_account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 855,
+                        "referencedDeclaration": 875,
                         "src": "1070:8:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2870,7 +2870,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "66616c7365",
-                      "id": 871,
+                      "id": 891,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2891,7 +2891,7 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 873,
+                  "id": 893,
                   "nodeType": "ExpressionStatement",
                   "src": "1057:30:11"
                 },
@@ -2901,11 +2901,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 875,
+                        "id": 895,
                         "name": "_account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 855,
+                        "referencedDeclaration": 875,
                         "src": "1114:8:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2916,25 +2916,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 876,
+                          "id": 896,
                           "name": "isProhibited",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 775,
+                          "referencedDeclaration": 795,
                           "src": "1124:12:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                             "typeString": "mapping(address => bool)"
                           }
                         },
-                        "id": 878,
+                        "id": 898,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 877,
+                          "id": 897,
                           "name": "_account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 855,
+                          "referencedDeclaration": 875,
                           "src": "1137:8:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2956,18 +2956,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 879,
+                          "id": 899,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2195,
+                          "referencedDeclaration": 2215,
                           "src": "1148:3:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 880,
+                        "id": 900,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2997,18 +2997,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 874,
+                      "id": 894,
                       "name": "Prohibition",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 783,
+                      "referencedDeclaration": 803,
                       "src": "1102:11:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bool_$_t_address_$returns$__$",
                         "typeString": "function (address,bool,address)"
                       }
                     },
-                    "id": 881,
+                    "id": 901,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3022,27 +3022,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 882,
+                  "id": 902,
                   "nodeType": "EmitStatement",
                   "src": "1097:62:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 884,
+            "id": 904,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 858,
+                "id": 878,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 857,
+                  "id": 877,
                   "name": "onlyProhibiter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 795,
+                  "referencedDeclaration": 815,
                   "src": "966:14:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3054,14 +3054,14 @@
               },
               {
                 "arguments": null,
-                "id": 860,
+                "id": 880,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 859,
+                  "id": 879,
                   "name": "whenNotPaused",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 715,
+                  "referencedDeclaration": 735,
                   "src": "981:13:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3075,11 +3075,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 862,
+                    "id": 882,
                     "name": "_account",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 855,
+                    "referencedDeclaration": 875,
                     "src": "1012:8:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3087,14 +3087,14 @@
                     }
                   }
                 ],
-                "id": 863,
+                "id": 883,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 861,
+                  "id": 881,
                   "name": "isNotZeroAddress",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 446,
+                  "referencedDeclaration": 466,
                   "src": "995:16:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
@@ -3108,11 +3108,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 865,
+                    "id": 885,
                     "name": "_account",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 855,
+                    "referencedDeclaration": 875,
                     "src": "1037:8:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3120,14 +3120,14 @@
                     }
                   }
                 ],
-                "id": 866,
+                "id": 886,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 864,
+                  "id": 884,
                   "name": "onlyProhibited",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 822,
+                  "referencedDeclaration": 842,
                   "src": "1022:14:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
@@ -3141,15 +3141,15 @@
             "name": "unprohibit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 856,
+              "id": 876,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 855,
+                  "id": 875,
                   "name": "_account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 884,
+                  "scope": 904,
                   "src": "941:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3158,7 +3158,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 854,
+                    "id": 874,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "941:7:11",
@@ -3175,19 +3175,19 @@
               "src": "940:18:11"
             },
             "returnParameters": {
-              "id": 867,
+              "id": 887,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1047:0:11"
             },
-            "scope": 885,
+            "scope": 905,
             "src": "921:245:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 886,
+        "scope": 906,
         "src": "49:1119:11"
       }
     ],
@@ -3199,7 +3199,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-08-06T03:23:25.566Z",
+  "updatedAt": "2019-10-04T06:18:07.412Z",
   "devdoc": {
     "methods": {}
   },

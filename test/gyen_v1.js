@@ -4,7 +4,7 @@ const GYEN = artifacts.require("GYEN");
 const truffleAssert = require('truffle-assertions');
 const Web3EthAbi = require('web3-eth-abi');
 
-const abi = require("../build/contracts/Token.json").abi;
+const abi = require("../build/contracts/Token_v1.json").abi;
 const [initializeAbi] = abi.filter((f) => f.name === 'initialize');
 
 contract("GYEN.sol", (accounts) => {

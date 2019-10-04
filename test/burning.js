@@ -1,6 +1,6 @@
 const BurningFactory = artifacts.require("BurningFactory");
 const Burning = artifacts.require("Burning");
-const Token = artifacts.require("Token");
+const Token = artifacts.require("Token_v1");
 const truffleAssert = require('truffle-assertions');
 
 contract("Burning.sol", (accounts) => {
@@ -38,6 +38,37 @@ contract("Burning.sol", (accounts) => {
       await tokenInstance.mint(burning_address, 10, {from: tokenOwner});
       await truffleAssert.reverts(
         burning_instance.burn(tokenInstance.address, 9, {from: non_burner}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("Burner can transfer", async () => {
+      let deploy_tx = await burningFactoryInstance.deploy();
+      let burning_address = deploy_tx.logs[0].args.burning;
+      let burning_instance = await Burning.at(burning_address);
+      await tokenInstance.cap(100, {from: tokenOwner});
+      await tokenInstance.mint(burning_address, 10, {from: tokenOwner});
+
+      let recipient = `0x${require('crypto').randomBytes(20).toString('hex')}`
+      await burning_instance.transfer(tokenInstance.address, recipient, 9, {from: burner});
+      let balance = await tokenInstance.balanceOf(burning_address);
+      assert.strictEqual(balance.toNumber(), 1, "Balance after transfer not correct!");
+      let recipientBalance = await tokenInstance.balanceOf(recipient);
+      assert.strictEqual(recipientBalance.toNumber(), 9, "Balance of recipient after transfer not correct!");
+    });
+
+    it("Non burner cannot burn", async () => {
+      let non_burner = accounts[4];
+      let deploy_tx = await burningFactoryInstance.deploy();
+      let burning_address = deploy_tx.logs[0].args.burning;
+      let burning_instance = await Burning.at(burning_address);
+      await tokenInstance.cap(100, {from: tokenOwner});
+      await tokenInstance.mint(burning_address, 10, {from: tokenOwner});
+
+      let recipient = `0x${require('crypto').randomBytes(20).toString('hex')}`
+      await truffleAssert.reverts(
+        burning_instance.transfer(tokenInstance.address, recipient, 9, {from: non_burner}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );

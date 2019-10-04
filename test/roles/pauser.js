@@ -1,5 +1,5 @@
 
-const Token = artifacts.require("Token");
+const Token = artifacts.require("Token_v1");
 const truffleAssert = require('truffle-assertions');
 
 contract("Pauser.sol", (accounts) => {
