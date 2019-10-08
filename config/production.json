@@ -1,0 +1,13 @@
+{
+    "production": true,
+    "capper": "0x3Ab64CA9683B22898A521A1Dbae9E1CD10633c09",
+    "owner": "0x31b2e0aea80e2fddf5ed255da28fbcff4aa2523f",
+    "deployer": "0xe418ce09763d13692516fab7160324b01e04b223",
+    "minterAdmin": "0x9fee7470dceae3d31c6f0944d3b1ba93a140ced0",
+    "admin": "0x7125c5a8d5f2c42df64ba8aa32c2f257f53f7d22",
+    "burning_factory_manager": "0x812a56cbce34cbc541ee7b000c2d319684fc03c5",
+    "minter": "0x38502be5d1fc4b1331cec9d9f47bc7da6b7d3f34",
+    "pauser": "",
+    "prohibiter": "",
+    "burner": ""
+}
