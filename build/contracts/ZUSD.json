@@ -651,15 +651,47 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
-    "5777": {
-      "events": {},
+    "1337": {
+      "events": {
+        "0x7e644d79422f17c01e4894b5f4f588d331ebfa28653d42ae832dc59e38c9798f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "previousAdmin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "newAdmin",
+              "type": "address"
+            }
+          ],
+          "name": "AdminChanged",
+          "type": "event",
+          "signature": "0x7e644d79422f17c01e4894b5f4f588d331ebfa28653d42ae832dc59e38c9798f"
+        },
+        "0xbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "implementation",
+              "type": "address"
+            }
+          ],
+          "name": "Upgraded",
+          "type": "event",
+          "signature": "0xbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b"
+        }
+      },
       "links": {},
-      "address": "0x24eB97E328d7D513a9eb4AA91206d0cF2Ab78Ee0",
-      "transactionHash": "0xf9af6f75a66ee1b9fbcdbd0d4d520f61708d3dd10214fe9cae3455aa63e4eadf"
+      "address": "0x9db442903449A0a6cFf9b525FA03098270B7E173",
+      "transactionHash": "0x8613c7cbf32c21f2c2c40e534251b3028b6881de4382ca1481c2a17dfee2bceb"
     }
   },
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-10-04T06:53:02.525Z",
+  "schemaVersion": "3.0.16",
+  "updatedAt": "2019-10-10T07:02:02.999Z",
   "devdoc": {
     "methods": {
       "admin()": {

@@ -1,5 +1,7 @@
 {
     "production": true,
+    "name_suffix": "",
+    "symbol_suffix": "",
     "capper": "0x3Ab64CA9683B22898A521A1Dbae9E1CD10633c09",
     "owner": "0x31b2e0aea80e2fddf5ed255da28fbcff4aa2523f",
     "deployer": "0xe418ce09763d13692516fab7160324b01e04b223",

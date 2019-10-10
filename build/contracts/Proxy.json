@@ -845,8 +845,8 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-10-04T06:18:07.424Z",
+  "schemaVersion": "3.0.16",
+  "updatedAt": "2019-10-10T07:00:16.481Z",
   "devdoc": {
     "details": "Implements delegation of calls to other contracts, with proper forwarding of return values and bubbling of failures. It defines a fallback function that delegates all calls to the address returned by the abstract _implementation() internal function.",
     "methods": {},

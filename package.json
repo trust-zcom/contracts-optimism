@@ -12,7 +12,6 @@
   "dependencies": {
     "@openzeppelin/upgrades": "^2.5.0-rc.0",
     "@truffle/hdwallet-provider": "^1.0.18",
-    "config": "^3.2.3",
     "node-gyp": "^5.0.1",
     "openzeppelin-solidity": "^2.3.0",
     "truffle-hdwallet-provider": "^1.0.14"

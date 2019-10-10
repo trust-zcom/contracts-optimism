@@ -7246,15 +7246,328 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
-    "5777": {
-      "events": {},
+    "1337": {
+      "events": {
+        "0xbcad3d7d3dfccb90d49c6063bf70f828901fefc88937d90af74e58e6e55bc39d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "mintee",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "Mint",
+          "type": "event",
+          "signature": "0xbcad3d7d3dfccb90d49c6063bf70f828901fefc88937d90af74e58e6e55bc39d"
+        },
+        "0xdbdf9b8e4b75e75b162d151ec8fc7f0561cabab5fcccfa2600be62223e4300c4": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "burnee",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "Burn",
+          "type": "event",
+          "signature": "0xdbdf9b8e4b75e75b162d151ec8fc7f0561cabab5fcccfa2600be62223e4300c4"
+        },
+        "0x381c0d11398486654573703c51ee8210ce9461764d133f9f0e53b6a539705331": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "OwnerChanged",
+          "type": "event",
+          "signature": "0x381c0d11398486654573703c51ee8210ce9461764d133f9f0e53b6a539705331"
+        },
+        "0x4eb572e99196bed0270fbd5b17a948e19c3f50a97838cb0d2a75a823ff8e6c50": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldAdmin",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newAdmin",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "AdminChanged",
+          "type": "event",
+          "signature": "0x4eb572e99196bed0270fbd5b17a948e19c3f50a97838cb0d2a75a823ff8e6c50"
+        },
+        "0x4a85a5117c27071f301f0a758ea45cef77712d3d8358f0883b21c46ee1693d67": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldMinterAdmin",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newMinterAdmin",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "MinterAdminChanged",
+          "type": "event",
+          "signature": "0x4a85a5117c27071f301f0a758ea45cef77712d3d8358f0883b21c46ee1693d67"
+        },
+        "0x6970e71b2bda096f4eb3290c554af7a888cca0ef8b95da09c55b23c6bb30e381": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldMinter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newMinter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "MinterChanged",
+          "type": "event",
+          "signature": "0x6970e71b2bda096f4eb3290c554af7a888cca0ef8b95da09c55b23c6bb30e381"
+        },
+        "0xc4d5c17597bd0c5594a7545f36de213c6a58e2f235b165887331fe3686181970": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldCapper",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newCapper",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "CapperChanged",
+          "type": "event",
+          "signature": "0xc4d5c17597bd0c5594a7545f36de213c6a58e2f235b165887331fe3686181970"
+        },
+        "0x8b1ee37fa817a066fe12c7c9bf109c0c9f8f03ef0a5cfe0c03d5196e8c2e4657": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldPauser",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newPauser",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "PauserChanged",
+          "type": "event",
+          "signature": "0x8b1ee37fa817a066fe12c7c9bf109c0c9f8f03ef0a5cfe0c03d5196e8c2e4657"
+        },
+        "0x85ae865187b1d7c0069f5fab638cbfcb8f3f9d23bc090e1084abc0dc42def0d2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldProhibiter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newProhibiter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "ProhibiterChanged",
+          "type": "event",
+          "signature": "0x85ae865187b1d7c0069f5fab638cbfcb8f3f9d23bc090e1084abc0dc42def0d2"
+        },
+        "0xab0ab2fa6ff81b10c5afab4726a665d4379f2d0acaaafbe4c4d737ade05a8e46": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "prohibited",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "status",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "Prohibition",
+          "type": "event",
+          "signature": "0xab0ab2fa6ff81b10c5afab4726a665d4379f2d0acaaafbe4c4d737ade05a8e46"
+        },
+        "0x3bb5a3ed42af6c70969e54bbe40e4bba09c07f42c120cbec4ac0ee7eb0057fc9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "newCapacity",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "Cap",
+          "type": "event",
+          "signature": "0x3bb5a3ed42af6c70969e54bbe40e4bba09c07f42c120cbec4ac0ee7eb0057fc9"
+        },
+        "0x5a9dfee0981174e5203ccf9368a8cabb254f9dea6ca43f96b4bbd10c69415d8a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "status",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "Pause",
+          "type": "event",
+          "signature": "0x5a9dfee0981174e5203ccf9368a8cabb254f9dea6ca43f96b4bbd10c69415d8a"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event",
+          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        },
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "spender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event",
+          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+        }
+      },
       "links": {},
-      "address": "0x05b02F6d3d0a602f12212E04dc9a13336e2e6D39",
-      "transactionHash": "0xa29ed667323454d180a70d3b6abdcacf6fc60a57a43a35b9769892f2d018ed31"
+      "address": "0x905D5A21dCEe52e6a822a2e4973748EB6eF85b3c",
+      "transactionHash": "0x2489e0a25e3bda0520445724ce31e2589b82ddc9f09c57de8ffdc67be80665ef"
     }
   },
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-10-04T06:53:02.927Z",
+  "schemaVersion": "3.0.16",
+  "updatedAt": "2019-10-10T07:02:32.575Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
