@@ -2,5 +2,8 @@
 **/*.log
 .DS_Store
 .vscode
+.nyc_output
+coverage/*
+coverage.json
 
 .secret

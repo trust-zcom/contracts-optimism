@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
 import "./Capper.sol";
 import "./Pauser.sol";
@@ -22,7 +22,11 @@ contract Admin is Capper, Prohibiter {
         emit CapperChanged(old, capper, msg.sender);
     }
 
-    function changePauser(address _account) public onlyAdmin /* whenNotPaused */ isNotZeroAddress(_account) {
+    /**
+     * Change Pauser
+     * @dev "whenNotPaused" modifier should not be used here
+     */
+    function changePauser(address _account) public onlyAdmin isNotZeroAddress(_account) {
         address old = pauser;
         pauser = _account;
         emit PauserChanged(old, pauser, msg.sender);

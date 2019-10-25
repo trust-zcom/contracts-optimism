@@ -11,6 +11,7 @@ contract("Admin.sol", (accounts) => {
   let pauser = accounts[4];
   let minterAdmin = accounts[5];
   let minter = accounts[6];
+  let zero_address = '0x0000000000000000000000000000000000000000'
 
   var initialize =  async () => {
     contractInstance = await Token.new();
@@ -47,11 +48,9 @@ contract("Admin.sol", (accounts) => {
     });
 
     it("cannot change the capper to zero address", async () => {
-      let new_capper = 0;
-      await truffleAssert.fails(
-        contractInstance.changeCapper(new_capper, {from: admin}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        contractInstance.changeCapper(zero_address, {from: admin}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -77,11 +76,9 @@ contract("Admin.sol", (accounts) => {
     });
 
     it("cannot change the pauser to zero address", async () => {
-      let new_pauser = 0;
-      await truffleAssert.fails(
-        contractInstance.changePauser(new_pauser, {from: admin}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        contractInstance.changePauser(zero_address, {from: admin}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -117,11 +114,9 @@ contract("Admin.sol", (accounts) => {
     });
 
     it("cannot change the prohibiter to zero address", async () => {
-      let new_prohibiter = 0;
-      await truffleAssert.fails(
-        contractInstance.changeProhibiter(new_prohibiter, {from: admin}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        contractInstance.changeProhibiter(zero_address, {from: admin}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });

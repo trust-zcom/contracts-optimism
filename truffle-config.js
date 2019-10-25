@@ -22,7 +22,11 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
 const fs = require('fs');
-const privateKey = fs.readFileSync(".secret").toString().trim();
+let privateKey;
+
+if(fs.existsSync(".secret")) {
+  privateKey = fs.readFileSync(".secret").toString().trim();
+}
 
 
 module.exports = {
@@ -32,12 +36,19 @@ module.exports = {
      port: 7545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
-    "gyen-dev": {
+    dev: {
       host: "localhost",
       port: 8545,
       network_id: "1337",
-      provider: () => new HDWalletProvider(privateKey, "http://localhost:8545")
-    }
+      provider: () => new HDWalletProvider(privateKey, "http://localhost:8545"),
+      gasPrice: 40000000000,
+      gas: 3000000
+    },
+    test: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*",
+    },
   },
 
   // Set default mocha options here, use special reporters etc.

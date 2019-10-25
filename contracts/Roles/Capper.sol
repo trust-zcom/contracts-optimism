@@ -1,8 +1,8 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
-import "./Pauser.sol";
+import "./Common.sol";
 
-contract Capper is Pauser {
+contract Capper is Common {
     uint256 public capacity = 0;
     address public capper = address(0);
 

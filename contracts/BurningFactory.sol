@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
 import "./Burning.sol";
 
@@ -10,6 +10,8 @@ contract BurningFactory {
     event Deployed(address indexed burning, address indexed sender);
 
     constructor(address _manager, address _burner) public {
+        require(_manager != address(0), "_manager is the zero address");
+        require(_burner != address(0), "_burner is the zero address");
         manager = _manager;
         burner = _burner;
 

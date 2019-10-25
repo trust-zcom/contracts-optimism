@@ -2,7 +2,7 @@
 const Token = artifacts.require("Token_v1");
 const truffleAssert = require('truffle-assertions');
 
-contract("Token.sol", (accounts) => {
+contract("Token_v1.sol", (accounts) => {
   let tokenInstance;
   let owner = accounts[0];
   let admin = accounts[1];
@@ -11,6 +11,7 @@ contract("Token.sol", (accounts) => {
   let pauser = accounts[4];
   let minterAdmin = accounts[5];
   let minter = accounts[6];
+  let zero_address = '0x0000000000000000000000000000000000000000'
 
   var initialize =  async () => {
     tokenInstance = await Token.new();
@@ -19,9 +20,13 @@ contract("Token.sol", (accounts) => {
   }
 
   describe('Test initialize function', function() {
-    beforeEach(initialize);
+    beforeEach(async () => {
+      tokenInstance = await Token.new();
+    })
 
     it("Initialize cannot call multiple times", async () => {
+      await tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter);
+
       await truffleAssert.reverts(
         tokenInstance.initialize('B', 'b', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter),
         truffleAssert.ErrorType.REVERT,
@@ -29,6 +34,61 @@ contract("Token.sol", (accounts) => {
       );
     });
 
+    it("cannot initialize owner to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, zero_address, admin, capper, prohibiter, pauser, minterAdmin, minter),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot initialize admin to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, owner, zero_address, capper, prohibiter, pauser, minterAdmin, minter),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot initialize capper to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, owner, admin, zero_address, prohibiter, pauser, minterAdmin, minter),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot initialize prohibiter to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, owner, admin, capper, zero_address, pauser, minterAdmin, minter),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot initialize pauser to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, zero_address, minterAdmin, minter),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot initialize minterAdmin to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, zero_address, minter),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot initialize minter to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, zero_address),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
   });
 
   describe('Test cap function', function() {
@@ -68,6 +128,13 @@ contract("Token.sol", (accounts) => {
       );
     });
 
+    it("cannot set cap to a non natural number", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.cap(0, {from: capper}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
   });
 
   describe('Test mint function', function() {
@@ -114,7 +181,7 @@ contract("Token.sol", (accounts) => {
   
     it("mint should not above capacity", async () => {
       let mint_address = accounts[11];
-      tokenInstance.mint(mint_address, 90, {from: minter}),
+      await tokenInstance.mint(mint_address, 90, {from: minter});
       await truffleAssert.reverts(
         tokenInstance.mint(mint_address, 11, {from: minter}),
         truffleAssert.ErrorType.REVERT,
@@ -123,11 +190,9 @@ contract("Token.sol", (accounts) => {
     });
   
     it("mint address should not be zero", async () => {
-      let mint_address = 0;
-      await truffleAssert.fails(
-        tokenInstance.mint(mint_address, 10, {from: minter}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        tokenInstance.mint(zero_address, 10, {from: minter}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     })
@@ -138,6 +203,15 @@ contract("Token.sol", (accounts) => {
       await tokenInstance.mint(mint_address, 10, {from: minter});
       let new_totalSupply = await tokenInstance.totalSupply();
       assert.strictEqual(old_totalSupply.toNumber() + 10, new_totalSupply.toNumber(), "totalSupply not change after mint");
+    })
+
+    it("cannot mint a non natural number", async () => {
+      let mint_address = accounts[11];
+      await truffleAssert.reverts(
+        tokenInstance.mint(mint_address, 0, {from: minter}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
     })
   });
 
@@ -180,12 +254,10 @@ contract("Token.sol", (accounts) => {
 
     it("recipient address should not be zero", async () => {
       let sender = accounts[11];
-      let recipient = 0;
       await tokenInstance.mint(sender, 10, {from: minter});
-      await truffleAssert.fails(
-        tokenInstance.transfer(recipient, 10, {from: sender}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        tokenInstance.transfer(zero_address, 10, {from: sender}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -208,6 +280,18 @@ contract("Token.sol", (accounts) => {
       await tokenInstance.transfer(recipient, 9, {from: sender});
       await truffleAssert.reverts(
         tokenInstance.transfer(recipient, 2, {from: sender}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot transfer with amount is not a natural number", async () => {
+      let sender = accounts[11];
+      let recipient = accounts[12];
+      await tokenInstance.mint(sender, 10, {from: minter});
+      
+      await truffleAssert.reverts(
+        tokenInstance.transfer(recipient, 0, {from: sender}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -298,14 +382,26 @@ contract("Token.sol", (accounts) => {
 
     it("recipient address should not be zero", async () => {
       let sender = accounts[11];
-      let recipient = 0;
       let spender = accounts[12];
       await tokenInstance.mint(sender, 10, {from: minter});
       await tokenInstance.approve(spender, 10, {from: sender});
-      await truffleAssert.fails(
-        tokenInstance.transferFrom(sender, recipient, 10, {from: spender}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        tokenInstance.transferFrom(sender, zero_address, 10, {from: spender}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot transferFrom with amount is not a natural number", async () => {
+      let sender = accounts[1];
+      let recipient = accounts[2];
+      let spender = accounts[3];
+      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.approve(spender, 10, {from: sender});
+
+      await truffleAssert.reverts(
+        tokenInstance.transferFrom(sender, recipient, 0, {from: spender}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -355,17 +451,16 @@ contract("Token.sol", (accounts) => {
       );
     });
 
-    it("burn amount equal to zero should fail", async () => {
+    it("cannot burn amount of non natural number", async () => {
       let burn_account = accounts[11];
       await tokenInstance.mint(burn_account, 10, {from: minter});
-      await truffleAssert.fails(
+      
+      await truffleAssert.reverts(
         tokenInstance.burn(0, {from: burn_account}),
-        null,
-        null,
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
-
   });
 
   describe('Test approve function', function() {
