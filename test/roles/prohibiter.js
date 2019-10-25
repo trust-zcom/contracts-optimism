@@ -11,6 +11,7 @@ contract("Prohibiter.sol", (accounts) => {
   let pauser = accounts[4];
   let minterAdmin = accounts[5];
   let minter = accounts[6];
+  let zero_address = '0x0000000000000000000000000000000000000000'
 
   var initialize =  async () => {
     contractInstance = await Token.new();
@@ -57,11 +58,9 @@ contract("Prohibiter.sol", (accounts) => {
     });
 
     it("prohibited account cannot be zero", async () => {
-      let prohibit_account = 0;
-      await truffleAssert.fails(
-        contractInstance.prohibit(prohibit_account, {from: prohibiter}),
-        false,
-        false,
+      await truffleAssert.reverts(
+        contractInstance.prohibit(zero_address, {from: prohibiter}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -109,11 +108,9 @@ contract("Prohibiter.sol", (accounts) => {
     });
 
     it("unprohibit account cannot be zero", async () => {
-      let unprohibit_account = 0;
-      await truffleAssert.fails(
-        contractInstance.unprohibit(unprohibit_account, {from: prohibiter}),
-        false,
-        false,
+      await truffleAssert.reverts(
+        contractInstance.unprohibit(zero_address, {from: prohibiter}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });

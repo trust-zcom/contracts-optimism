@@ -6,6 +6,31 @@ contract("BurningFactory.sol", (accounts) => {
   let burningFactoryOwner = accounts[0];
   let manager = accounts[1];
   let burner = accounts[2];
+  let zero_address = '0x0000000000000000000000000000000000000000'
+  
+  describe('Test constructor function', function() {
+    it("should create BurningFactory instance", async () => {
+      burningFactoryInstance = await BurningFactory.new(manager, burner, {from: burningFactoryOwner})
+      let tx_result = await truffleAssert.createTransactionResult(burningFactoryInstance, burningFactoryInstance.transactionHash);
+      await truffleAssert.eventEmitted(tx_result, 'BurnerChanged', {oldBurner: zero_address, newBurner: burner}, 'BurnerChanged event should be emitted with correct parameters');
+    })
+
+    it("manager address should not be zero", async () => {
+      await truffleAssert.reverts(
+        BurningFactory.new(zero_address, burner, {from: burningFactoryOwner}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("burner address should not be zero", async () => {
+      await truffleAssert.reverts(
+        BurningFactory.new(manager, zero_address, {from: burningFactoryOwner}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+  });
   
   describe('Test deploy function', function() {
     beforeEach(async () => {
@@ -42,11 +67,9 @@ contract("BurningFactory.sol", (accounts) => {
     });
 
     it("burner address should not be zero", async () => {
-      let new_burner = 0;
-      await truffleAssert.fails(
-        burningFactoryInstance.changeBurner(new_burner, {from: manager}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        burningFactoryInstance.changeBurner(zero_address, {from: manager}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });

@@ -11,6 +11,7 @@ contract("Owner.sol", (accounts) => {
   let pauser = accounts[4];
   let minterAdmin = accounts[5];
   let minter = accounts[6];
+  let zero_address = '0x0000000000000000000000000000000000000000'
 
   var initialize =  async () => {
     contractInstance = await Token.new();
@@ -47,11 +48,9 @@ contract("Owner.sol", (accounts) => {
     });
 
     it("cannot change the owner to zero address", async () => {
-      let new_owner = 0;
-      await truffleAssert.fails(
-        contractInstance.changeOwner(new_owner, {from: owner}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        contractInstance.changeOwner(zero_address, {from: owner}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -77,11 +76,9 @@ contract("Owner.sol", (accounts) => {
     });
 
     it("cannot change the admin to zero address", async () => {
-      let new_admin = 0;
-      await truffleAssert.fails(
-        contractInstance.changeAdmin(new_admin),
-        null,
-        null,
+      await truffleAssert.reverts(
+        contractInstance.changeAdmin(zero_address),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -117,11 +114,9 @@ contract("Owner.sol", (accounts) => {
     });
 
     it("cannot change the minterAdmin to zero address", async () => {
-      let new_minterAdmin = 0;
-      await truffleAssert.fails(
-        contractInstance.changeMinterAdmin(new_minterAdmin, {from: owner}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        contractInstance.changeMinterAdmin(zero_address, {from: owner}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });

@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
 import "./Common.sol";
 
@@ -6,7 +6,7 @@ contract Pauser is Common {
     address public pauser = address(0);
     bool public paused = false;
 
-    event Pause(bool status, address sender);
+    event Pause(bool status, address indexed sender);
 
     modifier onlyPauser() {
         require(msg.sender == pauser, "the sender is not the pauser");

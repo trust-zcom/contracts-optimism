@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
 import "./Pauser.sol";
 
@@ -6,7 +6,7 @@ contract Prohibiter is Pauser {
     address public prohibiter = address(0);
     mapping(address => bool) public prohibiteds;
 
-    event Prohibition(address prohibited, bool status, address sender);
+    event Prohibition(address indexed prohibited, bool status, address indexed sender);
 
     modifier onlyProhibiter() {
         require(msg.sender == prohibiter, "the sender is not the prohibiter");
@@ -14,12 +14,12 @@ contract Prohibiter is Pauser {
     }
 
     modifier onlyNotProhibited(address _account) {
-        require(!prohibiteds[_account], "this account is a prohibited");
+        require(!prohibiteds[_account], "this account is prohibited");
         _;
     }
 
     modifier onlyProhibited(address _account) {
-        require(prohibiteds[_account], "this account is not a prohibited");
+        require(prohibiteds[_account], "this account is not prohibited");
         _;
     }
 

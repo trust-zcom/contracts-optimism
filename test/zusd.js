@@ -19,6 +19,7 @@ contract("ZUSD.sol", (accounts) => {
   let minter = accounts[6];
   let proxyAdmin = accounts[7];
   let data = Web3EthAbi.encodeFunctionCall(initializeAbi, ['Z.com USD', 'ZUSD', 6, owner, admin, capper, prohibiter, pauser, minterAdmin, minter]);
+  let zero_address = '0x0000000000000000000000000000000000000000'
 
   var initialize =  async () => {
     tokenInstance = await Token.new();
@@ -85,11 +86,9 @@ contract("ZUSD.sol", (accounts) => {
     });
 
     it("Cannot change admin of proxy to zero address", async () => {
-      let new_admin = 0;
-      await truffleAssert.fails(
-        zusdProxy.changeAdmin(new_admin, {from: proxyAdmin}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        zusdProxy.changeAdmin(zero_address, {from: proxyAdmin}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -122,7 +121,7 @@ contract("ZUSD.sol", (accounts) => {
         'This should be a fail test case!'
       );
       await truffleAssert.fails(
-        zusdProxy.upgradeTo(0, {from: admin}),
+        zusdProxy.upgradeTo(zero_address, {from: admin}),
         null,
         null,
         'This should be a fail test case!'
@@ -140,7 +139,6 @@ contract("ZUSD.sol", (accounts) => {
         'This should be a fail test case!'
       );
     });
-
   });
 
   describe('Test cap function', function() {
@@ -180,6 +178,13 @@ contract("ZUSD.sol", (accounts) => {
       );
     });
 
+    it("cannot set cap to a non natural number", async () => {
+      await truffleAssert.reverts(
+        zusdInstance.cap(0, {from: capper}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
   });
 
   describe('Test mint function', function() {
@@ -226,7 +231,7 @@ contract("ZUSD.sol", (accounts) => {
   
     it("mint should not above capacity", async () => {
       let mint_address = accounts[11];
-      zusdInstance.mint(mint_address, 90, {from: minter}),
+      await zusdInstance.mint(mint_address, 90, {from: minter});
       await truffleAssert.reverts(
         zusdInstance.mint(mint_address, 11, {from: minter}),
         truffleAssert.ErrorType.REVERT,
@@ -235,11 +240,9 @@ contract("ZUSD.sol", (accounts) => {
     });
   
     it("mint address should not be zero", async () => {
-      let mint_address = 0;
-      await truffleAssert.fails(
-        zusdInstance.mint(mint_address, 10, {from: minter}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        zusdInstance.mint(zero_address, 10, {from: minter}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     })
@@ -250,6 +253,15 @@ contract("ZUSD.sol", (accounts) => {
       await zusdInstance.mint(mint_address, 10, {from: minter});
       let new_totalSupply = await zusdInstance.totalSupply();
       assert.strictEqual(old_totalSupply.toNumber() + 10, new_totalSupply.toNumber(), "totalSupply not change after mint");
+    })
+
+    it("cannot mint a non natural number", async () => {
+      let mint_address = accounts[11];
+      await truffleAssert.reverts(
+        zusdInstance.mint(mint_address, 0, {from: minter}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
     })
   });
 
@@ -292,12 +304,10 @@ contract("ZUSD.sol", (accounts) => {
 
     it("recipient address should not be zero", async () => {
       let sender = accounts[11];
-      let recipient = 0;
       await zusdInstance.mint(sender, 10, {from: minter});
-      await truffleAssert.fails(
-        zusdInstance.transfer(recipient, 10, {from: sender}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        zusdInstance.transfer(zero_address, 10, {from: sender}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -320,6 +330,18 @@ contract("ZUSD.sol", (accounts) => {
       await zusdInstance.transfer(recipient, 9, {from: sender});
       await truffleAssert.reverts(
         zusdInstance.transfer(recipient, 2, {from: sender}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot transfer with amount is not a natural number", async () => {
+      let sender = accounts[11];
+      let recipient = accounts[12];
+      await zusdInstance.mint(sender, 10, {from: minter});
+      
+      await truffleAssert.reverts(
+        zusdInstance.transfer(recipient, 0, {from: sender}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -410,14 +432,26 @@ contract("ZUSD.sol", (accounts) => {
 
     it("recipient address should not be zero", async () => {
       let sender = accounts[11];
-      let recipient = 0;
       let spender = accounts[12];
       await zusdInstance.mint(sender, 10, {from: minter});
       await zusdInstance.approve(spender, 10, {from: sender});
-      await truffleAssert.fails(
-        zusdInstance.transferFrom(sender, recipient, 10, {from: spender}),
-        null,
-        null,
+      await truffleAssert.reverts(
+        zusdInstance.transferFrom(sender, zero_address, 10, {from: spender}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot transferFrom with amount is not a natural number", async () => {
+      let sender = accounts[1];
+      let recipient = accounts[2];
+      let spender = accounts[3];
+      await zusdInstance.mint(sender, 10, {from: minter});
+      await zusdInstance.approve(spender, 10, {from: sender});
+
+      await truffleAssert.reverts(
+        zusdInstance.transferFrom(sender, recipient, 0, {from: spender}),
+        truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
@@ -462,6 +496,17 @@ contract("ZUSD.sol", (accounts) => {
       await zusdInstance.burn(9, {from: burn_account});
       await truffleAssert.reverts(
         zusdInstance.burn(2, {from: burn_account}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot burn amount of non natural number", async () => {
+      let burn_account = accounts[11];
+      await zusdInstance.mint(burn_account, 10, {from: minter});
+      
+      await truffleAssert.reverts(
+        zusdInstance.burn(0, {from: burn_account}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );

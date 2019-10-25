@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
@@ -24,6 +24,13 @@ contract Token_v1 is Initializable, ERC20, Owner {
         address _minterAdmin,
         address _minter
         ) public initializer {
+            require(_owner != address(0), "_owner is the zero address");
+            require(_admin != address(0), "_admin is the zero address");
+            require(_capper != address(0), "_capper is the zero address");
+            require(_prohibiter != address(0), "_prohibiter is the zero address");
+            require(_pauser != address(0), "_pauser is the zero address");
+            require(_minterAdmin != address(0), "_minterAdmin is the zero address");
+            require(_minter != address(0), "_minter is the zero address");
             name = _name;
             symbol = _symbol;
             decimals = _decimals;
@@ -52,9 +59,7 @@ contract Token_v1 is Initializable, ERC20, Owner {
     }
 
     function transferFrom(address _sender, address _recipient, uint256 _amount) public whenNotPaused onlyNotProhibited(_sender) isNaturalNumber(_amount) returns (bool) {
-        _transfer(_sender, _recipient, _amount);
-        _approve(_sender, msg.sender, allowance(_sender, msg.sender).sub(_amount));
-        return true;
+        return super.transferFrom(_sender, _recipient, _amount);
     }
 
     function burn(uint256 _amount) public isNaturalNumber(_amount) {

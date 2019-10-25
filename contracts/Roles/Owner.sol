@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
 import "./Admin.sol";
 import "./MinterAdmin.sol";
@@ -21,7 +21,11 @@ contract Owner is Admin, MinterAdmin {
         emit OwnerChanged(old, owner, msg.sender);
     }
 
-    function changeAdmin(address _account) public onlyOwner /* whenNotPaused */ isNotZeroAddress(_account) {
+    /**
+     * Change Admin
+     * @dev "whenNotPaused" modifier should not be used here
+     */
+    function changeAdmin(address _account) public onlyOwner isNotZeroAddress(_account) {
         address old = admin;
         admin = _account;
         emit AdminChanged(old, admin, msg.sender);
