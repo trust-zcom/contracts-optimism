@@ -2,6 +2,9 @@ pragma solidity 0.5.8;
 
 import "./Burning.sol";
 
+/**
+ * BurningFactory is the contract for management of ZUSD/GYEN.
+ */
 contract BurningFactory {
     address public manager;
     address public burner;
@@ -18,12 +21,17 @@ contract BurningFactory {
         emit BurnerChanged(address(0), burner, msg.sender);
     }
 
+    modifier onlyBurner() {
+        require(msg.sender == burner, "the sender is not the burner");
+        _;
+    }
+
     modifier onlyManager() {
         require(msg.sender == manager, "the sender is not the manager");
         _;
     }
 
-    function deploy() public {
+    function deploy() public onlyBurner {
         Burning burning = new Burning();
         emit Deployed(address(burning), msg.sender);
     }

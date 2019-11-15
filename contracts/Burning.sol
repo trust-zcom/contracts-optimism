@@ -3,6 +3,9 @@ pragma solidity 0.5.8;
 import "./BurningFactory.sol";
 import "./Token_v1.sol";
 
+/**
+ * Burning is the contract for management of ZUSD/GYEN.
+ */
 contract Burning {
     address public factory;
 
