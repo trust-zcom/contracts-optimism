@@ -2,15 +2,6 @@
   "contractName": "Capper",
   "abi": [
     {
-      "constant": false,
-      "inputs": [],
-      "name": "unpause",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "constant": true,
       "inputs": [],
       "name": "capper",
@@ -27,48 +18,11 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "paused",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
       "name": "capacity",
       "outputs": [
         {
           "name": "",
           "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "pause",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "pauser",
-      "outputs": [
-        {
-          "name": "",
-          "type": "address"
         }
       ],
       "payable": false,
@@ -91,44 +45,27 @@
       ],
       "name": "Cap",
       "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "status",
-          "type": "bool"
-        },
-        {
-          "indexed": true,
-          "name": "sender",
-          "type": "address"
-        }
-      ],
-      "name": "Pause",
-      "type": "event"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"capper\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"capacity\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"pauser\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"newCapacity\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"Cap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"status\",\"type\":\"bool\"},{\"indexed\":true,\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"Pause\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Capper.sol\":\"Capper\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Capper.sol\":{\"keccak256\":\"0x45bff6ec2986cadf68bf3d6cd5bd93b8b30848b9029b2d1ee69cc4a88536fae2\",\"urls\":[\"bzzr://ebf8dbe8a91134e60e612abfd8b4936c8ef9d68030eaffa9df96db46f19385cf\"]},\"/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Common.sol\":{\"keccak256\":\"0x01618465f4d8e87470a0720ff3165174aeb9627b6cef9e384fb8aeff2e72b351\",\"urls\":[\"bzzr://9337ba5a9c196c14611723dd49ec3d284aa6b5d8606041d7de08122e8e177aea\"]},\"/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Pauser.sol\":{\"keccak256\":\"0x76bdff5ae0ede067307cd460dc0859a9bda1ff69c9c115fc72e0cfaf338f1e3f\",\"urls\":[\"bzzr://c0c5591f66d4d781e693b17ade692bda6a316540342db9ab1a3e6c653bae3440\"]}},\"version\":1}",
-  "bytecode": "0x6080604052600080546001600160a81b0319168155600155600280546001600160a01b031916905534801561003357600080fd5b50610371806100436000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c80633f4ba83a1461006757806350a6aaf4146100715780635c975abb146100955780635cfc1a51146100b15780638456cb59146100cb5780639fd0506d146100d3575b600080fd5b61006f6100db565b005b6100796101f3565b604080516001600160a01b039092168252519081900360200190f35b61009d610202565b604080519115158252519081900360200190f35b6100b9610212565b60408051918252519081900360200190f35b61006f610218565b610079610336565b6000546001600160a01b0316331461013d5760408051600160e51b62461bcd02815260206004820152601c60248201527f7468652073656e646572206973206e6f74207468652070617573657200000000604482015290519081900360640190fd5b600054600160a01b900460ff1661019e5760408051600160e51b62461bcd02815260206004820152601d60248201527f74686973206973206e6f7420612070617573656420636f6e7472616374000000604482015290519081900360640190fd5b60008054600160a01b60ff0219169081905560408051600160a01b90920460ff16151582525133917f5a9dfee0981174e5203ccf9368a8cabb254f9dea6ca43f96b4bbd10c69415d8a919081900360200190a2565b6002546001600160a01b031681565b600054600160a01b900460ff1681565b60015481565b6000546001600160a01b0316331461027a5760408051600160e51b62461bcd02815260206004820152601c60248201527f7468652073656e646572206973206e6f74207468652070617573657200000000604482015290519081900360640190fd5b600054600160a01b900460ff16156102dc5760408051600160e51b62461bcd02815260206004820152601960248201527f7468697320697320612070617573656420636f6e747261637400000000000000604482015290519081900360640190fd5b60008054600160a01b60ff021916600160a01b90811791829055604080519190920460ff1615158152905133917f5a9dfee0981174e5203ccf9368a8cabb254f9dea6ca43f96b4bbd10c69415d8a919081900360200190a2565b6000546001600160a01b03168156fea165627a7a72305820c971ff08252f8d7a2dd8f703ca0f55176e50386095fc3c8a62265934152c5c8a0029",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c80633f4ba83a1461006757806350a6aaf4146100715780635c975abb146100955780635cfc1a51146100b15780638456cb59146100cb5780639fd0506d146100d3575b600080fd5b61006f6100db565b005b6100796101f3565b604080516001600160a01b039092168252519081900360200190f35b61009d610202565b604080519115158252519081900360200190f35b6100b9610212565b60408051918252519081900360200190f35b61006f610218565b610079610336565b6000546001600160a01b0316331461013d5760408051600160e51b62461bcd02815260206004820152601c60248201527f7468652073656e646572206973206e6f74207468652070617573657200000000604482015290519081900360640190fd5b600054600160a01b900460ff1661019e5760408051600160e51b62461bcd02815260206004820152601d60248201527f74686973206973206e6f7420612070617573656420636f6e7472616374000000604482015290519081900360640190fd5b60008054600160a01b60ff0219169081905560408051600160a01b90920460ff16151582525133917f5a9dfee0981174e5203ccf9368a8cabb254f9dea6ca43f96b4bbd10c69415d8a919081900360200190a2565b6002546001600160a01b031681565b600054600160a01b900460ff1681565b60015481565b6000546001600160a01b0316331461027a5760408051600160e51b62461bcd02815260206004820152601c60248201527f7468652073656e646572206973206e6f74207468652070617573657200000000604482015290519081900360640190fd5b600054600160a01b900460ff16156102dc5760408051600160e51b62461bcd02815260206004820152601960248201527f7468697320697320612070617573656420636f6e747261637400000000000000604482015290519081900360640190fd5b60008054600160a01b60ff021916600160a01b90811791829055604080519190920460ff1615158152905133917f5a9dfee0981174e5203ccf9368a8cabb254f9dea6ca43f96b4bbd10c69415d8a919081900360200190a2565b6000546001600160a01b03168156fea165627a7a72305820c971ff08252f8d7a2dd8f703ca0f55176e50386095fc3c8a62265934152c5c8a0029",
-  "sourceMap": "48:554:5:-;;;112:1:10;80:34;;-1:-1:-1;;;;;;120:26:10;;;80:34;:27:5;113:34;;;-1:-1:-1;;;;;;113:34:5;;;48:554;5:2:-1;;;;30:1;27;20:12;5:2;48:554:5;;;;;;;",
-  "deployedSourceMap": "48:554:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;48:554:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;658:119:10;;;:::i;:::-;;113:34:5;;;:::i;:::-;;;;-1:-1:-1;;;;;113:34:5;;;;;;;;;;;;;;120:26:10;;;:::i;:::-;;;;;;;;;;;;;;;;;;80:27:5;;;:::i;:::-;;;;;;;;;;;;;;;;533:119:10;;;:::i;80:34::-;;;:::i;658:119::-;262:6;;-1:-1:-1;;;;;262:6:10;248:10;:20;240:61;;;;;-1:-1:-1;;;;;240:61:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;469:6;;-1:-1:-1;;;469:6:10;;;;461:48;;;;;-1:-1:-1;;;;;461:48:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;725:5;716:14;;-1:-1:-1;;;;;;716:14:10;;;;;745:25;;;-1:-1:-1;;;751:6:10;;;716:14;751:6;745:25;;;;;759:10;;745:25;;;;;;;;;;658:119::o;113:34:5:-;;;-1:-1:-1;;;;;113:34:5;;:::o;120:26:10:-;;;-1:-1:-1;;;120:26:10;;;;;:::o;80:27:5:-;;;;:::o;533:119:10:-;262:6;;-1:-1:-1;;;;;262:6:10;248:10;:20;240:61;;;;;-1:-1:-1;;;;;240:61:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;369:6;;-1:-1:-1;;;369:6:10;;;;368:7;360:45;;;;;-1:-1:-1;;;;;360:45:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;592:6;:13;;-1:-1:-1;;;;;;592:13:10;-1:-1:-1;;;592:13:10;;;;;;;620:25;;;626:6;;;;592:13;626:6;620:25;;;;;;634:10;;620:25;;;;;;;;;;533:119::o;80:34::-;;;-1:-1:-1;;;;;80:34:10;;:::o",
-  "source": "pragma solidity 0.5.8;\n\nimport \"./Pauser.sol\";\n\ncontract Capper is Pauser {\n    uint256 public capacity = 0;\n    address public capper = address(0);\n\n    event Cap(uint256 indexed newCapacity, address indexed sender);\n\n    modifier onlyCapper() {\n        require(msg.sender == capper, \"the sender is not the capper\");\n        _;\n    }\n\n    modifier notMoreThanCapacity(uint256 _amount) {\n        require(_amount <= capacity, \"this amount is more than capacity\");\n        _;\n    }\n\n    function _cap(uint256 _amount) internal {\n        capacity = _amount;\n        emit Cap(capacity, msg.sender);\n    }\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"capper\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"capacity\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"newCapacity\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"Cap\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Capper.sol\":\"Capper\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Capper.sol\":{\"keccak256\":\"0x5bdcee8662e61dd282d6dd510392a0bc09610b8c5b0f988b8f10fa4114fdfaea\",\"urls\":[\"bzzr://f09e17a749d6e9cb905f3bc19938f4a363d19cc7d7db27cb7941bbfa966032b8\"]},\"/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Common.sol\":{\"keccak256\":\"0x01618465f4d8e87470a0720ff3165174aeb9627b6cef9e384fb8aeff2e72b351\",\"urls\":[\"bzzr://9337ba5a9c196c14611723dd49ec3d284aa6b5d8606041d7de08122e8e177aea\"]}},\"version\":1}",
+  "bytecode": "0x608060405260008055600180546001600160a01b031916905534801561002457600080fd5b5060b2806100336000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c806350a6aaf41460375780635cfc1a51146059575b600080fd5b603d6071565b604080516001600160a01b039092168252519081900360200190f35b605f6080565b60408051918252519081900360200190f35b6001546001600160a01b031681565b6000548156fea165627a7a7230582033b50e7df262fd9a857313cf82276ea6c47b9c435521aaced3cde71ba72bbe700029",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c806350a6aaf41460375780635cfc1a51146059575b600080fd5b603d6071565b604080516001600160a01b039092168252519081900360200190f35b605f6080565b60408051918252519081900360200190f35b6001546001600160a01b031681565b6000548156fea165627a7a7230582033b50e7df262fd9a857313cf82276ea6c47b9c435521aaced3cde71ba72bbe700029",
+  "sourceMap": "48:554:5:-;;;106:1;80:27;;113:34;;;-1:-1:-1;;;;;;113:34:5;;;48:554;5:2:-1;;;;30:1;27;20:12;5:2;48:554:5;;;;;;;",
+  "deployedSourceMap": "48:554:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;48:554:5;;;;;;;;;;;;;;;;;;;;;;;;113:34;;;:::i;:::-;;;;-1:-1:-1;;;;;113:34:5;;;;;;;;;;;;;;80:27;;;:::i;:::-;;;;;;;;;;;;;;;;113:34;;;-1:-1:-1;;;;;113:34:5;;:::o;80:27::-;;;;:::o",
+  "source": "pragma solidity 0.5.8;\n\nimport \"./Common.sol\";\n\ncontract Capper is Common {\n    uint256 public capacity = 0;\n    address public capper = address(0);\n\n    event Cap(uint256 indexed newCapacity, address indexed sender);\n\n    modifier onlyCapper() {\n        require(msg.sender == capper, \"the sender is not the capper\");\n        _;\n    }\n\n    modifier notMoreThanCapacity(uint256 _amount) {\n        require(_amount <= capacity, \"this amount is more than capacity\");\n        _;\n    }\n\n    function _cap(uint256 _amount) internal {\n        capacity = _amount;\n        emit Cap(capacity, msg.sender);\n    }\n}",
   "sourcePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Capper.sol",
   "ast": {
     "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Capper.sol",
     "exportedSymbols": {
       "Capper": [
-        452
+        484
       ]
     },
-    "id": 453,
+    "id": 485,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 393,
+        "id": 425,
         "literals": [
           "solidity",
           "0.5",
@@ -138,12 +75,12 @@
         "src": "0:22:5"
       },
       {
-        "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Pauser.sol",
-        "file": "./Pauser.sol",
-        "id": 394,
+        "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Common.sol",
+        "file": "./Common.sol",
+        "id": 426,
         "nodeType": "ImportDirective",
-        "scope": 453,
-        "sourceUnit": 785,
+        "scope": 485,
+        "sourceUnit": 516,
         "src": "24:22:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -154,43 +91,41 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 395,
-              "name": "Pauser",
+              "id": 427,
+              "name": "Common",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 784,
+              "referencedDeclaration": 515,
               "src": "67:6:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Pauser_$784",
-                "typeString": "contract Pauser"
+                "typeIdentifier": "t_contract$_Common_$515",
+                "typeString": "contract Common"
               }
             },
-            "id": 396,
+            "id": 428,
             "nodeType": "InheritanceSpecifier",
             "src": "67:6:5"
           }
         ],
         "contractDependencies": [
-          483,
-          784
+          515
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 452,
+        "id": 484,
         "linearizedBaseContracts": [
-          452,
-          784,
-          483
+          484,
+          515
         ],
         "name": "Capper",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 399,
+            "id": 431,
             "name": "capacity",
             "nodeType": "VariableDeclaration",
-            "scope": 452,
+            "scope": 484,
             "src": "80:27:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -199,7 +134,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 397,
+              "id": 429,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "80:7:5",
@@ -211,7 +146,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30",
-              "id": 398,
+              "id": 430,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -230,10 +165,10 @@
           },
           {
             "constant": false,
-            "id": 404,
+            "id": 436,
             "name": "capper",
             "nodeType": "VariableDeclaration",
-            "scope": 452,
+            "scope": 484,
             "src": "113:34:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -242,7 +177,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 400,
+              "id": 432,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "113:7:5",
@@ -258,7 +193,7 @@
                 {
                   "argumentTypes": null,
                   "hexValue": "30",
-                  "id": 402,
+                  "id": 434,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -281,7 +216,7 @@
                     "typeString": "int_const 0"
                   }
                 ],
-                "id": 401,
+                "id": 433,
                 "isConstant": false,
                 "isLValue": false,
                 "isPure": true,
@@ -294,7 +229,7 @@
                 },
                 "typeName": "address"
               },
-              "id": 403,
+              "id": 435,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -313,20 +248,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 410,
+            "id": 442,
             "name": "Cap",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 409,
+              "id": 441,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 406,
+                  "id": 438,
                   "indexed": true,
                   "name": "newCapacity",
                   "nodeType": "VariableDeclaration",
-                  "scope": 410,
+                  "scope": 442,
                   "src": "164:27:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -335,7 +270,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 405,
+                    "id": 437,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "164:7:5",
@@ -349,11 +284,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 408,
+                  "id": 440,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 410,
+                  "scope": 442,
                   "src": "193:22:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -362,7 +297,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 407,
+                    "id": 439,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "193:7:5",
@@ -382,7 +317,7 @@
           },
           {
             "body": {
-              "id": 421,
+              "id": 453,
               "nodeType": "Block",
               "src": "245:89:5",
               "statements": [
@@ -396,7 +331,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 416,
+                        "id": 448,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -405,18 +340,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 413,
+                            "id": 445,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2266,
+                            "referencedDeclaration": 2298,
                             "src": "263:3:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 414,
+                          "id": 446,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -434,11 +369,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 415,
+                          "id": 447,
                           "name": "capper",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 404,
+                          "referencedDeclaration": 436,
                           "src": "277:6:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -454,7 +389,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "7468652073656e646572206973206e6f742074686520636170706572",
-                        "id": 417,
+                        "id": 449,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -481,21 +416,21 @@
                           "typeString": "literal_string \"the sender is not the capper\""
                         }
                       ],
-                      "id": 412,
+                      "id": 444,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2269,
-                        2270
+                        2301,
+                        2302
                       ],
-                      "referencedDeclaration": 2270,
+                      "referencedDeclaration": 2302,
                       "src": "255:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 418,
+                    "id": 450,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -509,23 +444,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 419,
+                  "id": 451,
                   "nodeType": "ExpressionStatement",
                   "src": "255:61:5"
                 },
                 {
-                  "id": 420,
+                  "id": 452,
                   "nodeType": "PlaceholderStatement",
                   "src": "326:1:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 422,
+            "id": 454,
             "name": "onlyCapper",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 411,
+              "id": 443,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "242:2:5"
@@ -535,7 +470,7 @@
           },
           {
             "body": {
-              "id": 434,
+              "id": 466,
               "nodeType": "Block",
               "src": "386:93:5",
               "statements": [
@@ -549,18 +484,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 429,
+                        "id": 461,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 427,
+                          "id": 459,
                           "name": "_amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 424,
+                          "referencedDeclaration": 456,
                           "src": "404:7:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -571,11 +506,11 @@
                         "operator": "<=",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 428,
+                          "id": 460,
                           "name": "capacity",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 399,
+                          "referencedDeclaration": 431,
                           "src": "415:8:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -591,7 +526,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "7468697320616d6f756e74206973206d6f7265207468616e206361706163697479",
-                        "id": 430,
+                        "id": 462,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -618,21 +553,21 @@
                           "typeString": "literal_string \"this amount is more than capacity\""
                         }
                       ],
-                      "id": 426,
+                      "id": 458,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2269,
-                        2270
+                        2301,
+                        2302
                       ],
-                      "referencedDeclaration": 2270,
+                      "referencedDeclaration": 2302,
                       "src": "396:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 431,
+                    "id": 463,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -646,31 +581,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 432,
+                  "id": 464,
                   "nodeType": "ExpressionStatement",
                   "src": "396:65:5"
                 },
                 {
-                  "id": 433,
+                  "id": 465,
                   "nodeType": "PlaceholderStatement",
                   "src": "471:1:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 435,
+            "id": 467,
             "name": "notMoreThanCapacity",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 425,
+              "id": 457,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 424,
+                  "id": 456,
                   "name": "_amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 435,
+                  "scope": 467,
                   "src": "369:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -679,7 +614,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 423,
+                    "id": 455,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "369:7:5",
@@ -699,25 +634,25 @@
           },
           {
             "body": {
-              "id": 450,
+              "id": 482,
               "nodeType": "Block",
               "src": "525:75:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 442,
+                    "id": 474,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 440,
+                      "id": 472,
                       "name": "capacity",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 399,
+                      "referencedDeclaration": 431,
                       "src": "535:8:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -728,11 +663,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 441,
+                      "id": 473,
                       "name": "_amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 437,
+                      "referencedDeclaration": 469,
                       "src": "546:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -745,7 +680,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 443,
+                  "id": 475,
                   "nodeType": "ExpressionStatement",
                   "src": "535:18:5"
                 },
@@ -755,11 +690,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 445,
+                        "id": 477,
                         "name": "capacity",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 399,
+                        "referencedDeclaration": 431,
                         "src": "572:8:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -770,18 +705,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 446,
+                          "id": 478,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2266,
+                          "referencedDeclaration": 2298,
                           "src": "582:3:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 447,
+                        "id": 479,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -807,18 +742,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 444,
+                      "id": 476,
                       "name": "Cap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 410,
+                      "referencedDeclaration": 442,
                       "src": "568:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$returns$__$",
                         "typeString": "function (uint256,address)"
                       }
                     },
-                    "id": 448,
+                    "id": 480,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -832,29 +767,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 449,
+                  "id": 481,
                   "nodeType": "EmitStatement",
                   "src": "563:30:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 451,
+            "id": 483,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_cap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 438,
+              "id": 470,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 437,
+                  "id": 469,
                   "name": "_amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 451,
+                  "scope": 483,
                   "src": "499:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -863,7 +798,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 436,
+                    "id": 468,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "499:7:5",
@@ -879,19 +814,19 @@
               "src": "498:17:5"
             },
             "returnParameters": {
-              "id": 439,
+              "id": 471,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "525:0:5"
             },
-            "scope": 452,
+            "scope": 484,
             "src": "485:115:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 453,
+        "scope": 485,
         "src": "48:554:5"
       }
     ],
@@ -901,14 +836,14 @@
     "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Capper.sol",
     "exportedSymbols": {
       "Capper": [
-        452
+        484
       ]
     },
-    "id": 453,
+    "id": 485,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 393,
+        "id": 425,
         "literals": [
           "solidity",
           "0.5",
@@ -918,12 +853,12 @@
         "src": "0:22:5"
       },
       {
-        "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Pauser.sol",
-        "file": "./Pauser.sol",
-        "id": 394,
+        "absolutePath": "/Users/usr0101757/Projects/GYEN/gyen-solidity/contracts/Roles/Common.sol",
+        "file": "./Common.sol",
+        "id": 426,
         "nodeType": "ImportDirective",
-        "scope": 453,
-        "sourceUnit": 785,
+        "scope": 485,
+        "sourceUnit": 516,
         "src": "24:22:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -934,43 +869,41 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 395,
-              "name": "Pauser",
+              "id": 427,
+              "name": "Common",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 784,
+              "referencedDeclaration": 515,
               "src": "67:6:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Pauser_$784",
-                "typeString": "contract Pauser"
+                "typeIdentifier": "t_contract$_Common_$515",
+                "typeString": "contract Common"
               }
             },
-            "id": 396,
+            "id": 428,
             "nodeType": "InheritanceSpecifier",
             "src": "67:6:5"
           }
         ],
         "contractDependencies": [
-          483,
-          784
+          515
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 452,
+        "id": 484,
         "linearizedBaseContracts": [
-          452,
-          784,
-          483
+          484,
+          515
         ],
         "name": "Capper",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 399,
+            "id": 431,
             "name": "capacity",
             "nodeType": "VariableDeclaration",
-            "scope": 452,
+            "scope": 484,
             "src": "80:27:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -979,7 +912,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 397,
+              "id": 429,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "80:7:5",
@@ -991,7 +924,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30",
-              "id": 398,
+              "id": 430,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -1010,10 +943,10 @@
           },
           {
             "constant": false,
-            "id": 404,
+            "id": 436,
             "name": "capper",
             "nodeType": "VariableDeclaration",
-            "scope": 452,
+            "scope": 484,
             "src": "113:34:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1022,7 +955,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 400,
+              "id": 432,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "113:7:5",
@@ -1038,7 +971,7 @@
                 {
                   "argumentTypes": null,
                   "hexValue": "30",
-                  "id": 402,
+                  "id": 434,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -1061,7 +994,7 @@
                     "typeString": "int_const 0"
                   }
                 ],
-                "id": 401,
+                "id": 433,
                 "isConstant": false,
                 "isLValue": false,
                 "isPure": true,
@@ -1074,7 +1007,7 @@
                 },
                 "typeName": "address"
               },
-              "id": 403,
+              "id": 435,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -1093,20 +1026,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 410,
+            "id": 442,
             "name": "Cap",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 409,
+              "id": 441,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 406,
+                  "id": 438,
                   "indexed": true,
                   "name": "newCapacity",
                   "nodeType": "VariableDeclaration",
-                  "scope": 410,
+                  "scope": 442,
                   "src": "164:27:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1115,7 +1048,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 405,
+                    "id": 437,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "164:7:5",
@@ -1129,11 +1062,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 408,
+                  "id": 440,
                   "indexed": true,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 410,
+                  "scope": 442,
                   "src": "193:22:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1142,7 +1075,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 407,
+                    "id": 439,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "193:7:5",
@@ -1162,7 +1095,7 @@
           },
           {
             "body": {
-              "id": 421,
+              "id": 453,
               "nodeType": "Block",
               "src": "245:89:5",
               "statements": [
@@ -1176,7 +1109,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 416,
+                        "id": 448,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1185,18 +1118,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 413,
+                            "id": 445,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2266,
+                            "referencedDeclaration": 2298,
                             "src": "263:3:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 414,
+                          "id": 446,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1214,11 +1147,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 415,
+                          "id": 447,
                           "name": "capper",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 404,
+                          "referencedDeclaration": 436,
                           "src": "277:6:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1234,7 +1167,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "7468652073656e646572206973206e6f742074686520636170706572",
-                        "id": 417,
+                        "id": 449,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1261,21 +1194,21 @@
                           "typeString": "literal_string \"the sender is not the capper\""
                         }
                       ],
-                      "id": 412,
+                      "id": 444,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2269,
-                        2270
+                        2301,
+                        2302
                       ],
-                      "referencedDeclaration": 2270,
+                      "referencedDeclaration": 2302,
                       "src": "255:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 418,
+                    "id": 450,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1289,23 +1222,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 419,
+                  "id": 451,
                   "nodeType": "ExpressionStatement",
                   "src": "255:61:5"
                 },
                 {
-                  "id": 420,
+                  "id": 452,
                   "nodeType": "PlaceholderStatement",
                   "src": "326:1:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 422,
+            "id": 454,
             "name": "onlyCapper",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 411,
+              "id": 443,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "242:2:5"
@@ -1315,7 +1248,7 @@
           },
           {
             "body": {
-              "id": 434,
+              "id": 466,
               "nodeType": "Block",
               "src": "386:93:5",
               "statements": [
@@ -1329,18 +1262,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 429,
+                        "id": 461,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 427,
+                          "id": 459,
                           "name": "_amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 424,
+                          "referencedDeclaration": 456,
                           "src": "404:7:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1351,11 +1284,11 @@
                         "operator": "<=",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 428,
+                          "id": 460,
                           "name": "capacity",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 399,
+                          "referencedDeclaration": 431,
                           "src": "415:8:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1371,7 +1304,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "7468697320616d6f756e74206973206d6f7265207468616e206361706163697479",
-                        "id": 430,
+                        "id": 462,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1398,21 +1331,21 @@
                           "typeString": "literal_string \"this amount is more than capacity\""
                         }
                       ],
-                      "id": 426,
+                      "id": 458,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2269,
-                        2270
+                        2301,
+                        2302
                       ],
-                      "referencedDeclaration": 2270,
+                      "referencedDeclaration": 2302,
                       "src": "396:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 431,
+                    "id": 463,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1426,31 +1359,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 432,
+                  "id": 464,
                   "nodeType": "ExpressionStatement",
                   "src": "396:65:5"
                 },
                 {
-                  "id": 433,
+                  "id": 465,
                   "nodeType": "PlaceholderStatement",
                   "src": "471:1:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 435,
+            "id": 467,
             "name": "notMoreThanCapacity",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 425,
+              "id": 457,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 424,
+                  "id": 456,
                   "name": "_amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 435,
+                  "scope": 467,
                   "src": "369:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1459,7 +1392,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 423,
+                    "id": 455,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "369:7:5",
@@ -1479,25 +1412,25 @@
           },
           {
             "body": {
-              "id": 450,
+              "id": 482,
               "nodeType": "Block",
               "src": "525:75:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 442,
+                    "id": 474,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 440,
+                      "id": 472,
                       "name": "capacity",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 399,
+                      "referencedDeclaration": 431,
                       "src": "535:8:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1508,11 +1441,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 441,
+                      "id": 473,
                       "name": "_amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 437,
+                      "referencedDeclaration": 469,
                       "src": "546:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1525,7 +1458,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 443,
+                  "id": 475,
                   "nodeType": "ExpressionStatement",
                   "src": "535:18:5"
                 },
@@ -1535,11 +1468,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 445,
+                        "id": 477,
                         "name": "capacity",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 399,
+                        "referencedDeclaration": 431,
                         "src": "572:8:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1550,18 +1483,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 446,
+                          "id": 478,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2266,
+                          "referencedDeclaration": 2298,
                           "src": "582:3:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 447,
+                        "id": 479,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1587,18 +1520,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 444,
+                      "id": 476,
                       "name": "Cap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 410,
+                      "referencedDeclaration": 442,
                       "src": "568:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$returns$__$",
                         "typeString": "function (uint256,address)"
                       }
                     },
-                    "id": 448,
+                    "id": 480,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1612,29 +1545,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 449,
+                  "id": 481,
                   "nodeType": "EmitStatement",
                   "src": "563:30:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 451,
+            "id": 483,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_cap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 438,
+              "id": 470,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 437,
+                  "id": 469,
                   "name": "_amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 451,
+                  "scope": 483,
                   "src": "499:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1643,7 +1576,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 436,
+                    "id": 468,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "499:7:5",
@@ -1659,19 +1592,19 @@
               "src": "498:17:5"
             },
             "returnParameters": {
-              "id": 439,
+              "id": 471,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "525:0:5"
             },
-            "scope": 452,
+            "scope": 484,
             "src": "485:115:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 453,
+        "scope": 485,
         "src": "48:554:5"
       }
     ],
@@ -1683,7 +1616,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-18T07:46:31.451Z",
+  "updatedAt": "2019-11-18T05:33:16.887Z",
   "devdoc": {
     "methods": {}
   },
