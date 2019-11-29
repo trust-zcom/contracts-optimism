@@ -7,6 +7,9 @@ ZUSD and GYEN are upgradable ERC20 tokens with features that ensure the tokens' 
 ### ERC20
 The implementation of the ERC20 interface is based on OpenZeppelin. Therefore, we do not elaborate on technical details in this document.
 
+#### Note
+`approve()` and `transferFrom()` in ERC20 may cause a race condition. Therefore, we recommend `increaseAllowance()` and `decreaseAllowance()`, which are non-standard ERC20 functions, instead of `approve()`.
+
 ### Stablecoin
 There is no 1: 1 constraint with fiat currencies in terms of contract functionality, but we conduct 1: 1 constraint on Mint & Burn during our operation.
 Customers can send the fiat currency fund to our partner bank account via ZUSD/GYEN purchase applications, which is maintained by GMO-Z.com Trust Company, Inc. We mint the same amount of token 1:1 with fiat currency fund they sent, then we transfer these tokens to their wallet addresses. Since they can send arbitrary fiat currency funds, arbitrary minting is necessary.
