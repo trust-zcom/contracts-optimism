@@ -8,7 +8,7 @@ ZUSD and GYEN are upgradable ERC20 tokens with features that ensure the tokens' 
 The implementation of the ERC20 interface is based on OpenZeppelin. Therefore, we do not elaborate on technical details in this document.
 
 #### Note
-`approve()` and `transferFrom()` in ERC20 may cause a race condition. Therefore, we recommend `increaseAllowance()` and `decreaseAllowance()`, which are non-standard ERC20 functions, instead of `approve()`.
+`approve()` and `transferFrom()` in ERC20 may cause a race condition. This race condition could cause loss of funds for the users that employ `approve()` and `transferFrom()`. Therefore, we recommend `increaseAllowance()` and `decreaseAllowance()`, which are non-standard ERC20 functions, instead of `approve()`.
 
 ### Stablecoin
 There is no 1: 1 constraint with fiat currencies in terms of contract functionality, but we conduct 1: 1 constraint on Mint & Burn during our operation.
