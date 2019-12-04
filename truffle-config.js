@@ -27,6 +27,12 @@ let privateKey;
 if(fs.existsSync(".secret")) {
   privateKey = fs.readFileSync(".secret").toString().trim();
 }
+if(fs.existsSync(".secret_staging")) {
+  privateKeyStaging = fs.readFileSync(".secret_staging").toString().trim();
+}
+if(fs.existsSync(".secret_production")) {
+  privateKeyProduction = fs.readFileSync(".secret_production").toString().trim();
+}
 
 
 module.exports = {
@@ -41,6 +47,22 @@ module.exports = {
       port: 8545,
       network_id: "1337",
       provider: () => new HDWalletProvider(privateKey, "http://localhost:8545"),
+      gasPrice: 40000000000,
+      gas: 3000000
+    },
+    staging: {
+      host: "localhost",
+      port: 8545,
+      network_id: "1",
+      provider: () => new HDWalletProvider(privateKeyStaging, "http://localhost:8545"),
+      gasPrice: 40000000000,
+      gas: 3000000
+    },
+    production: {
+      host: "localhost",
+      port: 8545,
+      network_id: "1",
+      provider: () => new HDWalletProvider(privateKeyProduction, "http://localhost:8545"),
       gasPrice: 40000000000,
       gas: 3000000
     },
