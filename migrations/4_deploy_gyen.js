@@ -10,13 +10,7 @@ module.exports = function(deployer){
     const name = config.production ? 'GMO JPY' : `GMO JPY${config.name_suffix}`;
     const symbol = config.production ? 'GYEN' : `GYEN${config.symbol_suffix}`;
     const decimals = 6;
-    const owner = config.owner;
-    const admin = config.admin;
-    const capper = config.capper;
-    const prohibiter = config.prohibiter;
-    const pauser = config.pauser;
-    const minterAdmin = config.minterAdmin;
-    const minter = config.minter;
+    const { owner, admin, capper, prohibiter, pauser, minterAdmin, minter } = config;
 
     deployer
         .then(() => Token.deployed())

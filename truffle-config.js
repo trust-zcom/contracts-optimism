@@ -55,7 +55,7 @@ module.exports = {
       port: 8545,
       network_id: "1",
       provider: () => new HDWalletProvider(privateKeyStaging, "http://localhost:8545"),
-      gasPrice: 40000000000,
+      gasPrice: 10000000000,
       gas: 3000000
     },
     production: {
@@ -63,7 +63,7 @@ module.exports = {
       port: 8545,
       network_id: "1",
       provider: () => new HDWalletProvider(privateKeyProduction, "http://localhost:8545"),
-      gasPrice: 40000000000,
+      gasPrice: 10000000000,
       gas: 3000000
     },
     test: {
