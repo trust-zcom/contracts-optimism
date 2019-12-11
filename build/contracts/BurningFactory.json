@@ -3943,6 +3943,54 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {
+        "0x606b85978110cc2007cee39d927cafd823ead44429b4bd0ce1aa325886ea77bd": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldBurner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newBurner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "BurnerChanged",
+          "type": "event",
+          "signature": "0x606b85978110cc2007cee39d927cafd823ead44429b4bd0ce1aa325886ea77bd"
+        },
+        "0x09e48df7857bd0c1e0d31bb8a85d42cf1874817895f171c917f6ee2cea73ec20": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "burning",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "Deployed",
+          "type": "event",
+          "signature": "0x09e48df7857bd0c1e0d31bb8a85d42cf1874817895f171c917f6ee2cea73ec20"
+        }
+      },
+      "links": {},
+      "address": "0xe472016293907773210873FB50578a3fDE25C1F9",
+      "transactionHash": "0x304f123059bfb3f3f80021ed973d1c9990cf78d9a5352f1ee2ac5ef9658cb081"
+    },
     "1337": {
       "events": {
         "0x606b85978110cc2007cee39d927cafd823ead44429b4bd0ce1aa325886ea77bd": {
@@ -3993,7 +4041,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-18T05:36:02.834Z",
+  "updatedAt": "2019-12-11T05:57:30.574Z",
   "devdoc": {
     "methods": {}
   },
