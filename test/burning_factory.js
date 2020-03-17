@@ -38,7 +38,7 @@ contract("BurningFactory.sol", (accounts) => {
     });
     
     it("Can deploy new burning", async () => {
-      let deploy_tx = await burningFactoryInstance.deploy({from: burningFactoryOwner});
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       await truffleAssert.eventEmitted(deploy_tx, 'Deployed', null, 'Deployed event should be emitted with correct parameters');
     });
   });

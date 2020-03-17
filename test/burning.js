@@ -22,7 +22,7 @@ contract("Burning.sol", (accounts) => {
     beforeEach(initialize);
     
     it("Burner can burn", async () => {
-      let deploy_tx = await burningFactoryInstance.deploy();
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       let burning_address = deploy_tx.logs[0].args.burning;
       let burning_instance = await Burning.at(burning_address);
       await tokenInstance.cap(100, {from: tokenOwner});
@@ -34,7 +34,7 @@ contract("Burning.sol", (accounts) => {
 
     it("Non burner cannot burn", async () => {
       let non_burner = accounts[4];
-      let deploy_tx = await burningFactoryInstance.deploy();
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       let burning_address = deploy_tx.logs[0].args.burning;
       let burning_instance = await Burning.at(burning_address);
       await tokenInstance.cap(100, {from: tokenOwner});
@@ -51,7 +51,7 @@ contract("Burning.sol", (accounts) => {
     beforeEach(initialize);
 
     it("Burner can transfer", async () => {
-      let deploy_tx = await burningFactoryInstance.deploy();
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       let burning_address = deploy_tx.logs[0].args.burning;
       let burning_instance = await Burning.at(burning_address);
       await tokenInstance.cap(100, {from: tokenOwner});
@@ -67,7 +67,7 @@ contract("Burning.sol", (accounts) => {
 
     it("Non burner cannot transfer", async () => {
       let non_burner = accounts[4];
-      let deploy_tx = await burningFactoryInstance.deploy();
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       let burning_address = deploy_tx.logs[0].args.burning;
       let burning_instance = await Burning.at(burning_address);
       await tokenInstance.cap(100, {from: tokenOwner});
@@ -82,7 +82,7 @@ contract("Burning.sol", (accounts) => {
     });
 
     it("Transfer should fail when burning was prohibited", async () => {
-      let deploy_tx = await burningFactoryInstance.deploy();
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       let burning_address = deploy_tx.logs[0].args.burning;
       let burning_instance = await Burning.at(burning_address);
       await tokenInstance.cap(100, {from: tokenOwner});
@@ -99,7 +99,7 @@ contract("Burning.sol", (accounts) => {
     });
 
     it("Transfer should fail when contract was paused", async () => {
-      let deploy_tx = await burningFactoryInstance.deploy();
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       let burning_address = deploy_tx.logs[0].args.burning;
       let burning_instance = await Burning.at(burning_address);
       await tokenInstance.cap(100, {from: tokenOwner});
@@ -116,7 +116,7 @@ contract("Burning.sol", (accounts) => {
     });
 
     it("Transfer should fail when recipient was zero address", async () => {
-      let deploy_tx = await burningFactoryInstance.deploy();
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       let burning_address = deploy_tx.logs[0].args.burning;
       let burning_instance = await Burning.at(burning_address);
       await tokenInstance.cap(100, {from: tokenOwner});
@@ -131,7 +131,7 @@ contract("Burning.sol", (accounts) => {
     });
 
     it("Transfer should fail when amount was more than balance", async () => {
-      let deploy_tx = await burningFactoryInstance.deploy();
+      let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       let burning_address = deploy_tx.logs[0].args.burning;
       let burning_instance = await Burning.at(burning_address);
       await tokenInstance.cap(100, {from: tokenOwner});
