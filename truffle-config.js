@@ -59,18 +59,34 @@ module.exports = {
       gas: 3000000
     },
     production: {
-      host: "localhost",
-      port: 8545,
       network_id: "1",
-      provider: () => new HDWalletProvider(privateKeyProduction, "http://localhost:8545"),
-      gasPrice: 10000000000,
-      gas: 3000000
+      provider: () => new HDWalletProvider(privateKeyProduction, "https://mainnet.infura.io/v3/7e1994c8834b4c61814e608fbb640810"),
+      //gasPrice: 10000000000,
+      //gas: 4000000
     },
     test: {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*",
     },
+    ropsten: {
+      network_id: "3",
+      provider: () => new HDWalletProvider(privateKey, "https://ropsten.infura.io/v3/7e1994c8834b4c61814e608fbb640810"),
+      gasPrice: 40000000000,
+      gas: 4000000
+    },
+    kovan: {
+      network_id: "42",
+      provider: () => new HDWalletProvider(privateKey, "https://kovan.infura.io/v3/7e1994c8834b4c61814e608fbb640810"),
+      gasPrice: 20000000000,
+      gas: 4000000
+    }, 
+    rinkeby: {
+      network_id: "4",
+      provider: () => new HDWalletProvider(privateKey, "https://rinkeby.infura.io/v3/7e1994c8834b4c61814e608fbb640810"),
+      //gasPrice: 20000000000,
+      //as: 4000000
+    },       
   },
 
   // Set default mocha options here, use special reporters etc.

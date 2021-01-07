@@ -1,6 +1,9 @@
 const BurningFactory = artifacts.require("BurningFactory");
 const Burning = artifacts.require("Burning");
-const Token = artifacts.require("Token_v1");
+//modified 2020/08/24 start
+//const Token = artifacts.require("Token_v1");
+const Token = artifacts.require("Token_v2");
+//modified 2020/08/24
 const truffleAssert = require('truffle-assertions');
 
 contract("Burning.sol", (accounts) => {

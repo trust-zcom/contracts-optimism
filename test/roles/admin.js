@@ -1,5 +1,7 @@
-
-const Token = artifacts.require("Token_v1");
+//modified 2020/08/24 start
+//const Token = artifacts.require("Token_v1");
+const Token = artifacts.require("Token_v2");
+//modified 2020/08/24 end
 const truffleAssert = require('truffle-assertions');
 
 contract("Admin.sol", (accounts) => {
@@ -11,11 +13,13 @@ contract("Admin.sol", (accounts) => {
   let pauser = accounts[4];
   let minterAdmin = accounts[5];
   let minter = accounts[6];
+  let wiper = accounts[7];
   let zero_address = '0x0000000000000000000000000000000000000000'
 
   var initialize =  async () => {
     contractInstance = await Token.new();
     await contractInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter);
+    await contractInstance.initializeWiper(wiper);
   }
 
   describe('Test changeCapper function', function() {
@@ -121,4 +125,43 @@ contract("Admin.sol", (accounts) => {
       );
     });
   });
+
+  describe('Test changeWiper function', function() {
+    beforeEach(initialize);
+    
+    it("admin can change the wiper", async () => {
+      let new_wiper = accounts[11];
+      let changeWiper_tx = await contractInstance.changeWiper(new_wiper, {from: admin});
+      await truffleAssert.eventEmitted(changeWiper_tx, 'WiperChanged', {oldWiper: wiper, newWiper: new_wiper, sender: admin}, 'WiperChanged event should be emitted with correct parameters');
+    });
+
+    it("non admin cannot change the wiper", async () => {
+      let non_admin = accounts[11];
+      let new_wiper = accounts[12];
+      await truffleAssert.reverts(
+        contractInstance.changeWiper(new_wiper, {from: non_admin}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("paused contract cannot change the wiper", async () => {
+      let new_wiper = accounts[11];
+      await contractInstance.pause({from: pauser});
+      await truffleAssert.reverts(
+        contractInstance.changeWiper(new_wiper, {from: admin}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot change the wiper to zero address", async () => {
+      await truffleAssert.reverts(
+        contractInstance.changeWiper(zero_address, {from: admin}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+  });
+
 })

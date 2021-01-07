@@ -41,6 +41,18 @@ contract("BurningFactory.sol", (accounts) => {
       let deploy_tx = await burningFactoryInstance.deploy({from: burner});
       await truffleAssert.eventEmitted(deploy_tx, 'Deployed', null, 'Deployed event should be emitted with correct parameters');
     });
+    
+    //add 2020/08/24 start
+    it("non burner cannot deploy", async () => {
+      let non_burner = accounts[3];
+      await truffleAssert.reverts(
+        burningFactoryInstance.deploy({from: non_burner}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+    //add 2020/08/24 end
+
   });
 
   describe('Test changeBurner function', function() {

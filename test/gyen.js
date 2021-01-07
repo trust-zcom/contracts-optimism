@@ -1,10 +1,14 @@
 
-const Token = artifacts.require("Token_v1");
+//modified 2020/08/24 start
+//const Token = artifacts.require("Token_v1");
+const Token = artifacts.require("Token_v2");
+//modified 2020/08/24 end;
 const GYEN = artifacts.require("GYEN");
 const truffleAssert = require('truffle-assertions');
 const Web3EthAbi = require('web3-eth-abi');
 
-const abi = require("../build/contracts/Token_v1.json").abi;
+//const abi = require("../build/contracts/Token_v1.json").abi;
+const abi = require("../build/contracts/Token_v2.json").abi;
 const [initializeAbi] = abi.filter((f) => f.name === 'initialize');
 
 contract("GYEN.sol", (accounts) => {
@@ -18,6 +22,7 @@ contract("GYEN.sol", (accounts) => {
   let minterAdmin = accounts[5];
   let minter = accounts[6];
   let proxyAdmin = accounts[7];
+  let wiper = accounts[8];
   let data = Web3EthAbi.encodeFunctionCall(initializeAbi, ['GMO JPY', 'GYEN', 6, owner, admin, capper, prohibiter, pauser, minterAdmin, minter]);
   let zero_address = '0x0000000000000000000000000000000000000000'
 
@@ -25,6 +30,7 @@ contract("GYEN.sol", (accounts) => {
     tokenInstance = await Token.new();
     gyenProxy = await GYEN.new(tokenInstance.address, proxyAdmin, data);
     gyenInstance = await Token.at(gyenProxy.address);
+    await gyenInstance.initializeWiper(wiper);
     await gyenInstance.cap(100, {from: capper});
   }
 
@@ -135,6 +141,19 @@ contract("GYEN.sol", (accounts) => {
     it("Initialize cannot call multiple times", async () => {
       await truffleAssert.reverts(
         gyenInstance.initialize('B', 'b', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+  });
+
+  describe('Test initializeWiper function', function() {
+    beforeEach(initialize);
+
+    it("initializeWiper cannot call multiple times", async () => {
+      await truffleAssert.reverts(
+        gyenInstance.initializeWiper(wiper),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -534,4 +553,73 @@ contract("GYEN.sol", (accounts) => {
       assert.strictEqual(old_allowance.toNumber() + 9, new_allowance.toNumber(), "Allowance after approve not correct!");
     });
   });
+
+  describe('Test wipeProhibitedAddress function', function() {
+    beforeEach(initialize);
+
+    it("wiper can wipe", async () => {
+      let wipe_address = accounts[11];
+      await gyenInstance.mint(wipe_address, 10, {from: minter});
+      await gyenInstance.prohibit(wipe_address, {from: prohibiter});
+      let wipe_tx = await gyenInstance.wipeProhibitedAddress(wipe_address, {from: wiper});
+      await truffleAssert.eventEmitted(wipe_tx, 'ProhibitedAddressWiped', (ev) => {
+        return ev.addr === wipe_address && ev.amount.toNumber() === 10;
+      }, 'wipeProhibitedAddress event should be emitted with correct parameters');
+      balance = await gyenInstance.balanceOf(wipe_address);
+      assert.strictEqual(balance.toNumber(), 0, "Balance after wipe not correct!");
+    });
+  
+    it("non wiper cannot wipe", async () => {
+      let wipe_address = accounts[11];
+      let non_wiper = accounts[12];
+      await gyenInstance.mint(wipe_address, 10, {from: minter});
+      await gyenInstance.prohibit(wipe_address, {from: prohibiter});
+
+      await truffleAssert.reverts(
+        gyenInstance.wipeProhibitedAddress(wipe_address, {from: non_wiper}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+ 
+    it("no prohibited address cannot be wipe", async () => {
+      let wipe_address = accounts[11];
+      await gyenInstance.mint(wipe_address, 10, {from: minter});
+      //await gyenInstance.prohibit(wipe_address, {from: prohibiter});
+
+      await truffleAssert.reverts(
+        gyenInstance.wipeProhibitedAddress(wipe_address, {from: wiper}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+
+    });
+
+    it("paused contract cannot be wipe", async () => {
+      let wipe_address = accounts[11];
+      await gyenInstance.mint(wipe_address, 10, {from: minter});
+      await gyenInstance.prohibit(wipe_address, {from: prohibiter});
+      await gyenInstance.pause({from: pauser});
+
+      await truffleAssert.reverts(
+        gyenInstance.wipeProhibitedAddress(wipe_address, {from: wiper}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+
+    });
+
+    it("wipe should change the totalSupply", async () => {
+      let wipe_address = accounts[11];
+      await gyenInstance.mint(wipe_address, 10, {from: minter});
+      let old_totalSupply = await gyenInstance.totalSupply();
+      await gyenInstance.prohibit(wipe_address, {from: prohibiter});
+      await gyenInstance.wipeProhibitedAddress(wipe_address, {from: wiper});
+      let new_totalSupply = await gyenInstance.totalSupply();
+
+      assert.strictEqual(old_totalSupply.toNumber() - 10, new_totalSupply.toNumber(), "totalSupply not change after wipe");
+    })
+
+  });
+
 })
