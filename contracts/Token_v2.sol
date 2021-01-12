@@ -5,7 +5,7 @@ import "./Roles/Wiper.sol";
 
 contract Token_v2 is Token_v1, Wiper {
 
-    event ProhibitedAddressWiped(address indexed addr, uint256 amount);
+    event Wipe(address indexed addr, uint256 amount);
     event WiperChanged(address indexed oldWiper, address indexed newWiper, address indexed sender);
 
     // only admin can change wiper
@@ -16,9 +16,9 @@ contract Token_v2 is Token_v1, Wiper {
     }
 
     // wipe balance of prohibited address
-    function wipeProhibitedAddress(address _account) public whenNotPaused onlyWiper onlyProhibited(_account) {
+    function wipe(address _account) public whenNotPaused onlyWiper onlyProhibited(_account) {
         uint256 _balance = balanceOf(_account);
         _burn(_account, _balance);
-        emit ProhibitedAddressWiped(_account, _balance);
+        emit Wipe(_account, _balance);
     }
 }

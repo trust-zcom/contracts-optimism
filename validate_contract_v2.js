@@ -84,6 +84,9 @@ async function getInfos(proxiedToken) {
 
   const minter = await proxiedToken.minter.call();
   console.log(`minter:            ${minter}`);
+
+  const wiper = await proxiedToken.wiper.call();
+  console.log(`wiper:             ${wiper}`);
 }
 
 async function Validate() {

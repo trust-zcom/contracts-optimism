@@ -29,7 +29,7 @@ case $2 in
 
     2)
         # must use old deployer
-        npx truffle exec ./update-gyen-zusd-to-v2.js --network $1
+        npx truffle migrate --network $1  --f 7 --to 7
         ;;
 
     3)

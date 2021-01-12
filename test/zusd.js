@@ -554,17 +554,17 @@ contract("ZUSD.sol", (accounts) => {
     });
   });
 
-  describe('Test wipeProhibitedAddress function', function() {
+  describe('Test wipe function', function() {
     beforeEach(initialize);
 
     it("wiper can wipe", async () => {
       let wipe_address = accounts[11];
       await zusdInstance.mint(wipe_address, 10, {from: minter});
       await zusdInstance.prohibit(wipe_address, {from: prohibiter});
-      let wipe_tx = await zusdInstance.wipeProhibitedAddress(wipe_address, {from: wiper});
-      await truffleAssert.eventEmitted(wipe_tx, 'ProhibitedAddressWiped', (ev) => {
+      let wipe_tx = await zusdInstance.wipe(wipe_address, {from: wiper});
+      await truffleAssert.eventEmitted(wipe_tx, 'Wipe', (ev) => {
         return ev.addr === wipe_address && ev.amount.toNumber() === 10;
-      }, 'wipeProhibitedAddress event should be emitted with correct parameters');
+      }, 'wipe event should be emitted with correct parameters');
       balance = await zusdInstance.balanceOf(wipe_address);
       assert.strictEqual(balance.toNumber(), 0, "Balance after wipe not correct!");
     });
@@ -576,7 +576,7 @@ contract("ZUSD.sol", (accounts) => {
       await zusdInstance.prohibit(wipe_address, {from: prohibiter});
 
       await truffleAssert.reverts(
-        zusdInstance.wipeProhibitedAddress(wipe_address, {from: non_wiper}),
+        zusdInstance.wipe(wipe_address, {from: non_wiper}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -588,7 +588,7 @@ contract("ZUSD.sol", (accounts) => {
       //await zusdInstance.prohibit(wipe_address, {from: prohibiter});
 
       await truffleAssert.reverts(
-        zusdInstance.wipeProhibitedAddress(wipe_address, {from: wiper}),
+        zusdInstance.wipe(wipe_address, {from: wiper}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -602,7 +602,7 @@ contract("ZUSD.sol", (accounts) => {
       await zusdInstance.pause({from: pauser});
 
       await truffleAssert.reverts(
-        zusdInstance.wipeProhibitedAddress(wipe_address, {from: wiper}),
+        zusdInstance.wipe(wipe_address, {from: wiper}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -614,7 +614,7 @@ contract("ZUSD.sol", (accounts) => {
       await zusdInstance.mint(wipe_address, 10, {from: minter});
       let old_totalSupply = await zusdInstance.totalSupply();
       await zusdInstance.prohibit(wipe_address, {from: prohibiter});
-      await zusdInstance.wipeProhibitedAddress(wipe_address, {from: wiper});
+      await zusdInstance.wipe(wipe_address, {from: wiper});
       let new_totalSupply = await zusdInstance.totalSupply();
 
       assert.strictEqual(old_totalSupply.toNumber() - 10, new_totalSupply.toNumber(), "totalSupply not change after wipe");
