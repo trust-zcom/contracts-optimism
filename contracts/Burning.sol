@@ -1,7 +1,6 @@
 pragma solidity 0.5.8;
 
 import "./BurningFactory.sol";
-//import "./Token_v1.sol";
 import "./Token_v2.sol";
 
 /**
@@ -20,7 +19,6 @@ contract Burning {
     }
 
     function burn(address _tokenAddress, uint256 _amount) public onlyBurner {
-        //Token_v1(_tokenAddress).burn(_amount);
         Token_v2(_tokenAddress).burn(_amount);
     }
 

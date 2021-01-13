@@ -25,12 +25,19 @@ module.exports = async (deployer, network) => {
         
         console.log('\nZUSD-upgradeToAndCall ... ...'); 
         let receipt = await zusd.upgradeToAndCall(tokenV2address, Web3EthAbi.encodeFunctionCall(initializeWiperAbi,[wiper]));
-        //console.log(receipt);
-        console.log(`https://${network}.etherscan.io/tx/${receipt.tx}`);
+        if(network == "production"){
+            console.log(`https://etherscan.io/tx/${receipt.tx}`);
+        } else{
+            console.log(`https://${network}.etherscan.io/tx/${receipt.tx}`);
+        }
       
-        console.log('\nZUSD-changeAdmin ... ...'); 
+        console.log('\nZUSD change deployer ... ...'); 
         receipt = await zusd.changeAdmin(deployeraddress);
-        console.log(`https://${network}.etherscan.io/tx/${receipt.tx}`);
+        if(network == "production"){
+            console.log(`https://etherscan.io/tx/${receipt.tx}`);
+        } else{
+            console.log(`https://${network}.etherscan.io/tx/${receipt.tx}`);
+        }
       
         console.log('Upgrade ZUSD to V2 successfully end.\n');
       
@@ -38,11 +45,19 @@ module.exports = async (deployer, network) => {
         console.log('GYEN Address: ', gyen.address);
         console.log('\nGYEN-upgradeToAndCall ... ...'); 
         receipt = await gyen.upgradeToAndCall(tokenV2address, Web3EthAbi.encodeFunctionCall(initializeWiperAbi,[wiper]));
-        console.log(`https://${network}.etherscan.io/tx/${receipt.tx}`);
+        if(network == "production"){
+            console.log(`https://etherscan.io/tx/${receipt.tx}`);
+        } else{
+            console.log(`https://${network}.etherscan.io/tx/${receipt.tx}`);
+        }
       
-        console.log('\nGYEN-changeAdmin ... ...'); 
+        console.log('\nGYEN change deployer ... ...');
         receipt = await gyen.changeAdmin(deployeraddress);
-        console.log(`https://${network}.etherscan.io/tx/${receipt.tx}`);
+        if(network == "production"){
+            console.log(`https://etherscan.io/tx/${receipt.tx}`);
+        } else{
+            console.log(`https://${network}.etherscan.io/tx/${receipt.tx}`);
+        }
       
         console.log('Upgrade GYEN to V2 successfully end.\n');
 
