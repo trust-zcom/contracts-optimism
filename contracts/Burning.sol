@@ -23,7 +23,6 @@ contract Burning {
     }
 
     function transfer(address _tokenAddress, address _recipient, uint256 _amount) public onlyBurner {
-        // require(Token_v1(_tokenAddress).transfer(_recipient, _amount), "Transfer is failed");
         require(Token_v2(_tokenAddress).transfer(_recipient, _amount), "Transfer is failed");
     }
 }
