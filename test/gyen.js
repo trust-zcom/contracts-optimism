@@ -1,14 +1,18 @@
-
+//modified 2022/03/01 start
 //modified 2020/08/24 start
 //const Token = artifacts.require("Token_v1");
-const Token = artifacts.require("Token_v2");
+//const Token = artifacts.require("Token_v2");
+const Token = artifacts.require("Token_v3");
 //modified 2020/08/24 end;
+//modified 2022/03/01 end;
 const GYEN = artifacts.require("GYEN");
 const truffleAssert = require('truffle-assertions');
 const Web3EthAbi = require('web3-eth-abi');
 
 //const abi = require("../build/contracts/Token_v1.json").abi;
-const abi = require("../build/contracts/Token_v2.json").abi;
+//const abi = require("../build/contracts/Token_v2.json").abi;
+const abi = require("../build/contracts/Token_v3.json").abi;
+
 const [initializeAbi] = abi.filter((f) => f.name === 'initialize');
 
 contract("GYEN.sol", (accounts) => {
@@ -23,6 +27,7 @@ contract("GYEN.sol", (accounts) => {
   let minter = accounts[6];
   let proxyAdmin = accounts[7];
   let wiper = accounts[8];
+  let rescuer = accounts[9];
   let data = Web3EthAbi.encodeFunctionCall(initializeAbi, ['GMO JPY', 'GYEN', 6, owner, admin, capper, prohibiter, pauser, minterAdmin, minter]);
   let zero_address = '0x0000000000000000000000000000000000000000'
 
@@ -31,6 +36,7 @@ contract("GYEN.sol", (accounts) => {
     gyenProxy = await GYEN.new(tokenInstance.address, proxyAdmin, data);
     gyenInstance = await Token.at(gyenProxy.address);
     await gyenInstance.initializeWiper(wiper);
+    await gyenInstance.initializeRescuer(rescuer);
     await gyenInstance.cap(100, {from: capper});
   }
 
@@ -154,6 +160,19 @@ contract("GYEN.sol", (accounts) => {
     it("initializeWiper cannot call multiple times", async () => {
       await truffleAssert.reverts(
         gyenInstance.initializeWiper(wiper),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+  });
+
+  describe('Test initializeRescuer function', function() {
+    beforeEach(initialize);
+
+    it("initializeRescuer cannot call multiple times", async () => {
+      await truffleAssert.reverts(
+        gyenInstance.initializeRescuer(rescuer),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -622,4 +641,78 @@ contract("GYEN.sol", (accounts) => {
 
   });
 
+  describe('Test rescue function', function() {
+    beforeEach(initialize);
+
+    it("rescuer can rescue", async () => {
+      let token_recever_address = accounts[12];
+      await gyenInstance.mint(gyenProxy.address, 10, {from: minter});
+      let balance_gyen = await gyenInstance.balanceOf(gyenProxy.address);
+      assert.strictEqual(balance_gyen.toNumber(), 10, "GYEN contract balance is not correct!");
+
+      let rescue_tx = await gyenInstance.rescue(gyenProxy.address,token_recever_address,6, {from: rescuer});
+      await truffleAssert.eventEmitted(rescue_tx, 'Rescue', (ev) => {
+        return ev.tokenAddr === gyenProxy.address && ev.toAddr === token_recever_address && ev.amount.toNumber() === 6;
+      }, 'rescue event should be emitted with correct parameters');
+      let balance_receiver = await gyenInstance.balanceOf(token_recever_address);
+      assert.strictEqual(balance_receiver.toNumber(), 6, "Rescue receiver balance is not correct!");
+      balance_gyen = await gyenInstance.balanceOf(gyenProxy.address);
+      assert.strictEqual(balance_gyen.toNumber(), 4, "GYEN contract balance is not correct afer 1st rescue!");
+
+      rescue_tx = await gyenInstance.rescue(gyenProxy.address,token_recever_address,4, {from: rescuer});
+      await truffleAssert.eventEmitted(rescue_tx, 'Rescue', (ev) => {
+        return ev.tokenAddr === gyenProxy.address && ev.toAddr === token_recever_address && ev.amount.toNumber() === 4;
+      }, 'rescue event should be emitted with correct parameters');
+      balance_receiver = await gyenInstance.balanceOf(token_recever_address);
+      assert.strictEqual(balance_receiver.toNumber(), 10, "Rescue receiver balance is not correct!");
+      balance_gyen = await gyenInstance.balanceOf(gyenProxy.address);
+      assert.strictEqual(balance_gyen.toNumber(), 0, "GYEN contract balance is not correct afer 2nd rescue!");
+    });
+
+    it("non rescuer cannot rescue", async () => {
+      let token_recever_address = accounts[12];
+      let non_rescuer = accounts[13];
+      await gyenInstance.mint(gyenProxy.address, 10, {from: minter});
+
+      await truffleAssert.reverts(
+        gyenInstance.rescue(gyenProxy.address,token_recever_address,6, {from: non_rescuer}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("paused contract cannot rescue", async () => {
+      let token_recever_address = accounts[12];
+      await gyenInstance.mint(gyenProxy.address, 10, {from: minter});
+      await gyenInstance.pause({from: pauser});
+
+      await truffleAssert.reverts(
+        gyenInstance.rescue(gyenProxy.address,token_recever_address,6, {from: rescuer}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("can not rescue more than balance", async () => {
+      let token_recever_address = accounts[12];
+      await gyenInstance.mint(gyenProxy.address, 10, {from: minter});
+
+      await truffleAssert.reverts(
+        gyenInstance.rescue(gyenProxy.address,token_recever_address,11, {from: rescuer}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("rescue should not change the totalSupply", async () => {
+      let token_recever_address = accounts[12];
+      await gyenInstance.mint(gyenProxy.address, 10, {from: minter});
+      let old_totalSupply = await gyenInstance.totalSupply();
+      await gyenInstance.rescue(gyenProxy.address,token_recever_address,10, {from: rescuer});
+
+      let new_totalSupply = await gyenInstance.totalSupply();
+
+      assert.strictEqual(old_totalSupply.toNumber(), new_totalSupply.toNumber(), "totalSupply not change after rescue");
+    })
+  });
 })

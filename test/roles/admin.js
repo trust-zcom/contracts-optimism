@@ -1,7 +1,10 @@
+//modified 2022/02/01 start
 //modified 2020/08/24 start
 //const Token = artifacts.require("Token_v1");
-const Token = artifacts.require("Token_v2");
-//modified 2020/08/24 end
+//const Token = artifacts.require("Token_v2");
+const Token = artifacts.require("Token_v3");
+//modified 2020/08/24 end;
+//modified 2022/02/01 end;
 const truffleAssert = require('truffle-assertions');
 
 contract("Admin.sol", (accounts) => {
@@ -14,12 +17,14 @@ contract("Admin.sol", (accounts) => {
   let minterAdmin = accounts[5];
   let minter = accounts[6];
   let wiper = accounts[7];
+  let rescuer = accounts[8];
   let zero_address = '0x0000000000000000000000000000000000000000'
 
   var initialize =  async () => {
     contractInstance = await Token.new();
     await contractInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter);
     await contractInstance.initializeWiper(wiper);
+    await contractInstance.initializeRescuer(rescuer);
   }
 
   describe('Test changeCapper function', function() {
@@ -164,4 +169,42 @@ contract("Admin.sol", (accounts) => {
     });
   });
 
+
+  describe('Test changeRescuer function', function() {
+    beforeEach(initialize);
+
+    it("admin can change the rescuer", async () => {
+      let new_rescuer = accounts[12];
+      let changeRescuer_tx = await contractInstance.changeRescuer(new_rescuer, {from: admin});
+      await truffleAssert.eventEmitted(changeRescuer_tx, 'RescuerChanged', {oldRescuer: rescuer, newRescuer: new_rescuer, sender: admin}, 'RescueChanged event should be emitted with correct parameters');
+    });
+
+    it("non admin cannot change the rescuer", async () => {
+      let non_admin = accounts[12];
+      let new_rescuer = accounts[13];
+      await truffleAssert.reverts(
+        contractInstance.changeRescuer(new_rescuer, {from: non_admin}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("paused contract cannot change the rescuer", async () => {
+      let new_rescuer = accounts[12];
+      await contractInstance.pause({from: pauser});
+      await truffleAssert.reverts(
+        contractInstance.changeRescuer(new_rescuer, {from: admin}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot change the rescuer to zero address", async () => {
+      await truffleAssert.reverts(
+        contractInstance.changeRescuer(zero_address, {from: admin}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+  });
 })
