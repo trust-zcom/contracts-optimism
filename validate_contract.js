@@ -136,14 +136,16 @@ async function printBasis(slots, version) {
     // slot 65 - decimals
     let decimals = parseUint(slots[65].slice(-2)).toNumber();
     console.log(`decimals:              ${decimals}`); 
-  }else if(version == "2"){
+  }
+  if(parseInt(version) > 1){
     // slot 65 - decimals, wiper
     let decimals = parseUint(slots[65].slice(-2)).toNumber();
     console.log(`decimals:              ${decimals}`); 
 
     let wiper = parseAddress(slots[65].slice(-42,-2));
     console.log(`wiper:                 ${wiper}`); 
-  }else if(version == "3"){
+  }
+  if(version == "3"){
     // slot 66 - rescuer
     let rescuer = parseAddress(slots[66].slice(-40));
     console.log(`rescuer:               ${rescuer}`); 
