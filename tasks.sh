@@ -19,7 +19,7 @@ if [[ $# != 2 ]]; then
     echo "             3 -> validate V1 states of GYEN and ZUSD"
     echo "             4 -> validate V2 states of GYEN and ZUSD"
     echo "             5 -> deploy Token_v3"
-    echo "             6 -> upgrade to V3 and initialize V3(rescuer)"
+    echo "             6 -> upgrade to V3 and initialize V3"
     echo "             7 -> validate V3 states of GYEN and ZUSD"
     exit
 fi

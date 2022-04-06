@@ -28,5 +28,5 @@ contract("Upgrade GYEN/ZUSD from v1 to v2", (accounts) => {
     ZUSD,
     2,
     accounts,
-  );  
+  );
 });

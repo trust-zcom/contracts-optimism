@@ -9,7 +9,7 @@ contract Rescuer is Common  {
         _;
     }
 
-    function initializeRescuer(address _account) public isNotZeroAddress(_account) {
+    function initializeRescuer(address _account) internal {
         require(rescuer == address(0), "the rescuer can only be initiated once");
         rescuer = _account;
     }

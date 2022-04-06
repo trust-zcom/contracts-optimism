@@ -13,7 +13,7 @@ const abiv3 = require("../build/contracts/Token_v3.json").abi;
 
 const [initializeAbi] = abiv1.filter((f) => f.name === 'initialize');
 const [initializeWiperAbi] = abiv2.filter((f) => f.name === 'initializeWiper');
-const [initializeRescuerAbi] = abiv3.filter((f) => f.name === 'initializeRescuer');
+const [initializeV3] = abiv3.filter((f) => f.name === 'initializeV3');
 
 const adminSlot =
   "0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103";
@@ -42,11 +42,13 @@ function validateStorageSlots(
       let proxyAdmin = accounts[7];
       let wiper = accounts[8];
       let alice = accounts[9];
-      let bob = accounts[10]; 
+      let bob = accounts[10];
       let charlie = accounts[11];
       let newProxyAdminV2 = accounts[12];
       let newProxyAdminV3 = accounts[13];
       let rescuer = accounts[14];
+      let operator1 = accounts[15];
+      let operator2 = accounts[16];
 
 
       const [name, symbol, decimals] = ["GMO stable coin", "SYMBOL", 6];
@@ -92,7 +94,7 @@ function validateStorageSlots(
           await gyenInstance.pause({ from: pauser });
 
           tokenInstance = await Token_V3.new();
-          let datav3 = Web3EthAbi.encodeFunctionCall(initializeRescuerAbi,[rescuer]);
+          let datav3 = Web3EthAbi.encodeFunctionCall(initializeV3,[rescuer, operator1, operator2]);
           // upgrade to v3
           await gyenProxy.upgradeToAndCall(tokenInstance.address, datav3, { from: newProxyAdminV2 });
           // change deplooyer
@@ -101,11 +103,11 @@ function validateStorageSlots(
 
       });
 
-      it("retains original storage slots 0 through 66", async () => {
+      it("retains original storage slots 0 through 68", async () => {
 
 
         let slots = [];
-        for (let i = 0; i < 67; i++) {
+        for (let i = 0; i < 69; i++) {
           slots[i] = await readSlot(gyenProxy.address, i);
         }
   
@@ -180,6 +182,8 @@ function validateStorageSlots(
 
         if (version == 3) {
           expect(parseAddress(slots[66])).to.equal(rescuer);
+          expect(parseAddress(slots[67])).to.equal(operator1);
+          expect(parseAddress(slots[68])).to.equal(operator2);
         }
 
         // proxy admin

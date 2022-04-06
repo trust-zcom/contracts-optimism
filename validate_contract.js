@@ -38,7 +38,7 @@ async function main(flag, version) {
   let slots = [];
   let value;
 
-  for (index = 0; index < 70; index++){
+  for (index = 0; index < 80; index++){
     value = await readSlot(contractAddress, index);
     slots[index] = value;
   }
@@ -149,6 +149,14 @@ async function printBasis(slots, version) {
     // slot 66 - rescuer
     let rescuer = parseAddress(slots[66].slice(-40));
     console.log(`rescuer:               ${rescuer}`); 
+
+    // slot 67 - operator1
+    let operator1 = parseAddress(slots[67].slice(-40));
+    console.log(`operator1:             ${operator1}`); 
+
+    // slot 68 - operator2
+    let operator2 = parseAddress(slots[68].slice(-40));
+    console.log(`operator2:             ${operator2}`); 
   }
 
   // deployer
