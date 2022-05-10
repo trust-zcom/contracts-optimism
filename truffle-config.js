@@ -60,7 +60,7 @@ module.exports = {
     },
     production: {
       network_id: "1",
-      provider: () => new HDWalletProvider(privateKeyProduction, "https://mainnet.infura.io/v3/7e1994c8834b4c61814e608fbb640810"),
+      provider: () => new HDWalletProvider(privateKeyProduction, "https://mainnet.infura.io/v3/<Infura PJ ID>"),
       gasPrice: 100000000000,
       gas: 4000000
     },
@@ -71,19 +71,19 @@ module.exports = {
     },
     ropsten: {
       network_id: "3",
-      provider: () => new HDWalletProvider(privateKey, "https://ropsten.infura.io/v3/7e1994c8834b4c61814e608fbb640810"),
+      provider: () => new HDWalletProvider(privateKey, "https://ropsten.infura.io/v3/<Infura PJ ID>"),
       gasPrice: 40000000000,
       gas: 4000000
     },
     kovan: {
       network_id: "42",
-      provider: () => new HDWalletProvider(privateKey, "https://kovan.infura.io/v3/7e1994c8834b4c61814e608fbb640810"),
+      provider: () => new HDWalletProvider(privateKey, "https://kovan.infura.io/v3/<Infura PJ ID>"),
       gasPrice: 20000000000,
       gas: 4000000
     }, 
     rinkeby: {
       network_id: "4",
-      provider: () => new HDWalletProvider(privateKey, "https://rinkeby.infura.io/v3/7e1994c8834b4c61814e608fbb640810"),
+      provider: () => new HDWalletProvider(privateKey, "https://rinkeby.infura.io/v3/<Infura PJ ID>"),
       //gasPrice: 20000000000,
       //as: 4000000
     },       
@@ -98,7 +98,7 @@ module.exports = {
   ],
   api_keys: {
     // Change to API_KEYS with yours. 
-    etherscan: "3NT1SS9SKDKKWQRS9ZYIPB5WM989C67SIE",
+    etherscan: "<Etherscan API KEY>",
   },
   // Configure your compilers
   compilers: {
