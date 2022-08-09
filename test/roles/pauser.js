@@ -1,24 +1,20 @@
-
-//modified 2022/04/05 start
-// const Token = artifacts.require("Token_v1");
-// const Token = artifacts.require("Token_v2");
-const Token = artifacts.require("Token_v3");
-//modified 2020/04/05 end;
+const Token = artifacts.require("ArbToken_v1");
 const truffleAssert = require('truffle-assertions');
 
 contract("Pauser.sol", (accounts) => {
   let contractInstance;
   let owner = accounts[0];
   let admin = accounts[1];
-  let capper = accounts[2];
+  let wiper = accounts[2];
   let prohibiter = accounts[3];
   let pauser = accounts[4];
-  let minterAdmin = accounts[5];
-  let minter = accounts[6];
+  let rescuer = accounts[5];
+  let l1Address = accounts[6];
+  let l2Gateway = accounts[7];
 
   var initialize =  async () => {
     contractInstance = await Token.new();
-    await contractInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter);
+    await contractInstance.initialize('A', 'a', 1, owner, admin, prohibiter, pauser, wiper, rescuer, l1Address, l2Gateway);
   }
 
   describe('Test pause function', function() {

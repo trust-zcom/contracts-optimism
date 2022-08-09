@@ -1,0 +1,15 @@
+{
+    "production": true,
+    "name_suffix": " Arbitrum",
+    "symbol_suffix": "",
+    "owner": "",
+    "deployer": "",
+    "admin": "",
+    "pauser": "",
+    "prohibiter": "",
+    "wiper": "",
+    "rescuer": "",
+    "l1Address_gyen": "",
+    "l1Address_zusd": "",
+    "l2Gateway": "0x096760F208390250649E3e8763348E783AEF5562"
+}

@@ -1,25 +1,22 @@
 
-//modified 2022/04/05 start
-// const Token = artifacts.require("Token_v1");
-// const Token = artifacts.require("Token_v2");
-const Token = artifacts.require("Token_v3");
-//modified 2020/04/05 end;
+const Token = artifacts.require("ArbToken_v1");
 const truffleAssert = require('truffle-assertions');
 
 contract("Owner.sol", (accounts) => {
   let contractInstance;
   let owner = accounts[0];
   let admin = accounts[1];
-  let capper = accounts[2];
+  let wiper = accounts[2];
   let prohibiter = accounts[3];
   let pauser = accounts[4];
-  let minterAdmin = accounts[5];
-  let minter = accounts[6];
+  let rescuer = accounts[5];
+  let l1Address = accounts[6];
+  let l2Gateway = accounts[7];
   let zero_address = '0x0000000000000000000000000000000000000000'
 
   var initialize =  async () => {
     contractInstance = await Token.new();
-    await contractInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter);
+    await contractInstance.initialize('A', 'a', 1, owner, admin, prohibiter, pauser, wiper, rescuer, l1Address, l2Gateway);
   }
 
   describe('Test changeOwner function', function() {
@@ -82,44 +79,6 @@ contract("Owner.sol", (accounts) => {
     it("cannot change the admin to zero address", async () => {
       await truffleAssert.reverts(
         contractInstance.changeAdmin(zero_address),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-  });
-
-  describe('Test changeMinterAdmin function', function() {
-    beforeEach(initialize);
-    
-    it("owner can change the minterAdmin", async () => {
-      let new_minterAdmin = accounts[11];
-      let changeMinterAdmin_tx = await contractInstance.changeMinterAdmin(new_minterAdmin, {from: owner});
-      await truffleAssert.eventEmitted(changeMinterAdmin_tx, 'MinterAdminChanged', {oldMinterAdmin: minterAdmin, newMinterAdmin: new_minterAdmin, sender: owner}, 'MinterAdminChanged event should be emitted with correct parameters');
-    });
-
-    it("non owner cannot change the minterAdmin", async () => {
-      let non_owner = accounts[11];
-      let new_minterAdmin = accounts[12];
-      await truffleAssert.reverts(
-        contractInstance.changeMinterAdmin(new_minterAdmin, {from: non_owner}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-
-    it("paused contract cannot change the minterAdmin", async () => {
-      let new_minterAdmin = accounts[11];
-      await contractInstance.pause({from: pauser});
-      await truffleAssert.reverts(
-        contractInstance.changeMinterAdmin(new_minterAdmin, {from: owner}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-
-    it("cannot change the minterAdmin to zero address", async () => {
-      await truffleAssert.reverts(
-        contractInstance.changeMinterAdmin(zero_address, {from: owner}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );

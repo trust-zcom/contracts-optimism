@@ -1,22 +1,22 @@
-
-const Token = artifacts.require("Token_v1");
+const Token = artifacts.require("ArbToken_v1");
 const truffleAssert = require('truffle-assertions');
+const { signERC2612Permit } = require('./utils/signERC2612Permit.js')
 
-contract("Token_v1.sol", (accounts) => {
+contract("ArbToken_v1.sol", (accounts) => {
   let tokenInstance;
   let owner = accounts[0];
   let admin = accounts[1];
-  let capper = accounts[2];
+  let wiper = accounts[2];
   let prohibiter = accounts[3];
   let pauser = accounts[4];
-  let minterAdmin = accounts[5];
-  let minter = accounts[6];
-  let zero_address = '0x0000000000000000000000000000000000000000'
+  let rescuer = accounts[5];
+  let l1Address = accounts[6];
+  let l2Gateway = accounts[7];
+  let zero_address = '0x0000000000000000000000000000000000000000';
 
   var initialize =  async () => {
     tokenInstance = await Token.new();
-    await tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter);
-    await tokenInstance.cap(100, {from: capper});
+    await tokenInstance.initialize('A', 'a', 1, owner, admin, prohibiter, pauser, wiper, rescuer, l1Address, l2Gateway);
   }
 
   describe('Test initialize function', function() {
@@ -25,10 +25,10 @@ contract("Token_v1.sol", (accounts) => {
     })
 
     it("Initialize cannot call multiple times", async () => {
-      await tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter);
+      await tokenInstance.initialize('A', 'a', 1, owner, admin, prohibiter, pauser, wiper, rescuer, l1Address, l2Gateway);
 
       await truffleAssert.reverts(
-        tokenInstance.initialize('B', 'b', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, minter),
+        tokenInstance.initialize('B', 'b', 1, owner, admin, prohibiter, pauser, wiper, rescuer, l1Address, l2Gateway),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -36,7 +36,7 @@ contract("Token_v1.sol", (accounts) => {
 
     it("cannot initialize owner to zero address", async () => {
       await truffleAssert.reverts(
-        tokenInstance.initialize('A', 'a', 1, zero_address, admin, capper, prohibiter, pauser, minterAdmin, minter),
+        tokenInstance.initialize('A', 'a', 1, zero_address, admin, prohibiter, pauser, wiper, rescuer, l1Address, l2Gateway),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -44,15 +44,7 @@ contract("Token_v1.sol", (accounts) => {
 
     it("cannot initialize admin to zero address", async () => {
       await truffleAssert.reverts(
-        tokenInstance.initialize('A', 'a', 1, owner, zero_address, capper, prohibiter, pauser, minterAdmin, minter),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-
-    it("cannot initialize capper to zero address", async () => {
-      await truffleAssert.reverts(
-        tokenInstance.initialize('A', 'a', 1, owner, admin, zero_address, prohibiter, pauser, minterAdmin, minter),
+        tokenInstance.initialize('A', 'a', 1, owner, zero_address, prohibiter, pauser, wiper, rescuer, l1Address, l2Gateway),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -60,7 +52,7 @@ contract("Token_v1.sol", (accounts) => {
 
     it("cannot initialize prohibiter to zero address", async () => {
       await truffleAssert.reverts(
-        tokenInstance.initialize('A', 'a', 1, owner, admin, capper, zero_address, pauser, minterAdmin, minter),
+        tokenInstance.initialize('A', 'a', 1, owner, admin, zero_address, pauser, wiper, rescuer, l1Address, l2Gateway),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -68,150 +60,82 @@ contract("Token_v1.sol", (accounts) => {
 
     it("cannot initialize pauser to zero address", async () => {
       await truffleAssert.reverts(
-        tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, zero_address, minterAdmin, minter),
+        tokenInstance.initialize('A', 'a', 1, owner, admin, prohibiter, zero_address, wiper, rescuer, l1Address, l2Gateway),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
 
-    it("cannot initialize minterAdmin to zero address", async () => {
+    it("cannot initialize wiper to zero address", async () => {
       await truffleAssert.reverts(
-        tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, zero_address, minter),
+        tokenInstance.initialize('A', 'a', 1, owner, admin, prohibiter, pauser, zero_address, rescuer, l1Address, l2Gateway),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
 
-    it("cannot initialize minter to zero address", async () => {
+    it("cannot initialize rescuer to zero address", async () => {
       await truffleAssert.reverts(
-        tokenInstance.initialize('A', 'a', 1, owner, admin, capper, prohibiter, pauser, minterAdmin, zero_address),
+        tokenInstance.initialize('A', 'a', 1, owner, admin, prohibiter, pauser, wiper, zero_address, l1Address, l2Gateway),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot initialize l1Address to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, owner, admin, prohibiter, pauser, wiper, rescuer, zero_address, l2Gateway),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot initialize l2Gateway to zero address", async () => {
+      await truffleAssert.reverts(
+        tokenInstance.initialize('A', 'a', 1, owner, admin, prohibiter, pauser, wiper, rescuer, l1Address, zero_address),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
   });
 
-  describe('Test cap function', function() {
+  describe('Test bridgeMint function', function() {
     beforeEach(initialize);
     
-    it("set capacity success case", async () => {
-      let cap_tx = await tokenInstance.cap(10, {from: capper});
-      await truffleAssert.eventEmitted(cap_tx, 'Cap', (ev) => {
-        return ev.newCapacity.toNumber() === 10 && ev.sender === capper;
-      }, 'Cap event should be emitted with correct parameters');
-    });
-
-    it("non capper cannot set capacity", async () => {
-      let non_capper = accounts[11];
-      await truffleAssert.reverts(
-        tokenInstance.cap(10, {from: non_capper}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-
-    it("paused contract cannot set capacity", async () => {
-      await tokenInstance.pause({from: pauser});
-      await truffleAssert.reverts(
-        tokenInstance.cap(10, {from: capper}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-
-    it("set capacity less than the totalSupply should fail", async () => {
-      await tokenInstance.mint(accounts[11], 10, {from: minter});
-      await truffleAssert.reverts(
-        tokenInstance.cap(9, {from: capper}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-
-    it("cannot set cap to a non natural number", async () => {
-      await truffleAssert.reverts(
-        tokenInstance.cap(0, {from: capper}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-  });
-
-  describe('Test mint function', function() {
-    beforeEach(initialize);
-    
-    it("minter can mint", async () => {
+    it("only l2Gateway can bridgeMint", async () => {
       let mint_address = accounts[11];
-      let mint_tx = await tokenInstance.mint(mint_address, 10, {from: minter});
+      let mint_tx = await tokenInstance.bridgeMint(mint_address, 10, {from: l2Gateway});
       await truffleAssert.eventEmitted(mint_tx, 'Mint', (ev) => {
-        return ev.mintee === mint_address && ev.amount.toNumber() === 10 && ev.sender === minter;
+        return ev.mintee === mint_address && ev.amount.toNumber() === 10 && ev.sender === l2Gateway;
       }, 'Mint event should be emitted with correct parameters');
       balance = await tokenInstance.balanceOf(mint_address);
-      assert.strictEqual(balance.toNumber(), 10, "Balance after mint not correct!");
+      assert.strictEqual(balance.toNumber(), 10, "Balance after bridgeMint not correct!");
     });
   
-    it("non minter cannot mint", async () => {
+    it("non l2Gateway cannot bridgeMint", async () => {
       let non_minter = accounts[11];
       let mint_address = accounts[12];
       await truffleAssert.reverts(
-        tokenInstance.mint(mint_address, 10, {from: non_minter}),
+        tokenInstance.bridgeMint(mint_address, 10, {from: non_minter}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
   
-    it("paused contract cannot be mint", async () => {
-      let mint_address = accounts[11];
-      await tokenInstance.pause({from: pauser});
+    it("bridgeMint address should not be zero", async () => {
       await truffleAssert.reverts(
-        tokenInstance.mint(mint_address, 10, {from: minter}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-  
-    it("mint should not above capacity", async () => {
-      let mint_address = accounts[11];
-      await truffleAssert.reverts(
-        tokenInstance.mint(mint_address, 101, {from: minter}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-  
-    it("mint should not above capacity", async () => {
-      let mint_address = accounts[11];
-      await tokenInstance.mint(mint_address, 90, {from: minter});
-      await truffleAssert.reverts(
-        tokenInstance.mint(mint_address, 11, {from: minter}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-  
-    it("mint address should not be zero", async () => {
-      await truffleAssert.reverts(
-        tokenInstance.mint(zero_address, 10, {from: minter}),
+        tokenInstance.bridgeMint(zero_address, 10, {from: l2Gateway}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     })
 
-    it("mint should change the totalSupply", async () => {
+    it("bridgeMint should change the totalSupply", async () => {
       let mint_address = accounts[11];
       let old_totalSupply = await tokenInstance.totalSupply();
-      await tokenInstance.mint(mint_address, 10, {from: minter});
+      await tokenInstance.bridgeMint(mint_address, 10, {from: l2Gateway});
       let new_totalSupply = await tokenInstance.totalSupply();
-      assert.strictEqual(old_totalSupply.toNumber() + 10, new_totalSupply.toNumber(), "totalSupply not change after mint");
-    })
-
-    it("cannot mint a non natural number", async () => {
-      let mint_address = accounts[11];
-      await truffleAssert.reverts(
-        tokenInstance.mint(mint_address, 0, {from: minter}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
+      assert.strictEqual(old_totalSupply.toNumber() + 10, new_totalSupply.toNumber(), "totalSupply not change after bridgeMint");
     })
   });
 
@@ -221,7 +145,7 @@ contract("Token_v1.sol", (accounts) => {
     it("transfer success case", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       let transfer_tx = await tokenInstance.transfer(recipient, 10, {from: sender});
       await truffleAssert.eventEmitted(transfer_tx, 'Transfer', null, 'Transfer event should be emitted with correct parameters');
       balance = await tokenInstance.balanceOf(recipient);
@@ -231,7 +155,7 @@ contract("Token_v1.sol", (accounts) => {
     it("prohibited account cannot transfer", async () => {
       let prohibited_sender = accounts[11];
       let recipient = accounts[12];
-      await tokenInstance.mint(prohibited_sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(prohibited_sender, 10, {from: l2Gateway});
       await tokenInstance.prohibit(prohibited_sender, {from: prohibiter});
       await truffleAssert.reverts(
         tokenInstance.transfer(recipient, 10, {from: prohibited_sender}),
@@ -243,7 +167,7 @@ contract("Token_v1.sol", (accounts) => {
     it("paused contract cannot do transfer", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await tokenInstance.pause({from: pauser});
       await truffleAssert.reverts(
         tokenInstance.transfer(recipient, 10, {from: sender}),
@@ -254,7 +178,7 @@ contract("Token_v1.sol", (accounts) => {
 
     it("recipient address should not be zero", async () => {
       let sender = accounts[11];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await truffleAssert.reverts(
         tokenInstance.transfer(zero_address, 10, {from: sender}),
         truffleAssert.ErrorType.REVERT,
@@ -265,7 +189,7 @@ contract("Token_v1.sol", (accounts) => {
     it("transfer with amount over balance should fail", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await truffleAssert.reverts(
         tokenInstance.transfer(recipient, 11, {from: sender}),
         truffleAssert.ErrorType.REVERT,
@@ -276,7 +200,7 @@ contract("Token_v1.sol", (accounts) => {
     it("transfer with amount over balance should fail", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await tokenInstance.transfer(recipient, 9, {from: sender});
       await truffleAssert.reverts(
         tokenInstance.transfer(recipient, 2, {from: sender}),
@@ -288,10 +212,23 @@ contract("Token_v1.sol", (accounts) => {
     it("cannot transfer with amount is not a natural number", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       
       await truffleAssert.reverts(
         tokenInstance.transfer(recipient, 0, {from: sender}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("cannot transfer to prohibited recipient", async () => {
+      let sender = accounts[11];
+      let recipient = accounts[12];
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await tokenInstance.prohibit(recipient, {from: prohibiter});
+
+      await truffleAssert.reverts(
+        tokenInstance.transfer(recipient, 10, {from: sender}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -305,7 +242,7 @@ contract("Token_v1.sol", (accounts) => {
       let sender = accounts[11]
       let recipient = accounts[12];
       let spender = accounts[13];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await tokenInstance.approve(spender, 10, {from: sender});
       let transfer_tx = await tokenInstance.transferFrom(sender, recipient, 10, {from: spender});
       await truffleAssert.eventEmitted(transfer_tx, 'Transfer', null, 'Transfer event should be emitted with correct parameters');
@@ -317,7 +254,7 @@ contract("Token_v1.sol", (accounts) => {
       let prohibited_sender = accounts[11];
       let recipient = accounts[12];
       let spender = accounts[13];
-      await tokenInstance.mint(prohibited_sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(prohibited_sender, 10, {from: l2Gateway});
       await tokenInstance.approve(spender, 10, {from: prohibited_sender});
       await tokenInstance.prohibit(prohibited_sender, {from: prohibiter});
       await truffleAssert.reverts(
@@ -331,7 +268,7 @@ contract("Token_v1.sol", (accounts) => {
       let sender = accounts[11];
       let recipient = accounts[12];
       let spender = accounts[13];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await tokenInstance.approve(spender, 10, {from: sender});
       await tokenInstance.pause({from: pauser});
       await truffleAssert.reverts(
@@ -345,7 +282,7 @@ contract("Token_v1.sol", (accounts) => {
       let sender = accounts[11]
       let recipient = accounts[12];
       let spender = accounts[13];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await truffleAssert.reverts(
         tokenInstance.transferFrom(sender, recipient, 1, {from: spender}),
         truffleAssert.ErrorType.REVERT,
@@ -357,7 +294,7 @@ contract("Token_v1.sol", (accounts) => {
       let sender = accounts[11];
       let recipient = accounts[12];
       let spender = accounts[13];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await tokenInstance.approve(spender, 10, {from: sender});
       await truffleAssert.reverts(
         tokenInstance.transferFrom(sender, recipient, 11, {from: spender}),
@@ -370,7 +307,7 @@ contract("Token_v1.sol", (accounts) => {
       let sender = accounts[1];
       let recipient = accounts[2];
       let spender = accounts[3];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await tokenInstance.approve(spender, 10, {from: sender});
       await tokenInstance.transferFrom(sender, recipient, 9, {from: spender});
       await truffleAssert.reverts(
@@ -383,7 +320,7 @@ contract("Token_v1.sol", (accounts) => {
     it("recipient address should not be zero", async () => {
       let sender = accounts[11];
       let spender = accounts[12];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await tokenInstance.approve(spender, 10, {from: sender});
       await truffleAssert.reverts(
         tokenInstance.transferFrom(sender, zero_address, 10, {from: spender}),
@@ -396,7 +333,7 @@ contract("Token_v1.sol", (accounts) => {
       let sender = accounts[1];
       let recipient = accounts[2];
       let spender = accounts[3];
-      await tokenInstance.mint(sender, 10, {from: minter});
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
       await tokenInstance.approve(spender, 10, {from: sender});
 
       await truffleAssert.reverts(
@@ -405,58 +342,61 @@ contract("Token_v1.sol", (accounts) => {
         'This should be a fail test case!'
       );
     });
+
+    it("cannot transferFrom to prohibited recipient address", async () => {
+      let sender = accounts[11];
+      let spender = accounts[12];
+      let recipient = accounts[13];
+      await tokenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await tokenInstance.approve(spender, 10, {from: sender});
+      await tokenInstance.prohibit(recipient, {from: prohibiter});
+      await truffleAssert.reverts(
+        tokenInstance.transferFrom(sender, recipient, 10, {from: spender}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
   });
 
-  describe('Test burn function', function() {
+  describe('Test bridgeBurn function', function() {
     beforeEach(initialize);
     
-    it("burn success case", async () => {
+    it("bridgeBurn success case", async () => {
       let burn_account = accounts[11];
-      await tokenInstance.mint(burn_account, 10, {from: minter});
-      let burn_tx = await tokenInstance.burn(5, {from: burn_account});
+      await tokenInstance.bridgeMint(burn_account, 10, {from: l2Gateway});
+      let burn_tx = await tokenInstance.bridgeBurn(burn_account, 5, {from: l2Gateway});
       await truffleAssert.eventEmitted(burn_tx, 'Burn', (ev) => {
-        return ev.burnee === burn_account && ev.amount.toNumber() === 5 && ev.sender === burn_account;
+        return ev.burnee === burn_account && ev.amount.toNumber() === 5 && ev.sender === l2Gateway;
       }, 'Burn event should be emitted with correct parameters');
       balance = await tokenInstance.balanceOf(burn_account);
       assert.strictEqual(balance.toNumber(), 5, "Balance of recipient not correct!");
     });
 
-    it("burn should change the totalSupply", async () => {
+    it("bridgeBurn should change the totalSupply", async () => {
       let burn_account = accounts[11];
-      await tokenInstance.mint(burn_account, 10, {from: minter});
+      await tokenInstance.bridgeMint(burn_account, 10, {from: l2Gateway});
       let old_totalSupply = await tokenInstance.totalSupply();
-      await tokenInstance.burn(5, {from: burn_account});
+      await tokenInstance.bridgeBurn(burn_account, 5, {from: l2Gateway});
       let new_totalSupply = await tokenInstance.totalSupply();
-      assert.strictEqual(old_totalSupply.toNumber() - 5, new_totalSupply.toNumber(), "totalSupply not change after burn!");
+      assert.strictEqual(old_totalSupply.toNumber() - 5, new_totalSupply.toNumber(), "totalSupply not change after bridgeBurn!");
     });
 
-    it("burn exceed the balance of account should fail", async () => {
+    it("bridgeBurn exceed the balance of account should fail", async () => {
       let burn_account = accounts[11];
-      await tokenInstance.mint(burn_account, 10, {from: minter});
+      await tokenInstance.bridgeMint(burn_account, 10, {from: l2Gateway});
       await truffleAssert.reverts(
-        tokenInstance.burn(11, {from: burn_account}),
+        tokenInstance.bridgeBurn(burn_account, 11, {from: l2Gateway}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
 
-    it("burn exceed the balance of account should fail", async () => {
+    it("bridgeBurn exceed the balance of account should fail", async () => {
       let burn_account = accounts[11];
-      await tokenInstance.mint(burn_account, 10, {from: minter});
-      await tokenInstance.burn(9, {from: burn_account});
+      await tokenInstance.bridgeMint(burn_account, 10, {from: l2Gateway});
+      await tokenInstance.bridgeBurn(burn_account, 9, {from: l2Gateway});
       await truffleAssert.reverts(
-        tokenInstance.burn(2, {from: burn_account}),
-        truffleAssert.ErrorType.REVERT,
-        'This should be a fail test case!'
-      );
-    });
-
-    it("cannot burn amount of non natural number", async () => {
-      let burn_account = accounts[11];
-      await tokenInstance.mint(burn_account, 10, {from: minter});
-      
-      await truffleAssert.reverts(
-        tokenInstance.burn(0, {from: burn_account}),
+        tokenInstance.bridgeBurn(burn_account, 2, {from: l2Gateway}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -477,10 +417,123 @@ contract("Token_v1.sol", (accounts) => {
       let approver = accounts[11];
       let spender = accounts[12];
       let old_allowance = await tokenInstance.allowance(approver, spender);
-      await tokenInstance.mint(approver, 10, {from: minter});
+      //await tokenInstance.bridgeMint(approver, 10, {from: l2Gateway});
       await tokenInstance.approve(spender, 9, {from: approver});
       let new_allowance = await tokenInstance.allowance(approver, spender);
       assert.strictEqual(old_allowance.toNumber() + 9, new_allowance.toNumber(), "Allowance after approve not correct!");
+    });
+  });
+
+
+  describe('Test permit function', function() {
+    beforeEach(initialize);
+
+    let approver = accounts[11];
+    let spender = accounts[12];
+    let gaspender = accounts[13];
+
+    it("can permit with signature", async () => {
+      let nonce = await tokenInstance.nonces(approver);
+      nonce = nonce.toString();
+      const name = await tokenInstance.name();
+      let chainid = await tokenInstance.deploymentChainId();;
+      chainid = chainid.toString();
+      const permitResult = await signERC2612Permit(
+        web3.currentProvider,
+        tokenInstance.address,
+        approver,
+        spender,
+        '10',
+        null,
+        nonce,
+        name,
+        chainid,
+        '1',
+      );
+      let old_allowance = await tokenInstance.allowance(approver, spender);
+      await tokenInstance.permit(
+        approver,
+        spender,
+        '10',
+        permitResult.deadline,
+        permitResult.v,
+        permitResult.r,
+        permitResult.s,
+        {from: gaspender}
+      );
+
+      let new_allowance = await tokenInstance.allowance(approver, spender);
+      assert.strictEqual(old_allowance.toNumber() + 10, new_allowance.toNumber(), "Allowance after approve not correct!");
+    });
+
+    it("permit expired", async () => {
+      let nonce = await tokenInstance.nonces(approver);
+      nonce = nonce.toString();
+      const name = await tokenInstance.name();
+      let chainid = await tokenInstance.deploymentChainId();;
+      chainid = chainid.toString();
+      const permitResult = await signERC2612Permit(
+        web3.currentProvider,
+        tokenInstance.address,
+        approver,
+        spender,
+        '10',
+        '1',
+        nonce,
+        name,
+        chainid,
+        '1',
+      );
+
+      await truffleAssert.reverts(
+        tokenInstance.permit(
+          approver,
+          spender,
+          '10',
+          '1',
+          permitResult.v,
+          permitResult.r,
+          permitResult.s,
+          {from: gaspender}
+        ),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+
+    it("invalid permit", async () => {
+      let nonce = await tokenInstance.nonces(approver);
+      nonce = nonce.toString();
+      const name = await tokenInstance.name();
+      let chainid = await tokenInstance.deploymentChainId();;
+      chainid = chainid.toString();
+      const permitResult = await signERC2612Permit(
+        web3.currentProvider,
+        tokenInstance.address,
+        approver,
+        spender,
+        '10',
+        null,
+        nonce,
+        name,
+        chainid,
+        '1',
+      );
+
+      await truffleAssert.reverts(
+        tokenInstance.permit(
+          approver,
+          spender,
+          '100',
+          permitResult.deadline,
+          permitResult.v,
+          permitResult.r,
+          permitResult.s,
+          {from: gaspender}
+        ),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
     });
   });
 })

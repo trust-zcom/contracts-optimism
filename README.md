@@ -14,18 +14,19 @@ When we burn tokens upon customers' redemption requests, we send the same amount
 
 Customers can burn tokens by calling `burn()` themselves, however, they will not receive the underlying fiat currencies in such case.
 
+For GYEN/ZUSD in Arbitrum, users can bridge their GYEN/ZUSD through [Arbitrum Bridge](https://bridge.arbitrum.io/).
+Below is about GYEN/ZUSD on Arbitrum.
+
 ## Roles
 
 Each role (address) is used to control specific feature(s):
 
-- `owner` - performs `admin` and `minterAdmin` assignments, and reassigns itself.
-- `admin` - assigns `capper`, `prohibiter`, `pauser`, and `wiper` roles.
-- `capper` - sets the minting capacity (allowance) available to `minter`. 
+- `owner` - performs `admin` assignments, and reassigns itself.
+- `admin` - assigns `prohibiter`, `pauser`, `rescuer`, and `wiper` roles.
 - `prohibiter` - can prohibit users (addresses) from transferring tokens in accordance with Anti-Money Laundering (AML) procedures.
 - `pauser` - can pause and unpause transfers (and other actions) for the entire contract.
+- `rescuer` - can rescue tokens locked in GYEN/ZUSD smart contract address.
 - `wiper` - can wipe out the balance of an address upon instructions from law enforcement agencies.
-- `minterAdmin` - can assign `minter`.
-- `minter` - mints the tokens.
 
 ## ERC-20
 
@@ -35,15 +36,9 @@ The standard ERC-20 `approve()` and `transferFrom()` might cause a race conditio
 
 ## Minting and Burning
 
-`capacity` is one of the safety features and it represents the current maximum value allowed for `totalSupply`.
+When mint tokens on Arbitrum, callable path is L1Gateway depositToken (which handles L1 escrow), which triggers L2Gateway, `bridgeMint` will be called.
 
-`minter` cannot mint tokens in the amount that would exceed the `capacity`.
-
-`capper` is responsible to set / increase the `capacity` as to enable the `minter` to be able to mint tokens.
-
-`minter` and `capper` are separate accounts. Their keys are managed on different physical devices and by different personnel, to ensure maximum security. 
-
-End users can burn tokens by calling `burn()` themselves — in such a case the end user would not receive the funds from the fiat reserve.
+For burning tokens on Arbitrum, `bridgeBurn` will be called. Only the token bridge can call this.
 
 ## Prohibit
 
@@ -57,8 +52,18 @@ End users can burn tokens by calling `burn()` themselves — in such a case the 
 
 `wipe` is another security feature. `wiper` can wipe out the balance of an address upon instructions from law enforcement agencies. In such cases, the underlying fiat currency will be handled according to law enforcement’s instructions.
 
+## Rescue
+
+`rescue` is for rescuing tokens locked in GYEN/ZUSD smart contract address.
+
+## Permit
+
+`permit` is for gasless approval of tokens (standardized as ERC2612).
+
+So, both GYEN and ZUSD are EIP-2612-compliant token on Arbitrum.
+
 ## Upgrading
 
-ZUSD.sol and GYEN.sol are proxy contracts and Token_v1.sol is an implementation contract. The proxy contracts are based on the OpenZeppelin framework.
+ZUSD.sol and GYEN.sol are proxy contracts and ArbToken_v1.sol is an implementation contract. The proxy contracts are based on the OpenZeppelin framework.
 
-When an upgrade is needed, a new implementation contact (Token_v2.sol, Token_v3.sol, etc.) can be deployed and the proxy is updated to point to it.
+When an upgrade is needed, a new implementation contact (ArbToken_v2.sol, ArbToken_v3.sol, etc.) can be deployed and the proxy is updated to point to it.

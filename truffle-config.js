@@ -27,13 +27,9 @@ let privateKey;
 if(fs.existsSync(".secret")) {
   privateKey = fs.readFileSync(".secret").toString().trim();
 }
-if(fs.existsSync(".secret_staging")) {
-  privateKeyStaging = fs.readFileSync(".secret_staging").toString().trim();
-}
 if(fs.existsSync(".secret_production")) {
   privateKeyProduction = fs.readFileSync(".secret_production").toString().trim();
 }
-
 
 module.exports = {
   networks: {
@@ -50,43 +46,29 @@ module.exports = {
       gasPrice: 40000000000,
       gas: 3000000
     },
-    staging: {
-      host: "localhost",
-      port: 8545,
-      network_id: "1",
-      provider: () => new HDWalletProvider(privateKeyStaging, "http://localhost:8545"),
-      gasPrice: 10000000000,
-      gas: 3000000
-    },
-    production: {
-      network_id: "1",
-      provider: () => new HDWalletProvider(privateKeyProduction, "https://mainnet.infura.io/v3/<Infura PJ ID>"),
-      gasPrice: 100000000000,
-      gas: 4000000
-    },
     test: {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*",
     },
-    ropsten: {
-      network_id: "3",
-      provider: () => new HDWalletProvider(privateKey, "https://ropsten.infura.io/v3/<Infura PJ ID>"),
-      gasPrice: 40000000000,
-      gas: 4000000
-    },
-    kovan: {
-      network_id: "42",
-      provider: () => new HDWalletProvider(privateKey, "https://kovan.infura.io/v3/<Infura PJ ID>"),
-      gasPrice: 20000000000,
-      gas: 4000000
-    }, 
-    rinkeby: {
-      network_id: "4",
-      provider: () => new HDWalletProvider(privateKey, "https://rinkeby.infura.io/v3/<Infura PJ ID>"),
+    arbitrumT: {
+      network_id: "421611",
+      provider: () => new HDWalletProvider(privateKey, "https://arb-rinkeby.g.alchemy.com/v2/Hq_GCsE4ZSrtBt0VV0t40za8RDEFGuSf"),
       //gasPrice: 20000000000,
       //as: 4000000
-    },       
+    },
+    arbitrum: {
+      network_id: "42161",
+      provider: () => new HDWalletProvider(privateKeyProduction, "https://arb-mainnet.g.alchemy.com/v2/3K5AgC4ly1h3kKJIluEtqvNP0TcI6yiY"),
+      //gasPrice: 20000000000,
+      //as: 4000000
+    },
+    arbitrumN: {
+      network_id: "421613",
+      provider: () => new HDWalletProvider(privateKey, "https://arb-goerli.g.alchemy.com/v2/XZ7fMZz04O0Tebm-62x6BX2YYJoe81Wi"),
+      //gasPrice: 20000000000,
+      //as: 4000000
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -94,11 +76,13 @@ module.exports = {
     // timeout: 100000
   },
   plugins: [
-    'truffle-plugin-verify'
+    'truffle-plugin-verify',
+    'solidity-coverage',
   ],
   api_keys: {
     // Change to API_KEYS with yours. 
-    etherscan: "<Etherscan API KEY>",
+    arbiscan: "QQEDV3PH37TK1FXMZ34I4DU1C7J1WJJZYQ",
+    etherscan: "3NT1SS9SKDKKWQRS9ZYIPB5WM989C67SIE",
   },
   // Configure your compilers
   compilers: {
@@ -106,9 +90,9 @@ module.exports = {
       settings: {
         optimizer: {
           enabled: true,
-        }
+        },
       },
-      version: "0.5.8",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.5.13",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
@@ -117,6 +101,7 @@ module.exports = {
       //  },
       //  evmVersion: "byzantium"
       // }
+      evmVersion: "istanbul"
     }
   }
 }
