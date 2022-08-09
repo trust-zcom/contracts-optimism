@@ -14,7 +14,7 @@ When we burn tokens upon customers' redemption requests, we send the same amount
 
 Customers can burn tokens by calling `burn()` themselves, however, they will not receive the underlying fiat currencies in such case.
 
-For GYEN/ZUSD in Arbitrum, users can bridge their GYEN/ZUSD through [Arbitrum Bridge](https://bridge.arbitrum.io/).
+For using GYEN/ZUSD in Arbitrum, users can bridge their GYEN/ZUSD through [Arbitrum Bridge](https://bridge.arbitrum.io/).
 Below is about GYEN/ZUSD on Arbitrum.
 
 ## Roles
