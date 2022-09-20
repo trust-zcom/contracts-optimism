@@ -1442,7 +1442,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2022-08-04T06:05:24.608Z",
+  "updatedAt": "2022-09-20T05:45:50.466Z",
   "devdoc": {
     "details": "Extends BaseUpgradeabilityProxy with a constructor for initializing implementation and init data.",
     "methods": {

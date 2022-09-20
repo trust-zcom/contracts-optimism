@@ -1,15 +1,15 @@
 {
   "contractName": "Common",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/usr0102794/gyen2022/arbitrum-l2/contracts/contracts/Roles/Common.sol\":\"Common\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/usr0102794/gyen2022/arbitrum-l2/contracts/contracts/Roles/Common.sol\":{\"keccak256\":\"0x69b0de753320f7c27bcb636b65506de025975aba285c268f3626a45d58b88b9b\",\"urls\":[\"bzz-raw://f7a34e79e365597fcf4e4dcb1e26a12164fdcd66b642cf5e565b1890732d53f6\",\"dweb:/ipfs/QmX8FoCn16rs7kcegP13fDv8HbnKUu7keLGHTnjcFM5zs1\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a723158204cd3f2344e8fa4fbc71beedad8c2fc373922e5916d3252ff05802b0654bae34364736f6c634300050d0032",
-  "deployedBytecode": "0x6080604052600080fdfea265627a7a723158204cd3f2344e8fa4fbc71beedad8c2fc373922e5916d3252ff05802b0654bae34364736f6c634300050d0032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/usr0103665/wallet/contracts-Arbitrum-L2/contracts/Roles/Common.sol\":\"Common\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/usr0103665/wallet/contracts-Arbitrum-L2/contracts/Roles/Common.sol\":{\"keccak256\":\"0x69b0de753320f7c27bcb636b65506de025975aba285c268f3626a45d58b88b9b\",\"urls\":[\"bzz-raw://f7a34e79e365597fcf4e4dcb1e26a12164fdcd66b642cf5e565b1890732d53f6\",\"dweb:/ipfs/QmX8FoCn16rs7kcegP13fDv8HbnKUu7keLGHTnjcFM5zs1\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72315820d8f72b905c4458bc3d411db06faf77d2908540cddec25c75203eb74f59888ae964736f6c634300050d0032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820d8f72b905c4458bc3d411db06faf77d2908540cddec25c75203eb74f59888ae964736f6c634300050d0032",
   "sourceMap": "25:298:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:298:4;;;;;;;",
   "deployedSourceMap": "25:298:4:-;;;;;",
   "source": "pragma solidity 0.5.13;\n\ncontract Common {\n    modifier isNotZeroAddress(address _account) {\n        require(_account != address(0), \"this account is the zero address\");\n        _;\n    }\n\n    modifier isNaturalNumber(uint256 _amount) {\n        require(0 < _amount, \"this amount is not a natural number\");\n        _;\n    }\n}",
-  "sourcePath": "/Users/usr0102794/gyen2022/arbitrum-l2/contracts/contracts/Roles/Common.sol",
+  "sourcePath": "/Users/usr0103665/wallet/contracts-Arbitrum-L2/contracts/Roles/Common.sol",
   "ast": {
-    "absolutePath": "/Users/usr0102794/gyen2022/arbitrum-l2/contracts/contracts/Roles/Common.sol",
+    "absolutePath": "/Users/usr0103665/wallet/contracts-Arbitrum-L2/contracts/Roles/Common.sol",
     "exportedSymbols": {
       "Common": [
         737
@@ -426,7 +426,7 @@
     "src": "0:323:4"
   },
   "legacyAST": {
-    "absolutePath": "/Users/usr0102794/gyen2022/arbitrum-l2/contracts/contracts/Roles/Common.sol",
+    "absolutePath": "/Users/usr0103665/wallet/contracts-Arbitrum-L2/contracts/Roles/Common.sol",
     "exportedSymbols": {
       "Common": [
         737
@@ -848,7 +848,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2022-08-04T06:05:24.596Z",
+  "updatedAt": "2022-09-20T05:45:50.455Z",
   "devdoc": {
     "methods": {}
   },
