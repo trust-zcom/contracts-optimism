@@ -1,5 +1,5 @@
 
-const Token = artifacts.require("ArbToken_v1");
+const Token = artifacts.require("OpToken_v1");
 const truffleAssert = require('truffle-assertions');
 
 contract("Owner.sol", (accounts) => {

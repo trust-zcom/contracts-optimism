@@ -1,4 +1,4 @@
-const Token = artifacts.require("ArbToken_v1");
+const Token = artifacts.require("OpToken_v1");
 const truffleAssert = require('truffle-assertions');
 
 contract("Wiper.sol", (accounts) => {
@@ -23,7 +23,7 @@ contract("Wiper.sol", (accounts) => {
 
     it("wiper can wipe", async () => {
       let wipe_address = accounts[11];
-      await contractInstance.bridgeMint(wipe_address, 10, {from: l2Gateway});
+      await contractInstance.mint(wipe_address, 10, {from: l2Gateway});
       await contractInstance.prohibit(wipe_address, {from: prohibiter});
       let wipe_tx = await contractInstance.wipe(wipe_address, {from: wiper});
       await truffleAssert.eventEmitted(wipe_tx, 'Wipe', (ev) => {
@@ -36,7 +36,7 @@ contract("Wiper.sol", (accounts) => {
     it("non wiper cannot wipe", async () => {
       let wipe_address = accounts[11];
       let non_wiper = accounts[12];
-      await contractInstance.bridgeMint(wipe_address, 10, {from: l2Gateway});
+      await contractInstance.mint(wipe_address, 10, {from: l2Gateway});
       await contractInstance.prohibit(wipe_address, {from: prohibiter});
 
       await truffleAssert.reverts(
@@ -48,7 +48,7 @@ contract("Wiper.sol", (accounts) => {
  
     it("no prohibited address cannot be wipe", async () => {
       let wipe_address = accounts[11];
-      await contractInstance.bridgeMint(wipe_address, 10, {from: l2Gateway});
+      await contractInstance.mint(wipe_address, 10, {from: l2Gateway});
       await truffleAssert.reverts(
         contractInstance.wipe(wipe_address, {from: wiper}),
         truffleAssert.ErrorType.REVERT,
@@ -58,7 +58,7 @@ contract("Wiper.sol", (accounts) => {
 
     it("paused contract cannot be wipe", async () => {
       let wipe_address = accounts[11];
-      await contractInstance.bridgeMint(wipe_address, 10, {from: l2Gateway});
+      await contractInstance.mint(wipe_address, 10, {from: l2Gateway});
       await contractInstance.prohibit(wipe_address, {from: prohibiter});
       await contractInstance.pause({from: pauser});
 
@@ -72,7 +72,7 @@ contract("Wiper.sol", (accounts) => {
 
     it("wipe should change the totalSupply", async () => {
       let wipe_address = accounts[11];
-      await contractInstance.bridgeMint(wipe_address, 10, {from: l2Gateway});
+      await contractInstance.mint(wipe_address, 10, {from: l2Gateway});
       let old_totalSupply = await contractInstance.totalSupply();
       await contractInstance.prohibit(wipe_address, {from: prohibiter});
       await contractInstance.wipe(wipe_address, {from: wiper});

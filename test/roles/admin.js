@@ -1,8 +1,8 @@
 const Web3EthAbi = require('web3-eth-abi');
-const Token = artifacts.require("ArbToken_v1");
+const Token = artifacts.require("OpToken_v1");
 const truffleAssert = require('truffle-assertions');
 const GYEN = artifacts.require("GYEN");
-const abi = require("../../build/contracts/ArbToken_v1.json").abi;
+const abi = require("../../build/contracts/OpToken_v1.json").abi;
 const [initializeAbi] = abi.filter((f) => f.name === 'initialize');
 
 contract("Admin.sol", (accounts) => {

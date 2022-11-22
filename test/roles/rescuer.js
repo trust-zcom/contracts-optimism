@@ -1,4 +1,4 @@
-const Token = artifacts.require("ArbToken_v1");
+const Token = artifacts.require("OpToken_v1");
 const truffleAssert = require('truffle-assertions');
 
 contract("Rescuer.sol", (accounts) => {
@@ -23,7 +23,7 @@ contract("Rescuer.sol", (accounts) => {
 
     it("rescuer can rescue", async () => {
       let token_recever_address = accounts[12];
-      await contractInstance.bridgeMint(contractInstance.address, 10, {from: l2Gateway});
+      await contractInstance.mint(contractInstance.address, 10, {from: l2Gateway});
       let balance_gyen = await contractInstance.balanceOf(contractInstance.address);
       assert.strictEqual(balance_gyen.toNumber(), 10, "GYEN contract balance is not correct!");
 
@@ -49,7 +49,7 @@ contract("Rescuer.sol", (accounts) => {
     it("non rescuer cannot rescue", async () => {
       let token_recever_address = accounts[12];
       let non_rescuer = accounts[13];
-      await contractInstance.bridgeMint(contractInstance.address, 10, {from: l2Gateway});
+      await contractInstance.mint(contractInstance.address, 10, {from: l2Gateway});
 
       await truffleAssert.reverts(
         contractInstance.rescue(contractInstance.address,token_recever_address,6, {from: non_rescuer}),
@@ -60,7 +60,7 @@ contract("Rescuer.sol", (accounts) => {
 
     it("paused contract cannot rescue", async () => {
       let token_recever_address = accounts[12];
-      await contractInstance.bridgeMint(contractInstance.address, 10, {from: l2Gateway});
+      await contractInstance.mint(contractInstance.address, 10, {from: l2Gateway});
       await contractInstance.pause({from: pauser});
 
       await truffleAssert.reverts(
@@ -72,7 +72,7 @@ contract("Rescuer.sol", (accounts) => {
 
     it("can not rescue more than balance", async () => {
       let token_recever_address = accounts[12];
-      await contractInstance.bridgeMint(contractInstance.address, 10, {from: l2Gateway});
+      await contractInstance.mint(contractInstance.address, 10, {from: l2Gateway});
 
       await truffleAssert.reverts(
         contractInstance.rescue(contractInstance.address,token_recever_address,11, {from: rescuer}),
@@ -83,7 +83,7 @@ contract("Rescuer.sol", (accounts) => {
 
     it("rescue should not change the totalSupply", async () => {
       let token_recever_address = accounts[12];
-      await contractInstance.bridgeMint(contractInstance.address, 10, {from: l2Gateway});
+      await contractInstance.mint(contractInstance.address, 10, {from: l2Gateway});
 
       let old_totalSupply = await contractInstance.totalSupply();
       await contractInstance.rescue(contractInstance.address,token_recever_address,10, {from: rescuer});

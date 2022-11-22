@@ -1,9 +1,9 @@
-const Token = artifacts.require("ArbToken_v1");
+const Token = artifacts.require("OpToken_v1");
 const GYEN = artifacts.require("GYEN");
 const truffleAssert = require('truffle-assertions');
 const Web3EthAbi = require('web3-eth-abi');
 const { signERC2612Permit } = require('./utils/signERC2612Permit.js')
-const abi = require("../build/contracts/ArbToken_v1.json").abi;
+const abi = require("../build/contracts/OpToken_v1.json").abi;
 
 const [initializeAbi] = abi.filter((f) => f.name === 'initialize');
 
@@ -143,41 +143,41 @@ contract("GYEN.sol", (accounts) => {
 
   });
 
-  describe('Test bridgeMint function', function() {
+  describe('Test mint function', function() {
     beforeEach(initialize);
-    // l2Gateway can create bridgeMint pending transaction
-    it("l2Gateway can bridgeMint", async () => {
+    // l2Gateway can create mint pending transaction
+    it("l2Gateway can mint", async () => {
       let mint_address = accounts[11];
-      await gyenInstance.bridgeMint(mint_address, 10, {from: l2Gateway});
+      await gyenInstance.mint(mint_address, 10, {from: l2Gateway});
 
       const balance = await gyenInstance.balanceOf(mint_address);
-      assert.strictEqual(balance.toNumber(), 10, "Balance after bridgeMint not correct!");
+      assert.strictEqual(balance.toNumber(), 10, "Balance after mint not correct!");
     });
   
-    it("non l2Gateway cannot bridgeMint", async () => {
+    it("non l2Gateway cannot mint", async () => {
       let non_minter = accounts[11];
       let mint_address = accounts[12];
       await truffleAssert.reverts(
-        gyenInstance.bridgeMint(mint_address, 10, {from: non_minter}),
+        gyenInstance.mint(mint_address, 10, {from: non_minter}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
   
-    it("bridgeMint address should not be zero", async () => {
+    it("mint address should not be zero", async () => {
       await truffleAssert.reverts(
-        gyenInstance.bridgeMint(zero_address, 10, {from: l2Gateway}),
+        gyenInstance.mint(zero_address, 10, {from: l2Gateway}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     })
 
-    it("bridgeMint should change the totalSupply", async () => {
+    it("mint should change the totalSupply", async () => {
       let mint_address = accounts[11];
       let old_totalSupply = await gyenInstance.totalSupply();
-      await gyenInstance.bridgeMint(mint_address, 10, {from: l2Gateway});
+      await gyenInstance.mint(mint_address, 10, {from: l2Gateway});
       let new_totalSupply = await gyenInstance.totalSupply();
-      assert.strictEqual(old_totalSupply.toNumber() + 10, new_totalSupply.toNumber(), "totalSupply not change after bridgeMint");
+      assert.strictEqual(old_totalSupply.toNumber() + 10, new_totalSupply.toNumber(), "totalSupply not change after mint");
     })
   });
 
@@ -187,7 +187,7 @@ contract("GYEN.sol", (accounts) => {
     it("transfer success case", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
 
       let transfer_tx = await gyenInstance.transfer(recipient, 10, {from: sender});
       await truffleAssert.eventEmitted(transfer_tx, 'Transfer', null, 'Transfer event should be emitted with correct parameters');
@@ -198,7 +198,7 @@ contract("GYEN.sol", (accounts) => {
     it("prohibited account cannot transfer", async () => {
       let prohibited_sender = accounts[11];
       let recipient = accounts[12];
-      await gyenInstance.bridgeMint(prohibited_sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(prohibited_sender, 10, {from: l2Gateway});
       await gyenInstance.prohibit(prohibited_sender, {from: prohibiter});
       await truffleAssert.reverts(
         gyenInstance.transfer(recipient, 10, {from: prohibited_sender}),
@@ -210,7 +210,7 @@ contract("GYEN.sol", (accounts) => {
     it("prohibited recipient account cannot receive", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.prohibit(recipient, {from: prohibiter});
       await truffleAssert.reverts(
         gyenInstance.transfer(recipient, 10, {from: sender}),
@@ -222,7 +222,7 @@ contract("GYEN.sol", (accounts) => {
     it("paused contract cannot do transfer", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.pause({from: pauser});
       await truffleAssert.reverts(
         gyenInstance.transfer(recipient, 10, {from: sender}),
@@ -233,7 +233,7 @@ contract("GYEN.sol", (accounts) => {
 
     it("recipient address should not be zero", async () => {
       let sender = accounts[11];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await truffleAssert.reverts(
         gyenInstance.transfer(zero_address, 10, {from: sender}),
         truffleAssert.ErrorType.REVERT,
@@ -244,7 +244,7 @@ contract("GYEN.sol", (accounts) => {
     it("transfer with amount over balance should fail", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await truffleAssert.reverts(
         gyenInstance.transfer(recipient, 11, {from: sender}),
         truffleAssert.ErrorType.REVERT,
@@ -255,7 +255,7 @@ contract("GYEN.sol", (accounts) => {
     it("transfer with amount over balance should fail", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.transfer(recipient, 9, {from: sender});
       await truffleAssert.reverts(
         gyenInstance.transfer(recipient, 2, {from: sender}),
@@ -267,7 +267,7 @@ contract("GYEN.sol", (accounts) => {
     it("cannot transfer with amount is not a natural number", async () => {
       let sender = accounts[11];
       let recipient = accounts[12];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await truffleAssert.reverts(
         gyenInstance.transfer(recipient, 0, {from: sender}),
         truffleAssert.ErrorType.REVERT,
@@ -283,7 +283,7 @@ contract("GYEN.sol", (accounts) => {
       let sender = accounts[11]
       let recipient = accounts[12];
       let spender = accounts[13];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 10, {from: sender});
       let transfer_tx = await gyenInstance.transferFrom(sender, recipient, 10, {from: spender});
       await truffleAssert.eventEmitted(transfer_tx, 'Transfer', null, 'Transfer event should be emitted with correct parameters');
@@ -295,7 +295,7 @@ contract("GYEN.sol", (accounts) => {
       let prohibited_sender = accounts[11];
       let recipient = accounts[12];
       let spender = accounts[13];
-      await gyenInstance.bridgeMint(prohibited_sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(prohibited_sender, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 10, {from: prohibited_sender});
       await gyenInstance.prohibit(prohibited_sender, {from: prohibiter});
       await truffleAssert.reverts(
@@ -309,7 +309,7 @@ contract("GYEN.sol", (accounts) => {
       let sender = accounts[11];
       let recipient = accounts[12];
       let spender = accounts[13];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 10, {from: sender});
       await gyenInstance.prohibit(recipient, {from: prohibiter});
       await truffleAssert.reverts(
@@ -323,7 +323,7 @@ contract("GYEN.sol", (accounts) => {
       let sender = accounts[11];
       let recipient = accounts[12];
       let spender = accounts[13];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 10, {from: sender});
       await gyenInstance.pause({from: pauser});
       await truffleAssert.reverts(
@@ -337,7 +337,7 @@ contract("GYEN.sol", (accounts) => {
       let sender = accounts[11]
       let recipient = accounts[12];
       let spender = accounts[13];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await truffleAssert.reverts(
         gyenInstance.transferFrom(sender, recipient, 1, {from: spender}),
         truffleAssert.ErrorType.REVERT,
@@ -349,7 +349,7 @@ contract("GYEN.sol", (accounts) => {
       let sender = accounts[11];
       let recipient = accounts[12];
       let spender = accounts[13];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 10, {from: sender});
       await truffleAssert.reverts(
         gyenInstance.transferFrom(sender, recipient, 11, {from: spender}),
@@ -362,7 +362,7 @@ contract("GYEN.sol", (accounts) => {
       let sender = accounts[1];
       let recipient = accounts[2];
       let spender = accounts[3];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 10, {from: sender});
       await gyenInstance.transferFrom(sender, recipient, 9, {from: spender});
       await truffleAssert.reverts(
@@ -375,7 +375,7 @@ contract("GYEN.sol", (accounts) => {
     it("recipient address should not be zero", async () => {
       let sender = accounts[11];
       let spender = accounts[12];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 10, {from: sender});
       await truffleAssert.reverts(
         gyenInstance.transferFrom(sender, zero_address, 10, {from: spender}),
@@ -388,7 +388,7 @@ contract("GYEN.sol", (accounts) => {
       let sender = accounts[1];
       let recipient = accounts[2];
       let spender = accounts[3];
-      await gyenInstance.bridgeMint(sender, 10, {from: l2Gateway});
+      await gyenInstance.mint(sender, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 10, {from: sender});
 
       await truffleAssert.reverts(
@@ -399,13 +399,13 @@ contract("GYEN.sol", (accounts) => {
     });
   });
 
-  describe('Test bridgeBurn function', function() {
+  describe('Test burn function', function() {
     beforeEach(initialize);
     
-    it("bridgeBurn success case", async () => {
+    it("burn success case", async () => {
       let burn_account = accounts[11];
-      await gyenInstance.bridgeMint(burn_account, 10, {from: l2Gateway});
-      let burn_tx = await gyenInstance.bridgeBurn(burn_account, 5, {from: l2Gateway});
+      await gyenInstance.mint(burn_account, 10, {from: l2Gateway});
+      let burn_tx = await gyenInstance.burn(burn_account, 5, {from: l2Gateway});
       await truffleAssert.eventEmitted(burn_tx, 'Burn', (ev) => {
         return ev.burnee === burn_account && ev.amount.toNumber() === 5 && ev.sender === l2Gateway;
       }, 'Burn event should be emitted with correct parameters');
@@ -413,31 +413,31 @@ contract("GYEN.sol", (accounts) => {
       assert.strictEqual(balance.toNumber(), 5, "Balance of recipient not correct!");
     });
 
-    it("bridgeBurn should change the totalSupply", async () => {
+    it("burn should change the totalSupply", async () => {
       let burn_account = accounts[11];
-      await gyenInstance.bridgeMint(burn_account, 10, {from: l2Gateway});
+      await gyenInstance.mint(burn_account, 10, {from: l2Gateway});
       let old_totalSupply = await gyenInstance.totalSupply();
-      await gyenInstance.bridgeBurn(burn_account, 5, {from: l2Gateway});
+      await gyenInstance.burn(burn_account, 5, {from: l2Gateway});
       let new_totalSupply = await gyenInstance.totalSupply();
-      assert.strictEqual(old_totalSupply.toNumber() - 5, new_totalSupply.toNumber(), "totalSupply not change after bridgeBurn!");
+      assert.strictEqual(old_totalSupply.toNumber() - 5, new_totalSupply.toNumber(), "totalSupply not change after burn!");
     });
 
-    it("bridgeBurn exceed the balance of account should fail", async () => {
+    it("burn exceed the balance of account should fail", async () => {
       let burn_account = accounts[11];
-      await gyenInstance.bridgeMint(burn_account, 10, {from: l2Gateway});
+      await gyenInstance.mint(burn_account, 10, {from: l2Gateway});
       await truffleAssert.reverts(
-        gyenInstance.bridgeBurn(burn_account, 11, {from: l2Gateway}),
+        gyenInstance.burn(burn_account, 11, {from: l2Gateway}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
     });
 
-    it("bridgeBurn exceed the balance of account should fail", async () => {
+    it("burn exceed the balance of account should fail", async () => {
       let burn_account = accounts[11];
-      await gyenInstance.bridgeMint(burn_account, 10, {from: l2Gateway});
-      await gyenInstance.bridgeBurn(burn_account, 9, {from: l2Gateway});
+      await gyenInstance.mint(burn_account, 10, {from: l2Gateway});
+      await gyenInstance.burn(burn_account, 9, {from: l2Gateway});
       await truffleAssert.reverts(
-        gyenInstance.bridgeBurn(burn_account, 2, {from: l2Gateway}),
+        gyenInstance.burn(burn_account, 2, {from: l2Gateway}),
         truffleAssert.ErrorType.REVERT,
         'This should be a fail test case!'
       );
@@ -458,7 +458,7 @@ contract("GYEN.sol", (accounts) => {
       let approver = accounts[11];
       let spender = accounts[12];
       let old_allowance = await gyenInstance.allowance(approver, spender);
-      //await gyenInstance.bridgeMint(approver, 10, {from: l2Gateway});
+      //await gyenInstance.mint(approver, 10, {from: l2Gateway});
       await gyenInstance.approve(spender, 9, {from: approver});
       let new_allowance = await gyenInstance.allowance(approver, spender);
       assert.strictEqual(old_allowance.toNumber() + 9, new_allowance.toNumber(), "Allowance after approve not correct!");

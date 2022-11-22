@@ -17,8 +17,8 @@ contract OpToken_v1 is Initializable, Owner {
     string public constant version  = "1";
     bytes32 public constant PERMIT_TYPEHASH = keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)");
 
-    event Mint(address indexed _account, uint256 _amount);
-    event Burn(address indexed _account, uint256 _amount);
+    event Mint(address indexed mintee, uint256 amount, address indexed sender);
+    event Burn(address indexed burnee, uint256 amount, address indexed sender);
 
     modifier onlyL2Bridge() {
         require(msg.sender == l2Bridge, "Only L2 Bridge can mint and burn");
@@ -76,13 +76,13 @@ contract OpToken_v1 is Initializable, Owner {
     function mint(address _to, uint256 _amount) public onlyL2Bridge {
         _mint(_to, _amount);
 
-        emit Mint(_to, _amount);
+        emit Mint(_to, _amount, msg.sender);
     }
 
     function burn(address _from, uint256 _amount) public onlyL2Bridge {
         _burn(_from, _amount);
 
-        emit Burn(_from, _amount);
+        emit Burn(_from, _amount, msg.sender);
     }
 
     function _calculateDomainSeparator(uint256 chainId) private view returns (bytes32) {
