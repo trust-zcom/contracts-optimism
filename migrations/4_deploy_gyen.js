@@ -1,6 +1,6 @@
 const Web3EthAbi = require('web3-eth-abi');
 const GYEN = artifacts.require('GYEN');
-const Token = artifacts.require('ArbToken_v1');
+const Token = artifacts.require('OpToken_v1');
 
 const [initializeAbi] = Token.abi.filter((f) => f.name === 'initialize');
 

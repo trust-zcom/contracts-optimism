@@ -69,6 +69,18 @@ module.exports = {
       //gasPrice: 20000000000,
       //as: 4000000
     },
+    optimism: {
+      network_id: "10",
+      provider: () => new HDWalletProvider(privateKey, ""),
+      //gasPrice: 20000000000,
+      //as: 4000000
+    },
+    optimismT: {
+      network_id: "420",
+      provider: () => new HDWalletProvider(privateKey, "https://opt-goerli.g.alchemy.com/v2/xu7omhHMr42e0Xap06xOy0gzjFf8ksvB"),
+      //gasPrice: 20000000000,
+      //as: 4000000
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -92,7 +104,7 @@ module.exports = {
           enabled: true,
         },
       },
-      version: "0.5.13",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.5.16",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {

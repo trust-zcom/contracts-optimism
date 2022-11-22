@@ -1,15 +1,15 @@
-pragma solidity 0.5.13;
+pragma solidity 0.5.16;
 
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "./Roles/Owner.sol";
 
-contract ArbToken_v1 is Initializable, Owner {
+contract OpToken_v1 is Initializable, Owner {
 
     string public name;
     string public symbol;
     uint8 public decimals;
-    address public l1Address;
-    address public l2Gateway;
+    address public l1Token;
+    address public l2Bridge;
     bytes32 private _DOMAIN_SEPARATOR;
     uint256 public deploymentChainId;
     mapping (address => uint256) public nonces;
@@ -17,11 +17,11 @@ contract ArbToken_v1 is Initializable, Owner {
     string public constant version  = "1";
     bytes32 public constant PERMIT_TYPEHASH = keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)");
 
-    event Mint(address indexed mintee, uint256 amount, address indexed sender);
-    event Burn(address indexed burnee, uint256 amount, address indexed sender);
+    event Mint(address indexed _account, uint256 _amount);
+    event Burn(address indexed _account, uint256 _amount);
 
-    modifier onlyGateway {
-        require(msg.sender == l2Gateway, "ONLY_GATEWAY");
+    modifier onlyL2Bridge() {
+        require(msg.sender == l2Bridge, "Only L2 Bridge can mint and burn");
         _;
     }
 
@@ -35,8 +35,8 @@ contract ArbToken_v1 is Initializable, Owner {
         address _pauser,
         address _wiper,
         address _rescuer,
-        address _l1Address,
-        address _l2Gateway
+        address _l1Token,
+        address _l2Bridge
         ) public initializer {
             require(_owner != address(0), "_owner is the zero address");
             require(_admin != address(0), "_admin is the zero address");
@@ -44,8 +44,8 @@ contract ArbToken_v1 is Initializable, Owner {
             require(_pauser != address(0), "_pauser is the zero address");
             require(_wiper != address(0), "_wiper is the zero address");
             require(_rescuer != address(0), "_rescuer is the zero address");
-            require(_l1Address != address(0), "_l1Address is the zero address");
-            require(_l2Gateway != address(0), "_l2Gateway is the zero address");
+            require(_l1Token != address(0), "_l1Token is the zero address");
+            require(_l2Bridge != address(0), "_l2Bridge is the zero address");
             name = _name;
             symbol = _symbol;
             decimals = _decimals;
@@ -55,8 +55,8 @@ contract ArbToken_v1 is Initializable, Owner {
             pauser = _pauser;
             wiper = _wiper;
             rescuer = _rescuer;
-            l1Address = _l1Address;
-            l2Gateway = _l2Gateway;
+            l1Token = _l1Token;
+            l2Bridge = _l2Bridge;
 
             uint256 id;
             assembly {id := chainid()}
@@ -73,25 +73,16 @@ contract ArbToken_v1 is Initializable, Owner {
         return super.transferFrom(_sender, _recipient, _amount);
     }
 
-    /**
-    * @notice Mint tokens on L2. Callable path is L1Gateway depositToken (which handles L1 escrow), which triggers L2Gateway, which calls this
-    * @param account recipient of tokens
-    * @param amount amount of tokens minted
-    */
-    function bridgeMint(address account, uint256 amount) external onlyGateway {
-        _mint(account, amount);
-        emit Mint(account, amount, msg.sender);
+    function mint(address _to, uint256 _amount) public onlyL2Bridge {
+        _mint(_to, _amount);
+
+        emit Mint(_to, _amount);
     }
 
-    /**
-    * @notice Burn tokens on L2.
-    * @dev only the token bridge can call this
-    * @param account owner of tokens
-    * @param amount amount of tokens burnt
-    */
-    function bridgeBurn(address account, uint256 amount) external onlyGateway {
-        _burn(account, amount);
-        emit Burn(account, amount, msg.sender);
+    function burn(address _from, uint256 _amount) public onlyL2Bridge {
+        _burn(_from, _amount);
+
+        emit Burn(_from, _amount);
     }
 
     function _calculateDomainSeparator(uint256 chainId) private view returns (bytes32) {
@@ -135,5 +126,13 @@ contract ArbToken_v1 is Initializable, Owner {
         require(owner != address(0) && owner == ecrecover(digest, v, r, s), "invalid permit");
 
         _approve(owner, spender, value);
+    }
+
+    function supportsInterface(bytes4 _interfaceId) public pure returns (bool) {
+        bytes4 firstSupportedInterface = bytes4(keccak256("supportsInterface(bytes4)")); // ERC165
+        bytes4 secondSupportedInterface = this.l1Token.selector
+            ^ this.mint.selector
+            ^ this.burn.selector;
+        return _interfaceId == firstSupportedInterface || _interfaceId == secondSupportedInterface;
     }
 }

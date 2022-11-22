@@ -1,9 +1,9 @@
 {
   "contractName": "OpenZeppelinUpgradesAddress",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.13+commit.5b0b510c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"Utility library of inline functions on addresses * Source https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-solidity/v2.1.3/contracts/utils/Address.sol This contract is copied here and renamed from the original to avoid clashes in the compiled artifacts when the user imports a zos-lib contract (that transitively causes this contract to be compiled and added to the build/artifacts folder) as well as the vanilla Address implementation from an openzeppelin version.\"}},\"settings\":{\"compilationTarget\":{\"@openzeppelin/upgrades/contracts/utils/Address.sol\":\"OpenZeppelinUpgradesAddress\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/upgrades/contracts/utils/Address.sol\":{\"keccak256\":\"0x7be7f8e4c08bc70ff9815e3f11c569f42aa3c447b5bc61fd75fb5cec97f63a9f\",\"urls\":[\"bzz-raw://f301a9226d637e1593916ba2de7b0b28c35f2adc3ca8526289fe1eedafa83bc2\",\"dweb:/ipfs/QmPb991LE8nyvhB4BkX46P1Pan2ijH9tfqWwLAz65VUUKs\"]}},\"version\":1}",
-  "bytecode": "0x60556023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a72315820189dc9d4c5779e413d6a1bf7e9050871b626d29ec378e23949ba46b65a59a55064736f6c634300050d0032",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a72315820189dc9d4c5779e413d6a1bf7e9050871b626d29ec378e23949ba46b65a59a55064736f6c634300050d0032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"Utility library of inline functions on addresses * Source https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-solidity/v2.1.3/contracts/utils/Address.sol This contract is copied here and renamed from the original to avoid clashes in the compiled artifacts when the user imports a zos-lib contract (that transitively causes this contract to be compiled and added to the build/artifacts folder) as well as the vanilla Address implementation from an openzeppelin version.\"}},\"settings\":{\"compilationTarget\":{\"@openzeppelin/upgrades/contracts/utils/Address.sol\":\"OpenZeppelinUpgradesAddress\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/upgrades/contracts/utils/Address.sol\":{\"keccak256\":\"0x7be7f8e4c08bc70ff9815e3f11c569f42aa3c447b5bc61fd75fb5cec97f63a9f\",\"urls\":[\"bzz-raw://f301a9226d637e1593916ba2de7b0b28c35f2adc3ca8526289fe1eedafa83bc2\",\"dweb:/ipfs/QmPb991LE8nyvhB4BkX46P1Pan2ijH9tfqWwLAz65VUUKs\"]}},\"version\":1}",
+  "bytecode": "0x60556023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a723158203099f3575b2d930e6b8bb7737877f9612b05c7d5570b2f18cebed110b64fc63064736f6c63430005100032",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a723158203099f3575b2d930e6b8bb7737877f9612b05c7d5570b2f18cebed110b64fc63064736f6c63430005100032",
   "sourceMap": "526:1016:17:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
   "deployedSourceMap": "526:1016:17:-;;;;;;;;",
   "source": "pragma solidity ^0.5.0;\n\n/**\n * Utility library of inline functions on addresses\n *\n * Source https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-solidity/v2.1.3/contracts/utils/Address.sol\n * This contract is copied here and renamed from the original to avoid clashes in the compiled artifacts\n * when the user imports a zos-lib contract (that transitively causes this contract to be compiled and added to the\n * build/artifacts folder) as well as the vanilla Address implementation from an openzeppelin version.\n */\nlibrary OpenZeppelinUpgradesAddress {\n    /**\n     * Returns whether the target address is a contract\n     * @dev This function will return false if invoked during the constructor of a contract,\n     * as the code is not actually created until after the constructor finishes.\n     * @param account address of the account to check\n     * @return whether the target address is a contract\n     */\n    function isContract(address account) internal view returns (bool) {\n        uint256 size;\n        // XXX Currently there is no better way to check if there is a contract in an address\n        // than to check the size of the code at that address.\n        // See https://ethereum.stackexchange.com/a/14016/36603\n        // for more details about how this works.\n        // TODO Check this again before the Serenity release, because all addresses will be\n        // contracts then.\n        // solhint-disable-next-line no-inline-assembly\n        assembly { size := extcodesize(account) }\n        return size > 0;\n    }\n}\n",
@@ -12,14 +12,14 @@
     "absolutePath": "@openzeppelin/upgrades/contracts/utils/Address.sol",
     "exportedSymbols": {
       "OpenZeppelinUpgradesAddress": [
-        1611
+        1641
       ]
     },
-    "id": 1612,
+    "id": 1642,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1594,
+        "id": 1624,
         "literals": [
           "solidity",
           "^",
@@ -35,30 +35,30 @@
         "contractKind": "library",
         "documentation": "Utility library of inline functions on addresses\n * Source https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-solidity/v2.1.3/contracts/utils/Address.sol\nThis contract is copied here and renamed from the original to avoid clashes in the compiled artifacts\nwhen the user imports a zos-lib contract (that transitively causes this contract to be compiled and added to the\nbuild/artifacts folder) as well as the vanilla Address implementation from an openzeppelin version.",
         "fullyImplemented": true,
-        "id": 1611,
+        "id": 1641,
         "linearizedBaseContracts": [
-          1611
+          1641
         ],
         "name": "OpenZeppelinUpgradesAddress",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1609,
+              "id": 1639,
               "nodeType": "Block",
               "src": "990:550:17",
               "statements": [
                 {
                   "assignments": [
-                    1602
+                    1632
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1602,
+                      "id": 1632,
                       "name": "size",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1609,
+                      "scope": 1639,
                       "src": "1000:12:17",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -67,7 +67,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1601,
+                        "id": 1631,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "1000:7:17",
@@ -80,7 +80,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1603,
+                  "id": 1633,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "1000:12:17"
@@ -89,7 +89,7 @@
                   "externalReferences": [
                     {
                       "size": {
-                        "declaration": 1602,
+                        "declaration": 1632,
                         "isOffset": false,
                         "isSlot": false,
                         "src": "1479:4:17",
@@ -98,7 +98,7 @@
                     },
                     {
                       "account": {
-                        "declaration": 1596,
+                        "declaration": 1626,
                         "isOffset": false,
                         "isSlot": false,
                         "src": "1499:7:17",
@@ -106,7 +106,7 @@
                       }
                     }
                   ],
-                  "id": 1604,
+                  "id": 1634,
                   "nodeType": "InlineAssembly",
                   "operations": "{ size := extcodesize(account) }",
                   "src": "1468:41:17"
@@ -118,18 +118,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1607,
+                    "id": 1637,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1605,
+                      "id": 1635,
                       "name": "size",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1602,
+                      "referencedDeclaration": 1632,
                       "src": "1525:4:17",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -141,7 +141,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 1606,
+                      "id": 1636,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -162,30 +162,30 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1600,
-                  "id": 1608,
+                  "functionReturnParameters": 1630,
+                  "id": 1638,
                   "nodeType": "Return",
                   "src": "1518:15:17"
                 }
               ]
             },
             "documentation": "Returns whether the target address is a contract\n@dev This function will return false if invoked during the constructor of a contract,\nas the code is not actually created until after the constructor finishes.\n@param account address of the account to check\n@return whether the target address is a contract",
-            "id": 1610,
+            "id": 1640,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isContract",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1597,
+              "id": 1627,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1596,
+                  "id": 1626,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1610,
+                  "scope": 1640,
                   "src": "944:15:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -194,7 +194,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1595,
+                    "id": 1625,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "944:7:17",
@@ -211,15 +211,15 @@
               "src": "943:17:17"
             },
             "returnParameters": {
-              "id": 1600,
+              "id": 1630,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1599,
+                  "id": 1629,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1610,
+                  "scope": 1640,
                   "src": "984:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -228,7 +228,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1598,
+                    "id": 1628,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "984:4:17",
@@ -243,14 +243,14 @@
               ],
               "src": "983:6:17"
             },
-            "scope": 1611,
+            "scope": 1641,
             "src": "924:616:17",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 1612,
+        "scope": 1642,
         "src": "526:1016:17"
       }
     ],
@@ -260,14 +260,14 @@
     "absolutePath": "@openzeppelin/upgrades/contracts/utils/Address.sol",
     "exportedSymbols": {
       "OpenZeppelinUpgradesAddress": [
-        1611
+        1641
       ]
     },
-    "id": 1612,
+    "id": 1642,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1594,
+        "id": 1624,
         "literals": [
           "solidity",
           "^",
@@ -283,30 +283,30 @@
         "contractKind": "library",
         "documentation": "Utility library of inline functions on addresses\n * Source https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-solidity/v2.1.3/contracts/utils/Address.sol\nThis contract is copied here and renamed from the original to avoid clashes in the compiled artifacts\nwhen the user imports a zos-lib contract (that transitively causes this contract to be compiled and added to the\nbuild/artifacts folder) as well as the vanilla Address implementation from an openzeppelin version.",
         "fullyImplemented": true,
-        "id": 1611,
+        "id": 1641,
         "linearizedBaseContracts": [
-          1611
+          1641
         ],
         "name": "OpenZeppelinUpgradesAddress",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1609,
+              "id": 1639,
               "nodeType": "Block",
               "src": "990:550:17",
               "statements": [
                 {
                   "assignments": [
-                    1602
+                    1632
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1602,
+                      "id": 1632,
                       "name": "size",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1609,
+                      "scope": 1639,
                       "src": "1000:12:17",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -315,7 +315,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1601,
+                        "id": 1631,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "1000:7:17",
@@ -328,7 +328,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1603,
+                  "id": 1633,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "1000:12:17"
@@ -337,7 +337,7 @@
                   "externalReferences": [
                     {
                       "size": {
-                        "declaration": 1602,
+                        "declaration": 1632,
                         "isOffset": false,
                         "isSlot": false,
                         "src": "1479:4:17",
@@ -346,7 +346,7 @@
                     },
                     {
                       "account": {
-                        "declaration": 1596,
+                        "declaration": 1626,
                         "isOffset": false,
                         "isSlot": false,
                         "src": "1499:7:17",
@@ -354,7 +354,7 @@
                       }
                     }
                   ],
-                  "id": 1604,
+                  "id": 1634,
                   "nodeType": "InlineAssembly",
                   "operations": "{ size := extcodesize(account) }",
                   "src": "1468:41:17"
@@ -366,18 +366,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1607,
+                    "id": 1637,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1605,
+                      "id": 1635,
                       "name": "size",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1602,
+                      "referencedDeclaration": 1632,
                       "src": "1525:4:17",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -389,7 +389,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 1606,
+                      "id": 1636,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -410,30 +410,30 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1600,
-                  "id": 1608,
+                  "functionReturnParameters": 1630,
+                  "id": 1638,
                   "nodeType": "Return",
                   "src": "1518:15:17"
                 }
               ]
             },
             "documentation": "Returns whether the target address is a contract\n@dev This function will return false if invoked during the constructor of a contract,\nas the code is not actually created until after the constructor finishes.\n@param account address of the account to check\n@return whether the target address is a contract",
-            "id": 1610,
+            "id": 1640,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isContract",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1597,
+              "id": 1627,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1596,
+                  "id": 1626,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1610,
+                  "scope": 1640,
                   "src": "944:15:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -442,7 +442,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1595,
+                    "id": 1625,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "944:7:17",
@@ -459,15 +459,15 @@
               "src": "943:17:17"
             },
             "returnParameters": {
-              "id": 1600,
+              "id": 1630,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1599,
+                  "id": 1629,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1610,
+                  "scope": 1640,
                   "src": "984:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -476,7 +476,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1598,
+                    "id": 1628,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "984:4:17",
@@ -491,14 +491,14 @@
               ],
               "src": "983:6:17"
             },
-            "scope": 1611,
+            "scope": 1641,
             "src": "924:616:17",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 1612,
+        "scope": 1642,
         "src": "526:1016:17"
       }
     ],
@@ -506,11 +506,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.13+commit.5b0b510c.Emscripten.clang"
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2022-09-20T05:45:50.467Z",
+  "updatedAt": "2022-11-16T05:05:07.137Z",
   "devdoc": {
     "methods": {}
   },

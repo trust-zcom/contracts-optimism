@@ -1,0 +1,15 @@
+{
+    "production": false,
+    "name_suffix": " optimism goerli test",
+    "symbol_suffix": "Op",
+    "owner": "0xE6b48d76Bc4805ABF61F38A55F1D7C362c8BfdA8",
+    "deployer": "0xc4960f4bb9843e7a512e6f38b9acef82b114fdaf",
+    "admin": "0xE6b48d76Bc4805ABF61F38A55F1D7C362c8BfdA8",
+    "pauser": "0xE6b48d76Bc4805ABF61F38A55F1D7C362c8BfdA8",
+    "prohibiter": "0xE6b48d76Bc4805ABF61F38A55F1D7C362c8BfdA8",
+    "wiper": "0xE6b48d76Bc4805ABF61F38A55F1D7C362c8BfdA8",
+    "rescuer": "0x46352bF252F8E150F87a54cC09372B89E538c2Bd",
+    "l1Address_gyen": "0xAa8351b44775CA624f93B12939E4BC5650593652",
+    "l1Address_zusd": "0xFEDAEB5aCaF1bAA23E60D42fe8391Db2Ffbeb973",
+    "l2Gateway": "0x4200000000000000000000000000000000000010"
+}

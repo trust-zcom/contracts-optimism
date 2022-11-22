@@ -4,7 +4,7 @@ const privateKeyToAddress = require('ethereum-private-key-to-address');
 
 const GYEN = artifacts.require("GYEN");
 const ZUSD = artifacts.require("ZUSD");
-const TokenV1 = artifacts.require("ArbToken_v1");
+const TokenV1 = artifacts.require("OpToken_v1");
 
 const permitTypeHash = web3.utils.keccak256(
   "Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"

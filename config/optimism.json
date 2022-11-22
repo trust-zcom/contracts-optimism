@@ -1,0 +1,15 @@
+{
+    "production": true,
+    "name_suffix": " optimism",
+    "symbol_suffix": "",
+    "owner": "",
+    "deployer": "",
+    "admin": "",
+    "pauser": "",
+    "prohibiter": "",
+    "wiper": "",
+    "rescuer": "",
+    "l1Address_gyen": "0xC08512927D12348F6620a698105e1BAac6EcD911",
+    "l1Address_zusd": "0xc56c2b7e71B54d38Aab6d52E94a04Cbfa8F604fA",
+    "l2Gateway": "0x4200000000000000000000000000000000000010"
+}
