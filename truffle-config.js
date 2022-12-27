@@ -71,7 +71,7 @@ module.exports = {
     },
     optimism: {
       network_id: "10",
-      provider: () => new HDWalletProvider(privateKey, ""),
+      provider: () => new HDWalletProvider(privateKeyProduction, ""),
       //gasPrice: 20000000000,
       //as: 4000000
     },
