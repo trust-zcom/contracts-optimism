@@ -152,14 +152,14 @@
     "absolutePath": "/Users/usr0102794/gyen2022/arbitrum-l2/contracts/contracts/ZUSD.sol",
     "exportedSymbols": {
       "ZUSD": [
-        1218
+        1226
       ]
     },
-    "id": 1219,
+    "id": 1227,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1199,
+        "id": 1207,
         "literals": [
           "solidity",
           "0.5",
@@ -171,10 +171,10 @@
       {
         "absolutePath": "@openzeppelin/upgrades/contracts/upgradeability/AdminUpgradeabilityProxy.sol",
         "file": "@openzeppelin/upgrades/contracts/upgradeability/AdminUpgradeabilityProxy.sol",
-        "id": 1200,
+        "id": 1208,
         "nodeType": "ImportDirective",
-        "scope": 1219,
-        "sourceUnit": 1322,
+        "scope": 1227,
+        "sourceUnit": 1330,
         "src": "25:86:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -185,52 +185,52 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1201,
+              "id": 1209,
               "name": "AdminUpgradeabilityProxy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1321,
+              "referencedDeclaration": 1329,
               "src": "130:24:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_AdminUpgradeabilityProxy_$1321",
+                "typeIdentifier": "t_contract$_AdminUpgradeabilityProxy_$1329",
                 "typeString": "contract AdminUpgradeabilityProxy"
               }
             },
-            "id": 1202,
+            "id": 1210,
             "nodeType": "InheritanceSpecifier",
             "src": "130:24:10"
           }
         ],
         "contractDependencies": [
-          1321,
-          1477,
-          1535,
-          1573,
-          1622
+          1329,
+          1485,
+          1543,
+          1581,
+          1630
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1218,
+        "id": 1226,
         "linearizedBaseContracts": [
-          1218,
-          1321,
-          1622,
-          1477,
-          1535,
-          1573
+          1226,
+          1329,
+          1630,
+          1485,
+          1543,
+          1581
         ],
         "name": "ZUSD",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1216,
+              "id": 1224,
               "nodeType": "Block",
               "src": "289:2:10",
               "statements": []
             },
             "documentation": null,
-            "id": 1217,
+            "id": 1225,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -238,11 +238,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 1211,
+                    "id": 1219,
                     "name": "_logic",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1204,
+                    "referencedDeclaration": 1212,
                     "src": "266:6:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -251,11 +251,11 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 1212,
+                    "id": 1220,
                     "name": "_admin",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1206,
+                    "referencedDeclaration": 1214,
                     "src": "274:6:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -264,11 +264,11 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 1213,
+                    "id": 1221,
                     "name": "_data",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1208,
+                    "referencedDeclaration": 1216,
                     "src": "282:5:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_memory_ptr",
@@ -276,17 +276,17 @@
                     }
                   }
                 ],
-                "id": 1214,
+                "id": 1222,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1210,
+                  "id": 1218,
                   "name": "AdminUpgradeabilityProxy",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1321,
+                  "referencedDeclaration": 1329,
                   "src": "241:24:10",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_AdminUpgradeabilityProxy_$1321_$",
+                    "typeIdentifier": "t_type$_t_contract$_AdminUpgradeabilityProxy_$1329_$",
                     "typeString": "type(contract AdminUpgradeabilityProxy)"
                   }
                 },
@@ -297,15 +297,15 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1209,
+              "id": 1217,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1204,
+                  "id": 1212,
                   "name": "_logic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1217,
+                  "scope": 1225,
                   "src": "174:14:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -314,7 +314,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1203,
+                    "id": 1211,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "174:7:10",
@@ -329,10 +329,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1206,
+                  "id": 1214,
                   "name": "_admin",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1217,
+                  "scope": 1225,
                   "src": "190:14:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -341,7 +341,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1205,
+                    "id": 1213,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "190:7:10",
@@ -356,10 +356,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1208,
+                  "id": 1216,
                   "name": "_data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1217,
+                  "scope": 1225,
                   "src": "206:18:10",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -368,7 +368,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 1207,
+                    "id": 1215,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "206:5:10",
@@ -384,19 +384,19 @@
               "src": "173:52:10"
             },
             "returnParameters": {
-              "id": 1215,
+              "id": 1223,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "289:0:10"
             },
-            "scope": 1218,
+            "scope": 1226,
             "src": "162:129:10",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1219,
+        "scope": 1227,
         "src": "113:180:10"
       }
     ],
@@ -406,14 +406,14 @@
     "absolutePath": "/Users/usr0102794/gyen2022/arbitrum-l2/contracts/contracts/ZUSD.sol",
     "exportedSymbols": {
       "ZUSD": [
-        1218
+        1226
       ]
     },
-    "id": 1219,
+    "id": 1227,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1199,
+        "id": 1207,
         "literals": [
           "solidity",
           "0.5",
@@ -425,10 +425,10 @@
       {
         "absolutePath": "@openzeppelin/upgrades/contracts/upgradeability/AdminUpgradeabilityProxy.sol",
         "file": "@openzeppelin/upgrades/contracts/upgradeability/AdminUpgradeabilityProxy.sol",
-        "id": 1200,
+        "id": 1208,
         "nodeType": "ImportDirective",
-        "scope": 1219,
-        "sourceUnit": 1322,
+        "scope": 1227,
+        "sourceUnit": 1330,
         "src": "25:86:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -439,52 +439,52 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1201,
+              "id": 1209,
               "name": "AdminUpgradeabilityProxy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1321,
+              "referencedDeclaration": 1329,
               "src": "130:24:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_AdminUpgradeabilityProxy_$1321",
+                "typeIdentifier": "t_contract$_AdminUpgradeabilityProxy_$1329",
                 "typeString": "contract AdminUpgradeabilityProxy"
               }
             },
-            "id": 1202,
+            "id": 1210,
             "nodeType": "InheritanceSpecifier",
             "src": "130:24:10"
           }
         ],
         "contractDependencies": [
-          1321,
-          1477,
-          1535,
-          1573,
-          1622
+          1329,
+          1485,
+          1543,
+          1581,
+          1630
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1218,
+        "id": 1226,
         "linearizedBaseContracts": [
-          1218,
-          1321,
-          1622,
-          1477,
-          1535,
-          1573
+          1226,
+          1329,
+          1630,
+          1485,
+          1543,
+          1581
         ],
         "name": "ZUSD",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1216,
+              "id": 1224,
               "nodeType": "Block",
               "src": "289:2:10",
               "statements": []
             },
             "documentation": null,
-            "id": 1217,
+            "id": 1225,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -492,11 +492,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 1211,
+                    "id": 1219,
                     "name": "_logic",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1204,
+                    "referencedDeclaration": 1212,
                     "src": "266:6:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -505,11 +505,11 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 1212,
+                    "id": 1220,
                     "name": "_admin",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1206,
+                    "referencedDeclaration": 1214,
                     "src": "274:6:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -518,11 +518,11 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 1213,
+                    "id": 1221,
                     "name": "_data",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1208,
+                    "referencedDeclaration": 1216,
                     "src": "282:5:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_memory_ptr",
@@ -530,17 +530,17 @@
                     }
                   }
                 ],
-                "id": 1214,
+                "id": 1222,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1210,
+                  "id": 1218,
                   "name": "AdminUpgradeabilityProxy",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1321,
+                  "referencedDeclaration": 1329,
                   "src": "241:24:10",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_AdminUpgradeabilityProxy_$1321_$",
+                    "typeIdentifier": "t_type$_t_contract$_AdminUpgradeabilityProxy_$1329_$",
                     "typeString": "type(contract AdminUpgradeabilityProxy)"
                   }
                 },
@@ -551,15 +551,15 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1209,
+              "id": 1217,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1204,
+                  "id": 1212,
                   "name": "_logic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1217,
+                  "scope": 1225,
                   "src": "174:14:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -568,7 +568,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1203,
+                    "id": 1211,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "174:7:10",
@@ -583,10 +583,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1206,
+                  "id": 1214,
                   "name": "_admin",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1217,
+                  "scope": 1225,
                   "src": "190:14:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -595,7 +595,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1205,
+                    "id": 1213,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "190:7:10",
@@ -610,10 +610,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1208,
+                  "id": 1216,
                   "name": "_data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1217,
+                  "scope": 1225,
                   "src": "206:18:10",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -622,7 +622,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 1207,
+                    "id": 1215,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "206:5:10",
@@ -638,19 +638,19 @@
               "src": "173:52:10"
             },
             "returnParameters": {
-              "id": 1215,
+              "id": 1223,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "289:0:10"
             },
-            "scope": 1218,
+            "scope": 1226,
             "src": "162:129:10",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1219,
+        "scope": 1227,
         "src": "113:180:10"
       }
     ],
@@ -699,12 +699,12 @@
         }
       },
       "links": {},
-      "address": "0x0C55679Ed9F9222Cf76B78245164803297dd687A",
-      "transactionHash": "0xad75240b882a93d8f07ea9b9edd22a7edc905c2f877d209682570e5ae0da8cd7"
+      "address": "0xD8e59CfAe3161f7F25Baa450Bba383ba033D525D",
+      "transactionHash": "0xc5f73cdedf05843c25e184c01bd52b615c412e857bc6f46f99397bafd0501a4c"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2022-11-22T04:47:55.086Z",
+  "updatedAt": "2023-01-16T08:20:56.810Z",
   "devdoc": {
     "methods": {
       "admin()": {

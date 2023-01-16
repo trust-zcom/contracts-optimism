@@ -1,6 +1,10 @@
 {
     "production": true,
-    "name_suffix": " optimism",
+    "name_gyen": "GMO JPY Optimism",
+    "symbol_gyen": "GYEN",
+    "name_zusd": "Z.com USD Optimsim",
+    "symbol_zusd": "ZUSD",
+    "name_suffix": "",
     "symbol_suffix": "",
     "owner": "",
     "deployer": "",

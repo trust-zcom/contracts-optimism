@@ -8,8 +8,10 @@ module.exports = function(deployer, network){
     if (network != "test" && network != "coverage") {
         const config = require(`../config/${deployer.network}.json`);
 
-        const name = config.production ? 'GMO JPY' : `GMO JPY${config.name_suffix}`;
-        const symbol = config.production ? 'GYEN' : `GYEN${config.symbol_suffix}`;
+        const name_tmp = config.name_gyen;
+        const symbol_tmp = config.symbol_gyen;
+        const name = config.production ? name_tmp : `${name_tmp}${config.name_suffix}`;
+        const symbol = config.production ? symbol_tmp : `${symbol_tmp}${config.symbol_suffix}`;
         const decimals = 6;
         const { owner, admin, prohibiter, pauser, wiper, rescuer,l1Address_gyen, l2Gateway } = config;
     

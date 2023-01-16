@@ -9,8 +9,10 @@ module.exports = function(deployer, network) {
 
         const [initializeAbi] = Token.abi.filter((f) => f.name === 'initialize');
 
-        const name = config.production ? 'Z.com USD' : `Z.com USD${config.name_suffix}`;
-        const symbol = config.production ? 'ZUSD' : `ZUSD${config.symbol_suffix}`;
+        const name_tmp = config.name_zusd;
+        const symbol_tmp = config.symbol_zusd;
+        const name = config.production ? name_tmp : `${name_tmp}${config.name_suffix}`;
+        const symbol = config.production ? symbol_tmp : `${symbol_tmp}${config.symbol_suffix}`;
         const decimals = 6;
         const { owner, admin, prohibiter, pauser, wiper, rescuer,l1Address_zusd, l2Gateway } = config;
 
