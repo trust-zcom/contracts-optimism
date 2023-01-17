@@ -1,8 +1,8 @@
 {
     "production": false,
-    "name_gyen": "GMO JPY Optimism",
+    "name_gyen": "GMO JPY Optimism test",
     "symbol_gyen": "GYEN",
-    "name_zusd": "Z.com USD Optimsim",
+    "name_zusd": "Z.com USD Optimsim test",
     "symbol_zusd": "ZUSD",
     "name_suffix": " optimism goerli test",
     "symbol_suffix": "Op",

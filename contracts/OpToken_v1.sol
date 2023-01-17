@@ -10,15 +10,16 @@ contract OpToken_v1 is Initializable, Owner {
     uint8 public decimals;
     address public l1Token;
     address public l2Bridge;
-    bytes32 private _DOMAIN_SEPARATOR;
     uint256 public deploymentChainId;
     mapping (address => uint256) public nonces;
 
     string public constant version  = "1";
     bytes32 public constant PERMIT_TYPEHASH = keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)");
+    bytes32 private _DOMAIN_SEPARATOR;
 
     event Mint(address indexed mintee, uint256 amount, address indexed sender);
     event Burn(address indexed burnee, uint256 amount, address indexed sender);
+    event UpdateMetadata(string indexed _newName, string indexed _newSymbol);
 
     modifier onlyL2Bridge() {
         require(msg.sender == l2Bridge, "Only L2 Bridge can mint and burn");
@@ -134,5 +135,27 @@ contract OpToken_v1 is Initializable, Owner {
             ^ this.mint.selector
             ^ this.burn.selector;
         return _interfaceId == firstSupportedInterface || _interfaceId == secondSupportedInterface;
+    }
+
+    function updateMetadata(string memory _newName, string memory _newSymbol)
+        public
+        onlyRescuer
+    {
+        setName(_newName);
+        setSymbol(_newSymbol);
+
+        uint256 id;
+        assembly {id := chainid()}
+        _DOMAIN_SEPARATOR = _calculateDomainSeparator(id);
+
+        emit UpdateMetadata(_newName, _newSymbol);
+    }
+
+    function setName(string memory _newName) internal {
+      name = _newName;
+    }
+
+    function setSymbol(string memory _newSymbol) internal {
+      symbol = _newSymbol;
     }
 }

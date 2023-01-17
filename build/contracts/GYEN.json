@@ -699,12 +699,12 @@
         }
       },
       "links": {},
-      "address": "0x8E555f1953BDD144374A5b483d135518065E787b",
-      "transactionHash": "0x9ac3974673a9e088b1a64f11515247a08970164e115997c61cc6e64d20ffb8e1"
+      "address": "0xBeBA3ecf854fe7d98f60773b9375039474dEA71e",
+      "transactionHash": "0x0cad35614256516df5b36dba94ffe675e8b5b196ad48aa925f859ec4e50081fc"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2023-01-16T08:21:09.445Z",
+  "updatedAt": "2023-01-17T02:17:38.782Z",
   "devdoc": {
     "methods": {
       "admin()": {
