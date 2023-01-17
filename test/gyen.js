@@ -576,4 +576,70 @@ contract("GYEN.sol", (accounts) => {
       );
     });
   });
+
+  describe('Test updateMetadata function', function() {
+    beforeEach(initialize);
+
+    let approver = accounts[11];
+    let spender = accounts[12];
+    let gaspender = accounts[13];
+
+    it("updateMetadata and can permit with signature", async () => {
+
+      const newname = 'new name';
+      const newsymbol = 'NEWS';
+      
+      let up_tx = await gyenInstance.updateMetadata(newname,newsymbol, {from: rescuer});
+      await truffleAssert.eventEmitted(up_tx, 'UpdateMetadata', (ev) => {
+        return ev._newName === newname && ev._newSymbol === newsymbol;
+      }, 'UpdateMetadata event should be emitted with correct parameters');
+
+      const name = await gyenInstance.name();
+      const symbol = await gyenInstance.symbol();
+      assert.strictEqual(name, newname, "name not correct!");
+      assert.strictEqual(symbol, newsymbol, "symbol not correct!");
+
+      let nonce = await gyenInstance.nonces(approver);
+      nonce = nonce.toString();
+
+      let chainid = await gyenInstance.deploymentChainId();;
+      chainid = chainid.toString();
+      const permitResult = await signERC2612Permit(
+        web3.currentProvider,
+        gyenInstance.address,
+        approver,
+        spender,
+        '10',
+        null,
+        nonce,
+        name,
+        chainid,
+        '1',
+      );
+      let old_allowance = await gyenInstance.allowance(approver, spender);
+      await gyenInstance.permit(
+        approver,
+        spender,
+        '10',
+        permitResult.deadline,
+        permitResult.v,
+        permitResult.r,
+        permitResult.s,
+        {from: gaspender}
+      );
+
+      let new_allowance = await gyenInstance.allowance(approver, spender);
+      assert.strictEqual(old_allowance.toNumber() + 10, new_allowance.toNumber(), "Allowance after approve not correct!");
+    });
+
+    it("Non rescuer cannot updateMetadata", async () => {
+      let non_rescuer =  accounts[11];
+
+      await truffleAssert.reverts(
+        gyenInstance.updateMetadata('a','A', {from: non_rescuer}),
+        truffleAssert.ErrorType.REVERT,
+        'This should be a fail test case!'
+      );
+    });
+  });
 })

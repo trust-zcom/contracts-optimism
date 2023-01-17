@@ -19,7 +19,7 @@ contract OpToken_v1 is Initializable, Owner {
 
     event Mint(address indexed mintee, uint256 amount, address indexed sender);
     event Burn(address indexed burnee, uint256 amount, address indexed sender);
-    event UpdateMetadata(string indexed _newName, string indexed _newSymbol);
+    event UpdateMetadata(string _newName, string _newSymbol);
 
     modifier onlyL2Bridge() {
         require(msg.sender == l2Bridge, "Only L2 Bridge can mint and burn");
