@@ -71,7 +71,7 @@ module.exports = {
     },
     optimism: {
       network_id: "10",
-      provider: () => new HDWalletProvider(privateKeyProduction, ""),
+      provider: () => new HDWalletProvider(privateKeyProduction, "https://optimism-mainnet.infura.io/v3/d9070061398d4e869227d6d6f32228e6"),
       //gasPrice: 20000000000,
       //as: 4000000
     },
