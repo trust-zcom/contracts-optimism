@@ -81,6 +81,10 @@ module.exports = {
       //gasPrice: 20000000000,
       //as: 4000000
     },
+    optimismSepolia: {
+      network_id: "11155420",
+      provider: () => new HDWalletProvider(privateKey, "https://opt-sepolia.g.alchemy.com/v2/QZRzcHRaCbE4eJDsotCUDTYD-zo-JhTK"),
+    },
   },
 
   // Set default mocha options here, use special reporters etc.

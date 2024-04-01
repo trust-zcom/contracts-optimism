@@ -1,0 +1,19 @@
+{
+    "production": false,
+    "name_gyen": "GMO JPY Optimism test",
+    "symbol_gyen": "GYEN",
+    "name_zusd": "Z.com USD Optimsim test",
+    "symbol_zusd": "ZUSD",
+    "name_suffix": " optimism",
+    "symbol_suffix": "O",
+    "owner": "0x73853c7997faedba117693ea7d1cef0e34205348",
+    "deployer": "0x6f655e12f9480ca6c2f896c71369be95454b3d47",
+    "admin": "0x73853c7997faedba117693ea7d1cef0e34205348",
+    "pauser": "0x73853c7997faedba117693ea7d1cef0e34205348",
+    "prohibiter": "0x73853c7997faedba117693ea7d1cef0e34205348",
+    "wiper": "0x73853c7997faedba117693ea7d1cef0e34205348",
+    "rescuer": "0x73853c7997faedba117693ea7d1cef0e34205348",
+    "l1Address_gyen": "0xA02774cE8619Ce194a59D1313d6c08c375002FFE",
+    "l1Address_zusd": "0x89d12d33461D2336F1E3Ed77A6d286eBda19f770",
+    "l2Gateway": "0x4200000000000000000000000000000000000010"
+}
