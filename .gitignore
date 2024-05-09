@@ -4,6 +4,6 @@
 .vscode
 .nyc_output
 coverage/*
-coverage.json
+/coverage.json
 
 .secret*

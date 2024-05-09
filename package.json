@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "truffle test --network test",
-    "coverage": "solidity-coverage",
+    "coverage": "truffle run coverage --network coverage",
     "ganache": "ganache-cli -p 7545 -d -a 25 -i 5777"
   },
   "author": "",
@@ -20,8 +20,8 @@
     "bn.js": "^5.1.3",
     "ethereum-private-key-to-address": "0.0.7",
     "ganache-cli": "^6.12.2",
-    "solidity-coverage": "^0.6.7",
-    "truffle": "^5.0.41",
+    "solidity-coverage": "^0.7.16",
+    "truffle": "^5.3.8",
     "truffle-assertions": "^0.9.1",
     "truffle-plugin-verify": "^0.5.21",
     "web3-eth-abi": "^1.2.0"
