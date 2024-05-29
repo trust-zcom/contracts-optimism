@@ -51,24 +51,6 @@ module.exports = {
       port: 7545,
       network_id: "*",
     },
-    arbitrumT: {
-      network_id: "421611",
-      provider: () => new HDWalletProvider(privateKey, "https://arb-rinkeby.g.alchemy.com/v2/Hq_GCsE4ZSrtBt0VV0t40za8RDEFGuSf"),
-      //gasPrice: 20000000000,
-      //as: 4000000
-    },
-    arbitrum: {
-      network_id: "42161",
-      provider: () => new HDWalletProvider(privateKeyProduction, "https://arb-mainnet.g.alchemy.com/v2/3K5AgC4ly1h3kKJIluEtqvNP0TcI6yiY"),
-      //gasPrice: 20000000000,
-      //as: 4000000
-    },
-    arbitrumN: {
-      network_id: "421613",
-      provider: () => new HDWalletProvider(privateKey, "https://arb-goerli.g.alchemy.com/v2/XZ7fMZz04O0Tebm-62x6BX2YYJoe81Wi"),
-      //gasPrice: 20000000000,
-      //as: 4000000
-    },
     optimism: {
       network_id: "10",
       provider: () => new HDWalletProvider(privateKeyProduction, "https://optimism-mainnet.infura.io/v3/d9070061398d4e869227d6d6f32228e6"),
