@@ -7,3 +7,4 @@ coverage/*
 coverage.json
 
 .secret*
+/bridge/node_modules/*
