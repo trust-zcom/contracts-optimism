@@ -14,8 +14,8 @@ When we burn tokens upon customers' redemption requests, we send the same amount
 
 Customers can burn tokens by calling `burn()` themselves, however, they will not receive the underlying fiat currencies in such case.
 
-For using GYEN/ZUSD in Arbitrum, users can bridge their GYEN/ZUSD through [Arbitrum Bridge](https://bridge.arbitrum.io/).
-Below is about GYEN/ZUSD on Arbitrum.
+For using GYEN/ZUSD in Optimism, users can bridge their GYEN/ZUSD through [Optimism Bridge](https://app.optimism.io/bridge/deposit).
+Below is about GYEN/ZUSD on Optimism.
 
 ## Roles
 
@@ -36,15 +36,16 @@ The standard ERC-20 `approve()` and `transferFrom()` might cause a race conditio
 
 ## Minting and Burning
 
-When mint tokens on Arbitrum, callable path is L1Gateway depositToken (which handles L1 escrow), which triggers L2Gateway, `bridgeMint` will be called.
+GYEN/ZUSD is native to Ethereum. It can be bridged to Optimism.
+When move tokens from Ethereum to Optimism, callable path is L1Gateway depositToken (which handles L1 escrow), which triggers L2Gateway, `mint` will be called.
 
-For burning tokens on Arbitrum, `bridgeBurn` will be called. Only the token bridge can call this.
+When move tokens from Optimism to Ethereum, `burn` will be called. Only the token bridge can call this.
 
 ## Prohibit
 
 `prohibit` is a security feature implemented for the purpose of Anti-Money Laundering (AML) activities. `prohibiter` can prevent specific end users (addresses) from performing token transactions.
 
-## Pausing
+## Pause
 
 `pause` is a security feature intended for use in emergencies. While the `pauser` pauses the token, all transactions (except `changeAdmin()`, the reassignment of `admin` and `changePauser`, reassignment of `pauser`) are stopped and will fail.
 
@@ -60,10 +61,10 @@ For burning tokens on Arbitrum, `bridgeBurn` will be called. Only the token brid
 
 `permit` is for gasless approval of tokens (standardized as ERC2612).
 
-So, both GYEN and ZUSD are EIP-2612-compliant token on Arbitrum.
+So, both GYEN and ZUSD are EIP-2612-compliant token on Optimism.
 
 ## Upgrading
 
-ZUSD.sol and GYEN.sol are proxy contracts and ArbToken_v1.sol is an implementation contract. The proxy contracts are based on the OpenZeppelin framework.
+ZUSD.sol and GYEN.sol are proxy contracts and OpToken_v1.sol is an implementation contract. The proxy contracts are based on the OpenZeppelin framework.
 
-When an upgrade is needed, a new implementation contact (ArbToken_v2.sol, ArbToken_v3.sol, etc.) can be deployed and the proxy is updated to point to it.
+When an upgrade is needed, a new implementation contact (OpToken_v2.sol, OpToken_v3.sol, etc.) can be deployed and the proxy is updated to point to it.
